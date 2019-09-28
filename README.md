@@ -1,2 +1,2 @@
-# cyclicshift
-A 2D top down shooter game
+# Cyclic Shift
+This is a simple top down 2D scroller shooter game. 
