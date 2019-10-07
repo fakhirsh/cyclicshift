@@ -1,17 +1,47 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <iostream>
+#include <fstream>
+#include <vector>
 
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
+#include <System/App.hpp>
+#include <ResourceCache/IOManagerDefault.hpp>
 
-#include "../../FEngine/Renderer/GL30/SimpleVertex2DProgram.hpp"
 
-GLFWwindow * window;
+//#include <GL/glew.h>
+//#include <GLFW/glfw3.h>
 
+//#include "../../FEngine/Renderer/GL30/SimpleVertex2DProgram.hpp"
+//#include "../../FEngine/System/System.hpp"
+
+//GLFWwindow * window;
+
+using namespace std;
+using namespace FEngine;
 
 int main( void )
 {
+
+    App * app = App::Get();
+
+    app->SetIOManager(new IOManagerDefault());
+
+    app->Initialize("Data/");
+
+
+
+/*
+    FEngine::System sysConfig;
+    sysConfig.ioManager = new FEngine::IOManagerDefault();
+
+    std::vector<char> buffer;
+    std::string sysConfXMLPath = "Data/Config/SystemConfig.xml";
+    sysConfig.ioManager->GetAssetStream(sysConfXMLPath, buffer);
+    if(!sysConfig.LoadConfig(buffer)){
+		fprintf( stderr, "Error Loading >> SystemConfig.xml << \n" );
+        return -1;
+    }
+
 	// Initialise GLFW
 	if( !glfwInit() )
 	{
@@ -27,9 +57,9 @@ int main( void )
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
 	// Open a window and create its OpenGL context
-	window = glfwCreateWindow( 640, 400, "Cyclic Shift", NULL, NULL);
+	window = glfwCreateWindow( sysConfig.windowWidth, sysConfig.windowHeight, sysConfig.windowTitle.c_str(), NULL, NULL);
 	if( window == NULL ){
-		fprintf( stderr, "Failed to open GLFW window. If you have an Intel GPU, they are not 3.3 compatible. Try the 2.1 version of the tutorials.\n" );
+		fprintf( stderr, "Failed to open GLFW window. If you have an Intel GPU, they are not 3.3 compatible.\n" );
 		getchar();
 		glfwTerminate();
 		return -1;
@@ -50,6 +80,7 @@ int main( void )
 
 	// Dark blue background
 	glClearColor(1.0f, 0.0f, 0.4f, 0.0f);
+
 
 	GLuint VertexArrayID;
 	glGenVertexArrays(1, &VertexArrayID);
@@ -74,10 +105,12 @@ int main( void )
 	glBindBuffer(GL_ARRAY_BUFFER, vertexbuffer);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
 
+
 	do{
 
 		// Clear the screen
 		glClear( GL_COLOR_BUFFER_BIT );
+
 
 		program.Bind();
         //program.SetMatrix(640, 480);
@@ -106,14 +139,18 @@ int main( void )
 	while( glfwGetKey(window, GLFW_KEY_ESCAPE ) != GLFW_PRESS &&
 		   glfwWindowShouldClose(window) == 0 );
 
+
 	// Cleanup VBO
 	glDeleteBuffers(1, &vertexbuffer);
 	glDeleteVertexArrays(1, &VertexArrayID);
 
 	program.UnLoad();
 
+
 	// Close OpenGL window and terminate GLFW
 	glfwTerminate();
+	
+*/
 
 	return 0;
 }

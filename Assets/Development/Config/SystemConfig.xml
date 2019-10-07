@@ -1,6 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <SystemConfig>
-	<WindowSystem	className = "3DTerrainClass"
-					windowTitle = "3D Terrain v 0.1.0"/>
+	<WindowSystem	className = "CyclicShift"
+			windowTitle = "Cyclic Shift v 0.1.0"/>
 
 	<!--    
 		FrameBuffer size is automatically calculated.
@@ -8,10 +9,11 @@
 			render the scene to a texture of much smaller size for speed gains
 	-->
 	<Graphics	frameBufferWidth="0"	frameBufferHeight = "0"
-				width           = "960" height = "640"
+				windowWidth	= "400" windowHeight = "640"
+				designWidth	= "400.0" designHeight = "640.0"
 				allowFullScreen = "false"
 				runFullSpeed    = "false"
-				maxFPS          = "60" />
+				maxFps          = "60" />
 				
 	<Sound		sfxVolume="100" musicVolume="100"/>
 	

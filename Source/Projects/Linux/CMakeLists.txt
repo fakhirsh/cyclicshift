@@ -4,28 +4,23 @@ set (PROJECT_NAME CyclicShift)
 
 project (${PROJECT_NAME})
 
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/../../../Game/Linux)
+
 # Remember to specify the path within quotes " "
-include_directories("../../3rdParty/glm-0.9.8.1")
-include_directories("../../3rdParty/glfw-3.1.2/include")
-include_directories("../../3rdParty/glew-1.13.0/include")
+include_directories("../../FEngine")
 
-CONFIGURE_FILE(../../../Assets/Config/SystemConfig.xml Assets/Config/SystemConfig.xml COPYONLY)
-CONFIGURE_FILE(../../../Assets/Effects/SimpleShader.vs Assets/Effects/SimpleShader.vs COPYONLY)
-CONFIGURE_FILE(../../../Assets/Effects/SimpleShader.fs Assets/Effects/SimpleShader.fs COPYONLY)
+CONFIGURE_FILE(../../../Assets/Release/Config/SystemConfig.xml ../../Game/Linux/Data/Config/SystemConfig.xml COPYONLY)
+#CONFIGURE_FILE(../../../Assets/Release/Effects/SimpleShader.vs ../../Game/Linux/Data/Effects/SimpleShader.vs COPYONLY)
+#CONFIGURE_FILE(../../../Assets/Release/Effects/SimpleShader.fs ../../Game/Linux/Data/Effects/SimpleShader.fs COPYONLY)
 
-add_subdirectory(../../3rdParty/glew-1.13.0 ${CMAKE_BINARY_DIR}/glew)
-add_subdirectory(../../3rdParty/glfw-3.1.2 ${CMAKE_BINARY_DIR}/glfw)
-
+add_subdirectory(../../FEngine ${CMAKE_BINARY_DIR}/FEngine)
 
 set ( HDR
-        ../../FEngine/Renderer/GL30/Program.hpp
-        ../../FEngine/Renderer/GL30/SimpleVertex2DProgram.hpp
+
     )
 
 set ( SRC
         main.cpp
-        ../../FEngine/Renderer/GL30/Program.cpp
-        ../../FEngine/Renderer/GL30/SimpleVertex2DProgram.cpp
     )
 	
 # Executable
@@ -35,5 +30,7 @@ add_executable(${PROJECT_NAME}
             )
 
 
-target_link_libraries(${PROJECT_NAME} glfw ${OPENGL_glu_LIBRARY} ${GLFW_LIBRARIES} GLEW)
+target_link_libraries(${PROJECT_NAME} 
+                            FEngine
+                     )
 
