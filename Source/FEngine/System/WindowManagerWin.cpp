@@ -1,6 +1,5 @@
 
 #include "App.hpp"
-#include "WindowManager.hpp"
 #include <tinyxml2.h>
 #include <iostream>
 #include "../ResourceCache/IOManager.hpp"
@@ -31,7 +30,7 @@ namespace FEngine{
         _ioManager = NULL;
         _renderer = NULL;
         _soundManager = NULL;
-        _windowManager = NULL;
+        _systemScanner = NULL;
 
     }
 
@@ -51,10 +50,6 @@ namespace FEngine{
             std::cout << "IOManager MUST be set before calling Initialize()" << endl;
             return false;
         }
-        if(_windowManager == NULL){
-            std::cout << "WindowManager MUST be set before calling Initialize()" << endl;
-            return false;
-        }
 
         vector<char> buffer;
         string sysConfXMLPath = assetDirPrefix + "Config/SystemConfig.xml";
@@ -69,11 +64,6 @@ namespace FEngine{
         cout << "Max FPS: " << _maxFps << endl;
         cout << "Width: " << _windowWidth << endl;
         cout << "Height: " << _windowHeight << endl;
-
-        bool success = _windowManager->Initialize(_windowWidth, _windowHeight, _windowTitle, _className);
-        if(!success){
-            return false;
-        }
 
         return true;
     }
@@ -113,12 +103,12 @@ namespace FEngine{
         return _soundManager;
     }
 
-    void App::SetWindowManager(WindowManager * winmgr){
-        _windowManager = winmgr;
+    void App::SetSystemScanner(SystemScanner * sysscanner){
+        _systemScanner = sysscanner;
     }
 
-    WindowManager * App::GetWindowManager(){
-        return _windowManager;
+    SystemScanner * App::GetSystemScanner(){
+        return _systemScanner;
     }
 
     void App::Message(){

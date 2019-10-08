@@ -6,27 +6,63 @@ project (${PROJECT_NAME})
 
 
 include_directories("../3rdParty/tinyxml2")
-
+include_directories("../3rdParty/glm-0.9.8.1")
+if(USING_EMSCRIPTEN)
+else()
+    include_directories("../3rdParty/glfw-3.1.2/include")
+    include_directories("../3rdParty/glew-1.13.0/include")
+endif(USING_EMSCRIPTEN)
 
 add_subdirectory(../3rdParty/tinyxml2 ${CMAKE_BINARY_DIR}/tinyxml2)
+if(USING_EMSCRIPTEN)
+else()
+    add_subdirectory(../3rdParty/glew-1.13.0 ${CMAKE_BINARY_DIR}/glew)
+    add_subdirectory(../3rdParty/glfw-3.1.2 ${CMAKE_BINARY_DIR}/glfw)
+endif(USING_EMSCRIPTEN)
 
 
 set ( HDR
 		System/App.hpp
+		System/WindowManager.hpp
 		ResourceCache/IOManager.hpp
     	ResourceCache/IOManagerDefault.hpp
 	)
-	
+if(USING_EMSCRIPTEN)
+    list ( APPEND HDR 	System/WindowManagerWeb.hpp	)
+else()
+    list ( APPEND HDR  	System/WindowManagerLinux.hpp )
+endif(USING_EMSCRIPTEN)
+
+#message(${HDR})
+
 set ( SRC
 		System/App.cpp
     	ResourceCache/IOManagerDefault.cpp		
 	)
+
+if(USING_EMSCRIPTEN)
+    list ( APPEND SRC  System/WindowManagerWeb.cpp )
+else()
+    list ( APPEND SRC  System/WindowManagerLinux.cpp )
+endif(USING_EMSCRIPTEN)
+
+#message(${HDR})
 
 ADD_LIBRARY(FEngine STATIC
 		${HDR}
 		${SRC}
 	)
 	
+if(USING_EMSCRIPTEN)
 TARGET_LINK_LIBRARIES( ${PROJECT_NAME}
-                       tinyxml2 )
-	
+                       tinyxml2 
+                       )
+else()
+TARGET_LINK_LIBRARIES( ${PROJECT_NAME}
+                       tinyxml2 
+                       glfw 
+                       ${OPENGL_glu_LIBRARY} 
+                       ${GLFW_LIBRARIES} 
+                       GLEW
+                       )
+endif(USING_EMSCRIPTEN)

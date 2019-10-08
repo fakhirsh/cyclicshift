@@ -1,20 +1,7 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <iostream>
-#include <fstream>
-#include <vector>
 
 #include <System/App.hpp>
+#include <System/WindowManagerLinux.hpp>
 #include <ResourceCache/IOManagerDefault.hpp>
-
-
-//#include <GL/glew.h>
-//#include <GLFW/glfw3.h>
-
-//#include "../../FEngine/Renderer/GL30/SimpleVertex2DProgram.hpp"
-//#include "../../FEngine/System/System.hpp"
-
-//GLFWwindow * window;
 
 using namespace std;
 using namespace FEngine;
@@ -25,6 +12,7 @@ int main( void )
     App * app = App::Get();
 
     app->SetIOManager(new IOManagerDefault());
+    app->SetWindowManager(new WindowManagerLinux());
 
     app->Initialize("Data/");
 

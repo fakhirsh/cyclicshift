@@ -1,6 +1,10 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required (VERSION 2.8)
 
-project(CyclicShift)
+set (PROJECT_NAME CyclicShift)
+
+project (${PROJECT_NAME})
+
+option(USING_EMSCRIPTEN "Using Emscripten, certain libraries should be disabled" ON) #OFF by default
 
 SET(CMAKE_EXECUTABLE_SUFFIX ".html")
 
@@ -42,13 +46,13 @@ set ( SRC
 	)
 	
 # Executable
-add_executable(CyclicShift
+add_executable(${PROJECT_NAME}
 				${HDR} 
 				${SRC} 
 			)
 
 # Link static libraries
-target_link_libraries(CyclicShift
+target_link_libraries(${PROJECT_NAME}
                         FEngine
 					)
 

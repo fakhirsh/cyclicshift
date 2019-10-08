@@ -8,7 +8,7 @@ namespace FEngine
     class IOManager;
     class Renderer;
     class SoundManager;
-    class WindowManager;
+    class SystemScanner;
     
     class App
     {
@@ -29,8 +29,8 @@ namespace FEngine
             Renderer * GetRenderer();
             void SetSoundManager(SoundManager * sndmgr);
             SoundManager * GetSoundManager();
-            void SetWindowManager(WindowManager * winmgr);
-            WindowManager * GetWindowManager();
+            void SetSystemScanner(SystemScanner * sysscanner);
+            SystemScanner * GetSystemScanner();
 
             void Message();
 
@@ -39,7 +39,7 @@ namespace FEngine
             
             std::string _className;
             std::string _windowTitle;                       
-                                 
+                      
             int _fps;
             int _maxFps;
 
@@ -59,7 +59,7 @@ namespace FEngine
             IOManager * _ioManager;
             Renderer * _renderer;
             SoundManager * _soundManager;
-            WindowManager * _windowManager;
+            SystemScanner * _systemScanner;
             
             static App * _app;
     };

@@ -4,6 +4,8 @@ set (PROJECT_NAME CyclicShift)
 
 project (${PROJECT_NAME})
 
+option(USING_EMSCRIPTEN "Using Emscripten, certain libraries should be disabled" OFF) #OFF by default
+
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/../../../Game/Linux)
 
 # Remember to specify the path within quotes " "

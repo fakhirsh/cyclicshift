@@ -1,50 +1,18 @@
 
-
-//#include <stdlib.h>
-#include <iostream>
-#include <fstream>
-//#include <GL/glfw.h>
-//#include <emscripten/emscripten.h>
 #include <System/App.hpp>
+#include <System/WindowManagerWeb.hpp>
 #include <ResourceCache/IOManagerDefault.hpp>
-
-
-//#include "EMCGlue.h"
-
-/*
-bool InitGLFW();
-void Tick();
-void ShutdownGLFW();
-
-void OnMouseClick(int button, int action);
-void OnMouseMove(int x, int y);
-
-const int width = 960;
-const int height = 640;
-*/
 
 using namespace std;
 using namespace FEngine;
 
 int main()
 {
-/*
-    ifstream in("Data/debug.txt");
-    if(!in){
-        cout << "Error opening debug.txt" << endl;
-        return -1;
-    }
-
-    string s;
-    in >> s;
-    cout << s << endl;
-
-    cout << "Hello from Emscripten !!!" << endl;
-*/  
-  
+ 
     App * app = App::Get();
 
     app->SetIOManager(new IOManagerDefault());
+    app->SetWindowManager(new WindowManagerWeb());
 
     app->Initialize("Data/");
 
