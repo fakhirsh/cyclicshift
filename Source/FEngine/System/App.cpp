@@ -75,6 +75,7 @@ namespace FEngine{
             return false;
         }
 
+
         return true;
     }
 
@@ -188,4 +189,14 @@ namespace FEngine{
         return true;
     }
 
+  
+    void App::Tick(float dt){
+
+        cout << "App::Tick(" << dt << ")" << endl; 
+    }
+   
+    void App::RunGameLoop(){
+       TickDelegate tick = fastdelegate::MakeDelegate(this, &App::Tick); 
+        _windowManager->MainLoop(tick);
+    }
 }

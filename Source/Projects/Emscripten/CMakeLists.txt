@@ -4,7 +4,7 @@ set (PROJECT_NAME CyclicShift)
 
 project (${PROJECT_NAME})
 
-option(USING_EMSCRIPTEN "Using Emscripten, certain libraries should be disabled" ON) #OFF by default
+option(USING_EMSCRIPTEN "Using Emscripten, certain libraries should be enabled/disabled" ON)
 
 SET(CMAKE_EXECUTABLE_SUFFIX ".html")
 

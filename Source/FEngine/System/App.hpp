@@ -34,6 +34,10 @@ namespace FEngine
 
             void Message();
 
+            void Tick(float dt);
+
+            void RunGameLoop();
+
         private:
             App();
             

@@ -4,10 +4,11 @@ set (PROJECT_NAME FEngine)
 
 project (${PROJECT_NAME})
 
-
 include_directories("../3rdParty/tinyxml2")
 include_directories("../3rdParty/glm-0.9.8.1")
+include_directories("../3rdparty/FastDelegate")
 if(USING_EMSCRIPTEN)
+    # Don't load glfw or glew
 else()
     include_directories("../3rdParty/glfw-3.1.2/include")
     include_directories("../3rdParty/glew-1.13.0/include")
@@ -15,6 +16,7 @@ endif(USING_EMSCRIPTEN)
 
 add_subdirectory(../3rdParty/tinyxml2 ${CMAKE_BINARY_DIR}/tinyxml2)
 if(USING_EMSCRIPTEN)
+    # Don't load glfw or glew
 else()
     add_subdirectory(../3rdParty/glew-1.13.0 ${CMAKE_BINARY_DIR}/glew)
     add_subdirectory(../3rdParty/glfw-3.1.2 ${CMAKE_BINARY_DIR}/glfw)

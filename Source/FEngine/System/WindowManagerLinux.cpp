@@ -51,23 +51,33 @@ namespace FEngine{
         // Ensure we can capture the escape key being pressed below
         glfwSetInputMode(_window, GLFW_STICKY_KEYS, GL_TRUE);
 
-        // Dark blue background
-        //glClearColor(1.0f, 0.0f, 0.4f, 0.0f);
-
-        //do{
-        
-        //} 
-        //while( glfwGetKey(_window, GLFW_KEY_ESCAPE ) != GLFW_PRESS &&
-        //               glfwWindowShouldClose(_window) == 0 );
-
-
-
         return true;
  
     }
-    
+
+    void WindowManagerLinux::MainLoop(TickDelegate td){
+        
+        glClearColor(1.0f, 0.0f, 0.4f, 0.0f);
+        
+        do{
+
+            td(3.1415);
+
+            //glClear( GL_COLOR_BUFFER_BIT );
+            // Swap buffers
+                        
+            glfwSwapBuffers(_window);
+		    glfwPollEvents();
+        } 
+        while( glfwGetKey(_window, GLFW_KEY_ESCAPE ) != GLFW_PRESS &&
+                       glfwWindowShouldClose(_window) == 0 );
+
+   
+    }
+
     void WindowManagerLinux::Shutdown(){
        	glfwTerminate(); 
     }
+
 
 }

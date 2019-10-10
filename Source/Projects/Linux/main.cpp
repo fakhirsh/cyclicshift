@@ -16,7 +16,7 @@ int main( void )
 
     app->Initialize("Data/");
 
-
+    app->RunGameLoop();
 
 /*
     FEngine::System sysConfig;
