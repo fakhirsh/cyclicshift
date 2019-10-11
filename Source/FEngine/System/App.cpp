@@ -6,6 +6,8 @@
 #include "../ResourceCache/IOManager.hpp"
 #include "../Debugging/Log.hpp"
 
+#include "../TmpGameCode/Game.hpp"
+
 using namespace std;
 
 namespace FEngine{
@@ -35,6 +37,7 @@ namespace FEngine{
         _soundManager      = NULL;
         _windowManager     = NULL;
 
+        _testGame = new Game();
     }
 
     App::~App(){
@@ -77,7 +80,8 @@ namespace FEngine{
         if(!success){
             return false;
         }
-
+ 
+        _testGame->Init();
 
         return true;
     }
@@ -92,7 +96,10 @@ namespace FEngine{
         return _windowTitle;
     }
 
-
+    int App::GetFps(){
+        return _fps;
+    }
+    
     void App::SetIOManager(IOManager * iomgr){
         _ioManager = iomgr;
     }
@@ -131,11 +138,6 @@ namespace FEngine{
 
     Log * App::GetLogger(){
         return _logger;
-    }
-
-
-    void App::Message(){
-        std::cout << "Hello from FEngine::App->Message !!!" << std::endl;
     }
 
     bool App::LoadConfig(vector<char> & buffer)
@@ -212,18 +214,35 @@ namespace FEngine{
         if ((_elapsed - basetime) > 1.0)
         {
             _fps = frames*1.0/(_elapsed - basetime);
-            std::cout << "FPS: " << _fps << std::endl;
+            //std::cout << "FPS: " << _fps << std::endl;
             basetime = _elapsed;
             frames=0;
         }
 
         frames++;
 
-        //Update(dt);
-        //Render(dt);
+        Input();
+        Update(dt);
+        Render(dt);
 
     }
 
+    void App::Input(){
+    
+    }
+    
+    void App::Update(float dt){
+        _testGame->Update(dt); 
+    }
+    
+    void App::Render(float dt){
+        _testGame->Render(dt);
+    }
+
+   /*
+    * The actual app main loop is controlled by the OS specific window manager.
+    *  We are passing the reference of "Tick" to that main loop.
+    */ 
     void App::RunGameLoop(){
         TickDelegate tick = fastdelegate::MakeDelegate(this, &App::Tick);
         _windowManager->MainLoop(tick);
@@ -231,6 +250,10 @@ namespace FEngine{
 
     float App::GetElapsedTime(){
         return _elapsed;
+    }
+
+    void App::Shutdown(){
+        _testGame->Shutdown();
     }
 
 }

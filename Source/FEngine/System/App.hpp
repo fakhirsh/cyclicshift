@@ -5,6 +5,8 @@
 
 namespace FEngine
 {
+    class Game;
+
     class IOManager;
     class Renderer;
     class SoundManager;
@@ -24,7 +26,8 @@ namespace FEngine
             
             std::string GetClassName();
             std::string GetWindowTitle();
-            
+            int GetFps();
+
             void SetIOManager(IOManager * iomgr);
             IOManager * GetIOManager();
             void SetRenderer(Renderer * renderer);
@@ -36,17 +39,17 @@ namespace FEngine
             void SetLogger(Log * logger);
             Log * GetLogger();
    
-
             float GetElapsedTime();
-
-            void Message();
-
-            void Tick(float dt);
-
             void RunGameLoop();
+            
+            void Shutdown();
 
         private:
             App();
+            void Tick(float dt);
+            void Input();
+            void Update(float dt);
+            void Render(float dt);
             
             std::string   _className;
             std::string   _windowTitle;
@@ -74,6 +77,9 @@ namespace FEngine
             WindowManager   *   _windowManager;
             Log             *   _logger;
             static App      *   _app;
+
+
+            Game * _testGame;
     };
     
 }

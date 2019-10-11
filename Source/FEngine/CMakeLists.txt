@@ -32,6 +32,8 @@ set ( HDR
     	ResourceCache/IOManagerDefault.hpp
     	Utility/String.hpp
     	Utility/Math.hpp
+
+        TmpGameCode/Game.hpp
 	)
 if(USING_EMSCRIPTEN)
     list ( APPEND HDR 	System/WindowManagerWeb.hpp	)
@@ -48,6 +50,8 @@ set ( SRC
         Debugging/LogDefault.cpp
        	Utility/String.cpp
     	Utility/Math.cpp
+
+        TmpGameCode/Game.cpp
 	)
 
 if(USING_EMSCRIPTEN)

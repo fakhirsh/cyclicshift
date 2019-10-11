@@ -3,10 +3,7 @@
 #include <GL/glfw.h>
 #include <emscripten/emscripten.h>
 #include <iostream>
-//#include <ctime>
-//#include <ratio>
 #include <chrono>
-
 
 using namespace std;
 using namespace chrono;
@@ -53,17 +50,15 @@ namespace FEngine{
             return false;
         }
 
-        glEnable(GL_DEPTH_TEST);
-        glEnable(GL_DEPTH_BUFFER_BIT);
-
-
+        //glEnable(GL_DEPTH_TEST);
+        //glEnable(GL_DEPTH_BUFFER_BIT);
 
         return true;
 
     }
 
     void WindowManagerWeb::Shutdown(){
-    
+        glfwTerminate();
     }
 
    // Ugly hack for Emscipten main loop setup: 
@@ -81,6 +76,7 @@ namespace FEngine{
 
         prev_time = time;
 
+        glfwSwapBuffers();
     }
 
     void WindowManagerWeb::MainLoop(TickDelegate td){

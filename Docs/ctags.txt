@@ -1,3 +1,8 @@
+Further reference:
+-----------------
+https://www.zachpfeffer.com/single-post/2018/02/20/Generate-Ctags-Files-for-CC-Source-Files
+https://stackoverflow.com/questions/563616/vim-and-ctags-tips-and-tricks
+
 
 Generate tags for C++ code using the following command from linux command line:
 
@@ -5,10 +10,5 @@ Generate tags for C++ code using the following command from linux command line:
 
 After generating the "tags" file, run the following command from within vim to load "tags" file:
 
-:set tags=set tags=../Temp/linux/tags;/
-Further reference:
------------------
-https://www.zachpfeffer.com/single-post/2018/02/20/Generate-Ctags-Files-for-CC-Source-Files
-https://stackoverflow.com/questions/563616/vim-and-ctags-tips-and-tricks
-
+:set tags=../Temp/linux/tags;/
 
