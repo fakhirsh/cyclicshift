@@ -222,7 +222,6 @@ namespace FEngine{
         //Update(dt);
         //Render(dt);
 
-
     }
 
     void App::RunGameLoop(){
