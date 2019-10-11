@@ -12,26 +12,26 @@ namespace FEngine{
     App * App::_app = NULL;
 
     App::App(){
-        _fps = -1;
-        _maxFps = -1;
+        _fps               = -1;
+        _maxFps            = -1;
 
-        _sfxVolume = -1.0f;
-        _musicVolume = -1.0f;
+        _sfxVolume         = -1.0f;
+        _musicVolume       = -1.0f;
 
-        _frameBufferWidth = -1;
+        _frameBufferWidth  = -1;
         _frameBufferHeight = -1;
-        _windowWidth = -1;
-        _windowHeight = -1;
-        _designWidth = -1.0f;
-        _designHeight = -1.0f;
+        _windowWidth       = -1;
+        _windowHeight      = -1;
+        _designWidth       = -1.0f;
+        _designHeight      = -1.0f;
 
-        _allowFullScreen = -1;
-        _runFullSpeed = -1;
+        _allowFullScreen   = -1;
+        _runFullSpeed      = -1;
 
-        _ioManager = NULL;
-        _renderer = NULL;
-        _soundManager = NULL;
-        _windowManager = NULL;
+        _ioManager         = NULL;
+        _renderer          = NULL;
+        _soundManager      = NULL;
+        _windowManager     = NULL;
 
     }
 

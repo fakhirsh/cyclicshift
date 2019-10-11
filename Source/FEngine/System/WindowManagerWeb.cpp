@@ -7,7 +7,12 @@
 using namespace std;
 
 namespace FEngine{
-    
+   
+    // Global delegate pointer for "Tick" method. Why?
+    // Because I can only pass void Fn(void) as the signature
+    // for main loop function pointer. So this is a hack:
+    TickDelegate gtd;
+
     WindowManagerWeb::WindowManagerWeb(){
     
     }
@@ -47,6 +52,7 @@ namespace FEngine{
         glEnable(GL_DEPTH_BUFFER_BIT);
 
 
+
         return true;
 
     }
@@ -55,5 +61,14 @@ namespace FEngine{
     
     }
 
+   // Ugly hack for Emscipten main loop setup: 
+    void GlobalTick(){
+        gtd(0.0f);
+    }
+
+    void WindowManagerWeb::MainLoop(TickDelegate td){
+        gtd = td;
+        emscripten_set_main_loop(GlobalTick, 0, 1);
+    }
 
 }

@@ -41,31 +41,31 @@ namespace FEngine
         private:
             App();
             
-            std::string _className;
-            std::string _windowTitle;                       
-                                 
-            int _fps;
-            int _maxFps;
+            std::string   _className;
+            std::string   _windowTitle;
 
-            float _sfxVolume;
-            float _musicVolume;
-            
-            int _frameBufferWidth;
-            int _frameBufferHeight;
-            int _windowWidth;
-            int _windowHeight;
-            float _designWidth;
-            float _designHeight;
+            int           _fps;
+            int           _maxFps;
 
-            bool _allowFullScreen;
-            bool _runFullSpeed;
-            
-            IOManager * _ioManager;
-            Renderer * _renderer;
-            SoundManager * _soundManager;
-            WindowManager * _windowManager;
-            
-            static App * _app;
+            float         _sfxVolume;
+            float         _musicVolume;
+
+            int           _frameBufferWidth;
+            int           _frameBufferHeight;
+            int           _windowWidth;
+            int           _windowHeight;
+            float         _designWidth;
+            float         _designHeight;
+
+            bool          _allowFullScreen;
+            bool          _runFullSpeed;
+
+            IOManager       *   _ioManager;
+            Renderer        *   _renderer;
+            SoundManager    *   _soundManager;
+            WindowManager   *   _windowManager;
+
+            static App      *   _app;
     };
     
 }

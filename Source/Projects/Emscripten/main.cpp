@@ -16,6 +16,8 @@ int main()
 
     app->Initialize("Data/");
 
+    app->RunGameLoop();
+
 
     /*
     if (InitGLFW() == true)
