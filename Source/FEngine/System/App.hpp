@@ -9,6 +9,8 @@ namespace FEngine
     class Renderer;
     class SoundManager;
     class WindowManager;
+    class Log;
+    //class Renderer;
     
     class App
     {
@@ -31,6 +33,11 @@ namespace FEngine
             SoundManager * GetSoundManager();
             void SetWindowManager(WindowManager * winmgr);
             WindowManager * GetWindowManager();
+            void SetLogger(Log * logger);
+            Log * GetLogger();
+   
+
+            float GetElapsedTime();
 
             void Message();
 
@@ -46,6 +53,7 @@ namespace FEngine
 
             int           _fps;
             int           _maxFps;
+            double        _elapsed;
 
             float         _sfxVolume;
             float         _musicVolume;
@@ -64,7 +72,7 @@ namespace FEngine
             Renderer        *   _renderer;
             SoundManager    *   _soundManager;
             WindowManager   *   _windowManager;
-
+            Log             *   _logger;
             static App      *   _app;
     };
     

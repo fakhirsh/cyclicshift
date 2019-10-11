@@ -2,7 +2,7 @@
 
 #include "WindowManager.hpp"
 
-class GLFWwindow;
+//class GLFWwindow;
     
 namespace FEngine
 {   
@@ -19,7 +19,7 @@ namespace FEngine
             virtual void MainLoop(TickDelegate td);
                         
         private:
-            GLFWwindow * _window;
+            //GLFWwindow * _window;
 
 
     };

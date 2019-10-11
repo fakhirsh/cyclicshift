@@ -1,10 +1,17 @@
 
 #include "WindowManagerLinux.hpp"
-#include <iostream>
+#include "../System/App.hpp"
+#include "../Debugging/Log.hpp"
+
+//#include <ctime>
+//#include <ratio>
+#include <chrono>
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
+#include <iostream>
 
 using namespace std;
+using namespace std::chrono;
 
 namespace FEngine{
 
@@ -20,7 +27,8 @@ namespace FEngine{
        // Initialise GLFW
         if( !glfwInit() )
         {
-            cout << "Failed to initialize GLFW" << endl;
+            //cout << "Failed to initialize GLFW" << endl;
+            App::Get()->GetLogger()->Print("Failed to initialize GLFW", "WindowManagerLinux::Initialize", 24);
             return false;
         }
 
@@ -55,17 +63,24 @@ namespace FEngine{
  
     }
 
-    void WindowManagerLinux::MainLoop(TickDelegate td){
-        
+    void WindowManagerLinux::MainLoop(TickDelegate tickDelegate){
+        long int time = 0;
+        static long int prev_time = 0;
         glClearColor(1.0f, 0.0f, 0.4f, 0.0f);
         
         do{
 
-            td(3.1415);
+            time = high_resolution_clock::now().time_since_epoch().count();
+            const long int num = high_resolution_clock::period::num;
+            const long int den = high_resolution_clock::period::den;
+            float dt = (time - prev_time) * 1.0 * num / den;
 
-            //glClear( GL_COLOR_BUFFER_BIT );
+            // Tick function from the App class: 
+            tickDelegate(dt);
+
+            prev_time = time;
+
             // Swap buffers
-                        
             glfwSwapBuffers(_window);
 		    glfwPollEvents();
         } 
@@ -78,6 +93,5 @@ namespace FEngine{
     void WindowManagerLinux::Shutdown(){
        	glfwTerminate(); 
     }
-
 
 }

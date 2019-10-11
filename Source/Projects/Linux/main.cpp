@@ -2,6 +2,7 @@
 #include <System/App.hpp>
 #include <System/WindowManagerLinux.hpp>
 #include <ResourceCache/IOManagerDefault.hpp>
+#include <Debugging/LogDefault.hpp>
 
 using namespace std;
 using namespace FEngine;
@@ -13,6 +14,7 @@ int main( void )
 
     app->SetIOManager(new IOManagerDefault());
     app->SetWindowManager(new WindowManagerLinux());
+    app->SetLogger(new LogDefault());
 
     app->Initialize("Data/");
 

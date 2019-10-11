@@ -2,6 +2,7 @@
 #include <System/App.hpp>
 #include <System/WindowManagerWeb.hpp>
 #include <ResourceCache/IOManagerDefault.hpp>
+#include <Debugging/LogDefault.hpp>
 
 using namespace std;
 using namespace FEngine;
@@ -13,6 +14,7 @@ int main()
 
     app->SetIOManager(new IOManagerDefault());
     app->SetWindowManager(new WindowManagerWeb());
+    app->SetLogger(new LogDefault());
 
     app->Initialize("Data/");
 

@@ -24,10 +24,14 @@ endif(USING_EMSCRIPTEN)
 
 
 set ( HDR
+        Debugging/Log.hpp
+        Debugging/LogDefault.hpp
 		System/App.hpp
 		System/WindowManager.hpp
 		ResourceCache/IOManager.hpp
     	ResourceCache/IOManagerDefault.hpp
+    	Utility/String.hpp
+    	Utility/Math.hpp
 	)
 if(USING_EMSCRIPTEN)
     list ( APPEND HDR 	System/WindowManagerWeb.hpp	)
@@ -39,7 +43,11 @@ endif(USING_EMSCRIPTEN)
 
 set ( SRC
 		System/App.cpp
-    	ResourceCache/IOManagerDefault.cpp		
+    	ResourceCache/IOManagerDefault.cpp
+        Debugging/Log.cpp
+        Debugging/LogDefault.cpp
+       	Utility/String.cpp
+    	Utility/Math.cpp
 	)
 
 if(USING_EMSCRIPTEN)

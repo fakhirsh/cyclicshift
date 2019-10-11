@@ -4,6 +4,7 @@
 #include <tinyxml2.h>
 #include <iostream>
 #include "../ResourceCache/IOManager.hpp"
+#include "../Debugging/Log.hpp"
 
 using namespace std;
 
@@ -14,6 +15,7 @@ namespace FEngine{
     App::App(){
         _fps               = -1;
         _maxFps            = -1;
+        _elapsed           = 0.0f;
 
         _sfxVolume         = -1.0f;
         _musicVolume       = -1.0f;
@@ -48,11 +50,11 @@ namespace FEngine{
 
     bool App::Initialize(std::string assetDirPrefix){
         if(_ioManager == NULL){
-            std::cout << "IOManager MUST be set before calling Initialize()" << endl;
+            _logger->Print("IOManager MUST be set before calling Initialize()","App::Initialize");
             return false;
         }
         if(_windowManager == NULL){
-            std::cout << "WindowManager MUST be set before calling Initialize()" << endl;
+            _logger->Print("WindowManager MUST be set before calling Initialize()", "App::Initialize");
             return false;
         }
 
@@ -60,15 +62,16 @@ namespace FEngine{
         string sysConfXMLPath = assetDirPrefix + "Config/SystemConfig.xml";
         _ioManager->GetAssetStream(sysConfXMLPath, buffer);
         if(!LoadConfig(buffer)){
-	    	cout << "Error Loading --[ " << sysConfXMLPath << " ]--" << endl;
+            _logger->Print("Error Loading --[ " + sysConfXMLPath + " ]--", "App::Initialize");
             return false;
         }
 
-        cout << "Class Name: " << _className << endl;
-        cout << "Window Title: " << _windowTitle << endl;
-        cout << "Max FPS: " << _maxFps << endl;
-        cout << "Width: " << _windowWidth << endl;
-        cout << "Height: " << _windowHeight << endl;
+        _logger->Print("Class Name: " + _className, "App::Initialize");
+        _logger->Print("Window Title: " + _windowTitle, "App::Initialize");
+/*        _logger->Print("e: " + _className, "App::Initialize");*/
+        //cout << "Max FPS: " << _maxFps << endl;
+        //cout << "Width: " << _windowWidth << endl;
+        /*cout << "Height: " << _windowHeight << endl;*/
 
         bool success = _windowManager->Initialize(_windowWidth, _windowHeight, _windowTitle, _className);
         if(!success){
@@ -122,6 +125,15 @@ namespace FEngine{
         return _windowManager;
     }
 
+    void App::SetLogger(Log * logger){
+        _logger = logger;
+    }
+
+    Log * App::GetLogger(){
+        return _logger;
+    }
+
+
     void App::Message(){
         std::cout << "Hello from FEngine::App->Message !!!" << std::endl;
     }
@@ -130,10 +142,10 @@ namespace FEngine{
     {
         tinyxml2::XMLDocument configXML;
         tinyxml2::XMLError xmlErr;
-        
+
         // The following like worked fine in linux but was giving truble in emscripten
         //xmlErr = configXML.Parse((const char *)&buffer[0]);
-        
+
         std::string strBuff(buffer.begin(), buffer.end());
         xmlErr = configXML.Parse(strBuff.c_str());
         if(xmlErr != tinyxml2::XML_SUCCESS)
@@ -189,14 +201,37 @@ namespace FEngine{
         return true;
     }
 
-  
+
     void App::Tick(float dt){
 
-        cout << "App::Tick(" << dt << ")" << endl; 
+        static double basetime = 0.0f;
+        static int frames = 0;
+
+        _elapsed += dt;
+
+        if ((_elapsed - basetime) > 1.0)
+        {
+            _fps = frames*1.0/(_elapsed - basetime);
+            std::cout << "FPS: " << _fps << std::endl;
+            basetime = _elapsed;
+            frames=0;
+        }
+
+        frames++;
+
+        //Update(dt);
+        //Render(dt);
+
+
     }
-   
+
     void App::RunGameLoop(){
-       TickDelegate tick = fastdelegate::MakeDelegate(this, &App::Tick); 
+        TickDelegate tick = fastdelegate::MakeDelegate(this, &App::Tick);
         _windowManager->MainLoop(tick);
     }
+
+    float App::GetElapsedTime(){
+        return _elapsed;
+    }
+
 }

@@ -3,8 +3,13 @@
 #include <GL/glfw.h>
 #include <emscripten/emscripten.h>
 #include <iostream>
+//#include <ctime>
+//#include <ratio>
+#include <chrono>
+
 
 using namespace std;
+using namespace chrono;
 
 namespace FEngine{
    
@@ -63,7 +68,19 @@ namespace FEngine{
 
    // Ugly hack for Emscipten main loop setup: 
     void GlobalTick(){
-        gtd(0.0f);
+        long int time = 0;
+        static long int prev_time = 0;
+ 
+        time = high_resolution_clock::now().time_since_epoch().count();
+        const long int num = high_resolution_clock::period::num;
+        const long int den = high_resolution_clock::period::den;
+        float dt = (time - prev_time) * 1.0 * num / den;
+     
+        // Tick function from the App class: 
+        gtd(dt);
+
+        prev_time = time;
+
     }
 
     void WindowManagerWeb::MainLoop(TickDelegate td){
