@@ -29,9 +29,9 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -s ALLOW_MEMORY_GROWTH=1 -s FULL_ES2=1 -
 include_directories("../../FEngine")
 
 # Copy all the assets
-CONFIGURE_FILE(../../../Assets/Release/Config/SystemConfig.xml Data/Config/SystemConfig.xml COPYONLY)
-#CONFIGURE_FILE(../../../Assets/Release/Textures/banana.png ../../Game/Emscripten/Data/Textures/banana.png COPYONLY)
-
+CONFIGURE_FILE(../../../Assets/Development/Config/SystemConfig.xml Data/Config/SystemConfig.xml COPYONLY)
+CONFIGURE_FILE(../../../Assets/Development/Effects/GLES20/SimpleVertex2D.vs Data/Effects/GLES20/SimpleVertex2D.vs COPYONLY)
+CONFIGURE_FILE(../../../Assets/Development/Effects/GLES20/SimpleVertex2D.fs Data/Effects/GLES20/SimpleVertex2D.fs COPYONLY)
 
 # Add library subdirectories
 add_subdirectory(../../FEngine ${CMAKE_BINARY_DIR}/FEngine)

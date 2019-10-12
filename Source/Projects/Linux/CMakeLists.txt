@@ -11,9 +11,9 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/../../../Game/Linux)
 # Remember to specify the path within quotes " "
 include_directories("../../FEngine")
 
-CONFIGURE_FILE(../../../Assets/Release/Config/SystemConfig.xml ../../Game/Linux/Data/Config/SystemConfig.xml COPYONLY)
-#CONFIGURE_FILE(../../../Assets/Release/Effects/SimpleShader.vs ../../Game/Linux/Data/Effects/SimpleShader.vs COPYONLY)
-#CONFIGURE_FILE(../../../Assets/Release/Effects/SimpleShader.fs ../../Game/Linux/Data/Effects/SimpleShader.fs COPYONLY)
+CONFIGURE_FILE(../../../Assets/Development/Config/SystemConfig.xml ../../Game/Linux/Data/Config/SystemConfig.xml COPYONLY)
+CONFIGURE_FILE(../../../Assets/Development/Effects/GLES20/SimpleVertex2D.vs ../../Game/Linux/Data/Effects/GLES20/SimpleVertex2D.vs COPYONLY)
+CONFIGURE_FILE(../../../Assets/Development/Effects/GLES20/SimpleVertex2D.fs ../../Game/Linux/Data/Effects/GLES20/SimpleVertex2D.fs COPYONLY)
 
 add_subdirectory(../../FEngine ${CMAKE_BINARY_DIR}/FEngine)
 

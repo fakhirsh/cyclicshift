@@ -16,6 +16,12 @@ using namespace std::chrono;
 namespace FEngine{
 
     WindowManagerLinux::WindowManagerLinux(){
+        // So why is glClearColor doing here in a TOTALLY unrelated
+        //   function / file? Well because compiler gives me linker
+        //   errors if I remove every single GL command from this
+        //   file (which actually should be the case!!!)
+        glClearColor(1.0f, 0.0f, 0.4f, 0.0f);
+
         _window = NULL;
     }
     
@@ -66,7 +72,6 @@ namespace FEngine{
     void WindowManagerLinux::MainLoop(TickDelegate tickDelegate){
         long int time = 0;
         static long int prev_time = 0;
-        glClearColor(1.0f, 0.0f, 0.4f, 0.0f);
         
         do{
 

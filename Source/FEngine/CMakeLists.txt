@@ -4,9 +4,16 @@ set (PROJECT_NAME FEngine)
 
 project (${PROJECT_NAME})
 
-include_directories("../3rdParty/tinyxml2")
-include_directories("../3rdParty/glm-0.9.8.1")
-include_directories("../3rdparty/FastDelegate")
+include_directories(../3rdParty/tinyxml2)
+include_directories(../3rdParty/glm-0.9.8.1)
+include_directories(../3rdParty/FastDelegate)
+#include_directories(../3rdParty/libvorbis-1.3.4/include)
+#include_directories(../3rdParty/PennerEasing)
+#include_directories(../3rdParty/RectangleBinPack)
+include_directories(../3rdParty/libpng-1.6.15)
+#include_directories(../3rdParty/libogg-1.3.2/include)
+#include_directories(../3rdParty/libvorbis-1.3.4/include)
+
 if(USING_EMSCRIPTEN)
     # Don't load glfw or glew
 else()
@@ -15,6 +22,11 @@ else()
 endif(USING_EMSCRIPTEN)
 
 add_subdirectory(../3rdParty/tinyxml2 ${CMAKE_BINARY_DIR}/tinyxml2)
+add_subdirectory(../3rdParty/libpng-1.6.15 ${CMAKE_BINARY_DIR}/libpng)
+#add_subdirectory(../3rdParty/libvorbis-1.3.4 ${CMAKE_BINARY_DIR}/libvorbis)
+#add_subdirectory(../3rdParty/PennerEasing ${CMAKE_BINARY_DIR}/PennerEasing)
+#add_subdirectory(../3rdParty/RectangleBinPack ${CMAKE_BINARY_DIR}/RectangleBinPack)
+
 if(USING_EMSCRIPTEN)
     # Don't load glfw or glew
 else()
@@ -26,10 +38,17 @@ endif(USING_EMSCRIPTEN)
 set ( HDR
         Debugging/Log.hpp
         Debugging/LogDefault.hpp
-		System/App.hpp
+#		Graphics2D/Texture.hpp
+        System/App.hpp
 		System/WindowManager.hpp
 		ResourceCache/IOManager.hpp
     	ResourceCache/IOManagerDefault.hpp
+        Renderer/Renderer.hpp
+#        Renderer/GLES20/Program.hpp
+#        Renderer/GLES20/RendererGLES20.hpp
+#        Renderer/GLES20/SimpleVertex2DProgram.hpp
+        Renderer/GL30/Program.hpp
+        Renderer/GL30/SimpleVertex2DProgram.hpp
     	Utility/String.hpp
     	Utility/Math.hpp
 
@@ -45,7 +64,13 @@ endif(USING_EMSCRIPTEN)
 
 set ( SRC
 		System/App.cpp
-    	ResourceCache/IOManagerDefault.cpp
+#        Graphics2D/Texture.cpp
+        ResourceCache/IOManagerDefault.cpp
+#        Renderer/GLES20/Program.cpp
+#        Renderer/GLES20/RendererGLES20.cpp
+#        Renderer/GLES20/SimpleVertex2DProgram.cpp
+        Renderer/GL30/Program.cpp
+        Renderer/GL30/SimpleVertex2DProgram.cpp
         Debugging/Log.cpp
         Debugging/LogDefault.cpp
        	Utility/String.cpp
@@ -74,6 +99,10 @@ TARGET_LINK_LIBRARIES( ${PROJECT_NAME}
 else()
 TARGET_LINK_LIBRARIES( ${PROJECT_NAME}
                        tinyxml2 
+                       png
+#                       vorbis
+#					   PennerEasing
+#					   RectangleBinPack
                        glfw 
                        ${OPENGL_glu_LIBRARY} 
                        ${GLFW_LIBRARIES} 
