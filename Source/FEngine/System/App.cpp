@@ -2,9 +2,10 @@
 #include "App.hpp"
 #include "WindowManager.hpp"
 #include <tinyxml2.h>
-#include <iostream>
+//#include <iostream>
 #include "../ResourceCache/IOManager.hpp"
 #include "../Debugging/Log.hpp"
+#include "../Utility/String.hpp"
 
 #include "../TmpGameCode/Game.hpp"
 
@@ -99,7 +100,17 @@ namespace FEngine{
     int App::GetFps(){
         return _fps;
     }
+   
+    int App::GetWindowWidth(){
+        return _windowWidth;
+    }
     
+    int App::GetWindowHeight(){
+        return _windowHeight;
+    }
+
+
+
     void App::SetIOManager(IOManager * iomgr){
         _ioManager = iomgr;
     }
@@ -152,7 +163,7 @@ namespace FEngine{
         xmlErr = configXML.Parse(strBuff.c_str());
         if(xmlErr != tinyxml2::XML_SUCCESS)
         {
-            cout << "App::LoadConfig() -- Error parsing XML from buffer (code): " << xmlErr << endl;
+            _logger->Print("App::LoadConfig() -- Error parsing XML from buffer (code): " + String::ToString(xmlErr));
             return false;
         }
 

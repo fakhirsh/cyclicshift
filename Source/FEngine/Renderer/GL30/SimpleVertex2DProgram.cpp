@@ -3,6 +3,11 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/gtx/transform2.hpp>
+#include <glm/gtx/string_cast.hpp>
+
+#include "../../System/App.hpp"
+#include "../../Debugging/Log.hpp"
+#include "../../Utility/String.hpp"
 
 namespace FEngine
 {
@@ -25,7 +30,7 @@ namespace FEngine
         _name = "SimpleVertex2D";
 
         //if (!Link(std::string(SimpleVertex2DVS), std::string(SimpleVertex2DFS))) {
-        if (!Link("Data/Effects/GLES20/SimpleVertex2D.vs", "Data/Effects/GLES20/SimpleVertex2D.fs")) {
+        if (!Link("Data/Effects/GL30/SimpleVertex2D.vs", "Data/Effects/GL30/SimpleVertex2D.fs")) {
             return false;
         }
 
@@ -39,6 +44,11 @@ namespace FEngine
         _positionAttrib     =   glGetAttribLocation(_programID, "a_position");
         _PMVMatrixUniform   =   glGetUniformLocation(_programID, "PMVMatrix");
         _colorUniform       =   glGetUniformLocation(_programID, "u_color");
+
+
+/*        App::Get()->GetLogger()->Print("_positionAtrib: " + String::ToString(_positionAttrib));*/
+        //App::Get()->GetLogger()->Print("PMVMatrix: " + String::ToString(_PMVMatrixUniform));
+        /*App::Get()->GetLogger()->Print("_colorUniform: " + String::ToString(_colorUniform));*/
 
         return true;
 
@@ -59,12 +69,9 @@ namespace FEngine
         //    glm::mat4 translate = glm::translate<GLfloat>(glm::mat4(1.0f), glm::vec3(width/2.0f, height/2.0f, 0.0f));
         //    glm::mat4 rotate = glm::rotate<GLfloat>(glm::mat4(1.0f), angle, glm::vec3(0.0f, 0.0f, 1.0f));
 
-        // Pass the transformationMatrix to the shader using its location
+        //App::Get()->GetLogger()->Print(glm::to_string(projMat));
+        
         glUniformMatrix4fv( _PMVMatrixUniform, 1, GL_FALSE, glm::value_ptr(projMat));
-        //if (!TestGLError("glUniformMatrix4fv"))
-        //{
-        //	return false;
-        //}
 
     }
 

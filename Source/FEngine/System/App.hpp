@@ -27,6 +27,8 @@ namespace FEngine
             std::string GetClassName();
             std::string GetWindowTitle();
             int GetFps();
+            int GetWindowWidth();
+            int GetWindowHeight();
 
             void SetIOManager(IOManager * iomgr);
             IOManager * GetIOManager();

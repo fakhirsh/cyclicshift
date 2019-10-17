@@ -17,6 +17,8 @@ namespace FEngine
             
             virtual void MainLoop(TickDelegate td) = 0;
 
+            virtual void Resize(int newWidth, int newHeight) = 0;
+
         private:
    };
     

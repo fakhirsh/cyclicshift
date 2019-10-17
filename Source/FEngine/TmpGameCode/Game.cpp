@@ -5,7 +5,7 @@
 
 
 #include "../System/App.hpp"
-#include <iostream>
+#include "../Debugging/Log.hpp"
 
 #include "../Renderer/GL30/SimpleVertex2DProgram.hpp"
 
@@ -37,14 +37,15 @@ namespace FEngine{
 
 
         if(!program.Init()){
-            std::cout << "Game::Init() --> ERROR: Couldn't initialize shader prgram" << std::endl;
+            App::Get()->GetLogger()->Print("Game::Init() --> ERROR: Couldn't initialize shader prgram");
             return;
         }
+        
 
         static const GLfloat g_vertex_buffer_data[] = {
-            -1.0f, -1.0f, 0.0f,
-             1.0f, -1.0f, 0.0f,
-             0.0f,  1.0f, 0.0f,
+             0.0f, 0.0f, 0.0f,
+             100.0f, 0.0f, 0.0f,
+             100.0f, 100.0f, 0.0f,
         };
 
         glGenBuffers(1, &gVertexbuffer);
@@ -61,8 +62,10 @@ namespace FEngine{
         glClear(GL_COLOR_BUFFER_BIT);
 
         program.Bind();
-        //program.SetMatrix(640, 480);
-		// 1rst attribute buffer : vertices
+        program.SetMatrix(App::Get()->GetWindowWidth(), App::Get()->GetWindowHeight());
+        program.SetColor(1.0, 0.0, 0.0, 1.0);
+		
+        // 1rst attribute buffer : vertices
 		glEnableVertexAttribArray(0);
 		glBindBuffer(GL_ARRAY_BUFFER, gVertexbuffer);
 		glVertexAttribPointer(

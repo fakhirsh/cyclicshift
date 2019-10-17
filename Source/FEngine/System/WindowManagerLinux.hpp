@@ -18,6 +18,8 @@ namespace FEngine
 
             virtual void MainLoop(TickDelegate td);
 
+            virtual void Resize(int newWidth, int newHeight);
+
         private:
             GLFWwindow * _window;
 

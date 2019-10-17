@@ -3,17 +3,16 @@
 #include "../System/App.hpp"
 #include "../Debugging/Log.hpp"
 
-//#include <ctime>
-//#include <ratio>
 #include <chrono>
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
-#include <iostream>
+
 
 using namespace std;
 using namespace std::chrono;
 
 namespace FEngine{
+
 
     WindowManagerLinux::WindowManagerLinux(){
         // So why is glClearColor doing here in a TOTALLY unrelated
@@ -33,7 +32,6 @@ namespace FEngine{
        // Initialise GLFW
         if( !glfwInit() )
         {
-            //cout << "Failed to initialize GLFW" << endl;
             App::Get()->GetLogger()->Print("Failed to initialize GLFW", "WindowManagerLinux::Initialize", 24);
             return false;
         }
@@ -44,11 +42,12 @@ namespace FEngine{
         glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // To make MacOS happy; should not be needed
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 
-        
+       
+        glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
         // Open a window and create its OpenGL context
         _window = glfwCreateWindow( width, height, title.c_str(), NULL, NULL);
         if( _window == NULL ){
-            cout << "Failed to open GLFW window. If you have an Intel GPU, they are not 3.3 compatible. Try the 2.1 version of the tutorials." << endl;
+            App::Get()->GetLogger()->Print("Failed to open GLFW window. v3.3 is not compatible with Intel GPU. Try v2.1", "WindowManagerLinux::Initialize");
             glfwTerminate();
             return false;
         }
@@ -57,7 +56,7 @@ namespace FEngine{
         // Initialize GLEW
         glewExperimental = true; // Needed for core profile
         if (glewInit() != GLEW_OK) {
-            cout << "Failed to initialize GLEW" << endl;
+            App::Get()->GetLogger()->Print("Failed to initialize GLEW");
             glfwTerminate();
             return false;
         }
@@ -93,6 +92,11 @@ namespace FEngine{
                        glfwWindowShouldClose(_window) == 0 );
 
    
+    }
+
+
+    void WindowManagerLinux::Resize(int newWidth, int newHeight){
+        App::Get()->GetLogger()->Print("Resizeing window...");
     }
 
     void WindowManagerLinux::Shutdown(){

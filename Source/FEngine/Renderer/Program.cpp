@@ -1,16 +1,15 @@
 
 #include "Program.hpp"
-#include "../../System/App.hpp"
-#include "../../Debugging/Log.hpp"
+#include "../System/App.hpp"
+#include "../Debugging/Log.hpp"
 #include <string>
-#include <iostream>
 #include <fstream>
 #include <sstream>
 
 
 using namespace std;
 
-namespace Fakhir
+namespace FEngine
 {
 
     Program::Program(void)
@@ -26,16 +25,16 @@ namespace Fakhir
     {
     }
 
-    bool Program::LinkProgram(std::string vertexShaderSource, std::string fragmentShaderSource)
+    bool Program::Link(std::string vertexShaderPath, std::string fragmentShaderPath)
     {
         
-        _vertexShader = LoadShaderFromString(vertexShaderSource, GL_VERTEX_SHADER);
+        _vertexShader = LoadShaderFromFile(vertexShaderPath, GL_VERTEX_SHADER);
         if(_vertexShader == 0)
         {
             return false;
         }
         
-        _fragmentShader = LoadShaderFromString(fragmentShaderSource, GL_FRAGMENT_SHADER);
+        _fragmentShader = LoadShaderFromFile(fragmentShaderPath, GL_FRAGMENT_SHADER);
         if(_fragmentShader == 0)
         {
             return false;
@@ -47,11 +46,6 @@ namespace Fakhir
         // Attach the fragment and vertex shaders to it
         glAttachShader(_programID, _fragmentShader);
         glAttachShader(_programID, _vertexShader);
-        
-        // Bind the vertex attribute "myVertex" to location VERTEX_ARRAY (0)
-        //glBindAttribLocation(_shaderProgram, VERTEX_ARRAY, "a_position");
-        //glBindAttribLocation(_shaderProgram, TEXCOORD_ARRAY, "a_UV");
-        //glBindAttribLocation(_shaderProgram, COLOR_ARRAY, "a_color");
         
         // Link the program
         glLinkProgram(_programID);
@@ -69,11 +63,6 @@ namespace Fakhir
             char* infoLog = new char[infoLogLength];
             glGetProgramInfoLog(_programID, infoLogLength, &charactersWritten, infoLog);
             
-            // Display the error in a dialog box
-            //MessageBox(_hWnd, infoLogLength>1 ? infoLog : "Failed to link GL program object. (No information)",
-            //           ERROR_TITLE, MB_OK | MB_ICONEXCLAMATION);
-            
-            //std::cout << "Error linking shader:  " << infoLog << std::endl;
             FEngine::App * app = FEngine::App::Get();
             app->GetLogger()->Print(string("Error linking shader: ") + infoLog);
 
@@ -81,11 +70,6 @@ namespace Fakhir
             delete[] infoLog;
             return false;
         }
-        
-        //_positionAttrib = glGetAttribLocation(_shaderProgram, "a_position");
-        //_colorAttrib = glGetAttribLocation(_shaderProgram, "a_color");
-        
-        //glUseProgram(_shaderProgram);
         
         return true;
     }
@@ -134,8 +118,6 @@ namespace Fakhir
         glGetShaderiv( shaderID, GL_COMPILE_STATUS, &shaderCompiled );
         if( shaderCompiled != GL_TRUE )
         {
-            //printf( "Unable to compile shader %d!\n\nSource:\n%s\n", shaderID, shaderSource );
-            //printShaderLog( shaderID );
             
             int infologLength = 0;
             
@@ -158,9 +140,12 @@ namespace Fakhir
             std::string shaderTypeStr;
             if(shaderType == GL_VERTEX_SHADER) shaderTypeStr = "Vertex Shader";
             else if(shaderType == GL_FRAGMENT_SHADER) shaderTypeStr = "Fragment Shader";
-            
-            std::cout << "Error compiling shader:  " << shaderTypeStr << " -- LOG:  " << shaderInfoLog << std::endl;
-            
+           
+            Log * log = App::Get()->GetLogger();
+            std::string msg = "Error compiling shader:  " + shaderTypeStr + " -- LOG:" + shaderInfoLog;
+            log->Print(msg);
+            log->Print("SOURCE: \n" + std::string(shaderSource));  
+
             glDeleteShader( shaderID );
             shaderID = 0;
         }
@@ -168,7 +153,7 @@ namespace Fakhir
         return shaderID;
     }
 
-    GLuint Program::GetProgramID()
+    GLuint Program::GetID()
     {
         return _programID;
     }
@@ -190,7 +175,7 @@ namespace Fakhir
         glDeleteProgram(_programID);
     }
 
-    std::string Program::GetProgramName()
+    std::string Program::GetName()
     {
         return _name;
     }
