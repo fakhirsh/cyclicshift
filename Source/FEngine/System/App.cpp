@@ -70,15 +70,9 @@ namespace FEngine{
             return false;
         }
 
-        _logger->Print("Class Name: " + _className, "App::Initialize");
-        _logger->Print("Window Title: " + _windowTitle, "App::Initialize");
-/*        _logger->Print("e: " + _className, "App::Initialize");*/
-        //cout << "Max FPS: " << _maxFps << endl;
-        //cout << "Width: " << _windowWidth << endl;
-        /*cout << "Height: " << _windowHeight << endl;*/
-
         bool success = _windowManager->Initialize(_windowWidth, _windowHeight, _windowTitle, _className);
         if(!success){
+            _logger->Print("Error Initializing _windowManager", "App::Initialize");
             return false;
         }
  

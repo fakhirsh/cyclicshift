@@ -38,21 +38,21 @@ namespace FEngine{
     }
     
     bool WindowManagerLinux::Initialize(int width, int height, std::string title, std::string className){
-       // Initialise GLFW
+
+        // Initialise GLFW
         if( !glfwInit() )
         {
             App::Get()->GetLogger()->Print("Failed to initialize GLFW", "WindowManagerLinux::Initialize", 24);
             return false;
         }
-
+ 
         glfwWindowHint(GLFW_SAMPLES, 4);
         glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
         glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
         glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); // To make MacOS happy; should not be needed
         glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-
-       
         glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
+        
         // Open a window and create its OpenGL context
         _window = glfwCreateWindow( width, height, title.c_str(), NULL, NULL);
         if( _window == NULL ){
@@ -61,7 +61,7 @@ namespace FEngine{
             return false;
         }
         glfwMakeContextCurrent((GLFWwindow *)_window);
-
+       
         // Initialize GLEW
         glewExperimental = true; // Needed for core profile
         if (glewInit() != GLEW_OK) {
@@ -72,7 +72,6 @@ namespace FEngine{
 
         // Ensure we can capture the escape key being pressed below
         glfwSetInputMode(_window, GLFW_STICKY_KEYS, GL_TRUE);
-        
         glfwSetKeyCallback(_window, _key_callback);
 
         return true;

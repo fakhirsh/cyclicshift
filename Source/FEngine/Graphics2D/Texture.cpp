@@ -2,6 +2,11 @@
 #include "Texture.hpp"
 #include <png.h>
 #include <iostream>
+
+#include "../System/App.hpp"
+#include "../Debugging/Log.hpp"
+#include "../Utility/String.hpp"
+
 #include <fstream>
 #include <sstream>
 #include <GL/glew.h>
@@ -24,7 +29,7 @@ namespace FEngine
 
     Texture::~Texture ()
     {
-        
+
     }
 
     bool Texture::Init ()
@@ -69,10 +74,10 @@ namespace FEngine
 
     bool Texture::LoadFromFile (std::string fileName)
     {
-        
+
         std::string pngStreamString;
         std::ifstream sourceFile( fileName.c_str() );
-        
+
         //Source file loaded
         if( !sourceFile )
         {
@@ -81,30 +86,30 @@ namespace FEngine
 
         //Get PNG file contents
         pngStreamString.assign( ( std::istreambuf_iterator< char >( sourceFile ) ), std::istreambuf_iterator< char >() );
-        
+
         // Convert it into a data stream
         std::istringstream pngDataStream( pngStreamString );
-        
+
         bool success = LoadFromStream(pngDataStream);
         if (!success)
         {
             return false;
         }
-        
+
         return true;
-    
+
     }
-    
+
     bool Texture::SetTexture (unsigned int textureID, int width, int height, bool hasAlpla)
     {
         _textureID  =   textureID;
         _width      =   width;
         _height     =   height;
         _hasAlpha   =   hasAlpla;
-        
+
         return true;
     }
-    
+
     void Texture::Unload ()
     {
         //Delete texture
@@ -113,11 +118,11 @@ namespace FEngine
             glDeleteTextures( 1, &_textureID );
         }
     }
-    
-    
+
+
     /**
      * Please note that this function DOES NOT loads the all at once. This function
-     * is called multiple times, in bursts, by the libpng library. So some kind of 
+     * is called multiple times, in bursts, by the libpng library. So some kind of
      * stream handling functions are very helpful to advance the input stream read head.
      * @param   png_ptr     Pointer to png_struct initialized earlier
      * @param   destination Destination memory where the raw png data is to be copied
@@ -126,17 +131,17 @@ namespace FEngine
     void readFileCallback ( png_structp png_ptr, png_bytep destination, png_size_t bytesToRead )
     {
         png_voidp io_ptr = png_get_io_ptr( png_ptr );
-        
+
         if( io_ptr == 0 )
         {
             return;
         }
-        
+
         png_voidp a = png_get_io_ptr(png_ptr);
         //Cast the pointer to std::istream* and read 'bytesToRead' bytes into 'destination'
         ((std::istream*)a)->read((char*)destination, bytesToRead);
     }
-    
+
     /**
      * Parses PNG data from stream and extracts raw bitmap pixels for further usage.
      * @param   pngDataStream   Input stream containing PNG data read earlier maybe from a file.
@@ -147,12 +152,12 @@ namespace FEngine
         const int PNG_SIG_BYTES = 8;
         char pngSignature[PNG_SIG_BYTES];
         pngDataStream.read(pngSignature, PNG_SIG_BYTES * sizeof(char));
-        
+
         if(!png_check_sig( (png_bytep)pngSignature, PNG_SIG_BYTES) )
         {
             return false;
         }
-        
+
         /**
          * Create and initialize the png_struct
          * with the desired error handler
@@ -180,7 +185,7 @@ namespace FEngine
             png_destroy_read_struct(&png_ptr, NULL, NULL);
             return false;
         }
-        
+
         /**
          * Set error handling if you are
          * using the setjmp/longjmp method
@@ -202,17 +207,17 @@ namespace FEngine
          * Set custom input stream READER / handler
          */
         png_set_read_fn( png_ptr, (void*)&pngDataStream, readFileCallback );
-        
+
         /* If we have already
          * read some of the signature */
         png_set_sig_bytes( png_ptr, 8 );
-        
+
         png_read_info( png_ptr, info_ptr);
-        
+
         int color_type, interlace_type;
-        
+
         png_get_IHDR( png_ptr, info_ptr, (png_uint_32*)&_width, (png_uint_32*)&_height, &_depth, &color_type, &interlace_type, NULL, NULL );
-        
+
         switch(color_type)
         {
             case PNG_COLOR_TYPE_RGB:
@@ -225,12 +230,12 @@ namespace FEngine
                 return false;
                 break;
         }
-        
+
         png_size_t cols = png_get_rowbytes(png_ptr, info_ptr);
-        
+
         png_bytepp row_pp = new png_bytep[_height];
         char * bitmapData = new char[ cols * _height ];
-        
+
         for( int i = 0; i < _height; ++i )
         {
             // note that png is ordered top to
@@ -238,92 +243,56 @@ namespace FEngine
             // so the order or swapped
             row_pp[_height - i - 1] = (png_bytep)&((char *)bitmapData)[ i * cols ];
         }
-        
+
         png_read_image( png_ptr, row_pp );
         png_read_end( png_ptr, info_ptr );
-        
+
         png_destroy_read_struct( &png_ptr, &info_ptr, 0 );
-        
+
         delete [] row_pp;
-        
+
         _textureID = LoadFromPixels32(_width, _height, _hasAlpha, (GLuint *)bitmapData);
-        
+
         delete [] bitmapData;
-        
+
         return true;
     }
-    
+
 
     unsigned int Texture::LoadFromPixels32 (unsigned int texWidth, unsigned int texHeight, bool hasAlpha, unsigned int * pixels )
     {
-        //freeTexture();
+        Log * log = App::Get()->GetLogger();
+
         GLuint _textureID;
-        
-        //int _textureWidth = texWidth;
-        //int _textureHeight = texHeight;
-        
+
         glGenTextures(1, &_textureID);
         glBindTexture(GL_TEXTURE_2D, _textureID);
-        GLenum error = glGetError();
-        if(error != GL_NO_ERROR)
-        {
-            //std::cout << "Error loading texture to OpenGL" << std::endl;
-            return 0;
-        }
-        
         glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-        error = glGetError();
-        if(error != GL_NO_ERROR)
-        {
-            //std::cout << "Error loading texture to OpenGL" << std::endl;
-            return 0;
-        }
-        
         glTexImage2D(GL_TEXTURE_2D, 0, hasAlpha ? GL_RGBA : GL_RGB, texWidth, texHeight, 0, hasAlpha ? GL_RGBA : GL_RGB, GL_UNSIGNED_BYTE, pixels);
-        
-        error = glGetError();
-        if(error != GL_NO_ERROR)
-        {
-            //std::cout << "Error loading texture to OpenGL" << std::endl;
-            return 0;
-        }
-        
+
         //glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP);
         //glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP);
         glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
         glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
-        
-        error = glGetError();
-        if(error != GL_NO_ERROR)
-        {
-            //std::cout << "Error loading texture to OpenGL" << std::endl;
-            return 0;
-        }
-        
+
         glBindTexture(GL_TEXTURE_2D, 0);
-        error = glGetError();
-        if(error != GL_NO_ERROR)
-        {
-            //std::cout << "Error loading texture to OpenGL" << std::endl;
-            return 0;
-        }
-        
+
         return _textureID;
     }
 
-    
+
     /**
      * Sample function showing how to generate and load textures from memory
      */
     bool LoadTexturesFromMem ()
     {
         GLuint _uiTexture;
-        
+
         glGenTextures(1, &_uiTexture);
-        
+
         // Binds this texture handle so we can load the data into it
         glBindTexture(GL_TEXTURE_2D, _uiTexture);
-        
+
         const int TEX_SIZE = 128;
         // Creates the data as a 32bits integer array (8bits per component)
         GLuint* pTexData = new GLuint[TEX_SIZE*TEX_SIZE];
@@ -335,7 +304,7 @@ namespace FEngine
                 if ( ((i*j)/8) % 2 ) col = (GLuint) (255<<24) + (255<<16) + (0<<8) + (255);
                 pTexData[j*TEX_SIZE+i] = col;
             }
-        
+
         /*
          glTexImage2D loads the texture data into the texture object.
          void glTexImage2D( GLenum target, GLint level, GLint internalformat, GLsizei width, GLsizei height,
@@ -353,7 +322,7 @@ namespace FEngine
          a pixel would then be described by a 16bits integer.
          */
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, TEX_SIZE, TEX_SIZE, 0, GL_RGBA, GL_UNSIGNED_BYTE, pTexData);
-        
+
         /*
          glTexParameterf is used to set the texture parameters
          void glTexParameterf(GLenum target, GLenum pname, GLfloat param);
@@ -362,26 +331,26 @@ namespace FEngine
          If pname is GL_TEXTURE_MIN_FILTER, param is used to set the way the texture is rendered when made smaller.
          We can tell OpenGL to interpolate between the pixels in a mipmap level but also between different mipmap levels.
          We are not using mipmap interpolation here because we didn't defined the mipmap levels of our texture.
-         
+
          If pname is GL_TEXTURE_MAG_FILTER, param is used to set the way the texture is rendered when made bigger.
          Here we can only tell OpenGL to interpolate between the pixels of the first mipmap level.
-         
+
          if pname is GL_TEXTURE_WRAP_S or GL_TEXTURE_WRAP_T, then param sets the way a texture tiles in both directions.
          The default if GL_REPEAT to wrap the texture (repeat it). We could also set it to GL_CLAMP or GL_CLAMP_TO_EDGE
          to clamp the texture.
-         
+
          On OpenGL ES 1.1 and 2.0, if pname is GL_GENERATE_MIPMAP, param tells OpenGL to create mipmap levels automatically.
          */
         glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
         glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
-        
+
         // Deletes the texture data, it's now in OpenGL memory
         delete [] pTexData;
-        
+
         glBindTexture(GL_TEXTURE_2D, 0);
-        
+
         return true;
-        
+
     }
 
 };

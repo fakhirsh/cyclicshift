@@ -6,6 +6,7 @@
 
 #include "../System/App.hpp"
 #include "../Debugging/Log.hpp"
+#include "../Utility/String.hpp"
 
 #include "../Renderer/GL30/SimpleVertex2DProgram.hpp"
 #include "../Graphics2D/Texture.hpp"
@@ -27,15 +28,44 @@ namespace FEngine{
     }
 
     void Game::Init(){
+        GLenum error = glGetError();
+        if(error != GL_NO_ERROR)
+        {
+            App::Get()->GetLogger()->Print("Error (BEFORE glClearColor) OpenGL: (error code) " + String::ToString(error), "Game::Init");
+            //return 0;
+        }
+
+
         // TIP: Make sure that the alpha part is non-zero
         //   Otherwise you'll get a BLACK screen and you'll
         //   keep on wondering why :-P
     	glClearColor(0.086f, 0.063f, 0.198f, 1.0f);
+        error = glGetError();
+        if(error != GL_NO_ERROR)
+        {
+            App::Get()->GetLogger()->Print("Error (glClearColor) OpenGL: (error code) " + String::ToString(error), "Game::Init");
+            //return 0;
+        }
+
 
 
         GLuint VertexArrayID;
         glGenVertexArrays(1, &VertexArrayID);
+        error = glGetError();
+        if(error != GL_NO_ERROR)
+        {
+            App::Get()->GetLogger()->Print("Error (glGenVertexArrays) OpenGL: (error code) " + String::ToString(error), "Game::Init");
+            //return 0;
+        }
+
         glBindVertexArray(VertexArrayID);
+        error = glGetError();
+        if(error != GL_NO_ERROR)
+        {
+            App::Get()->GetLogger()->Print("Error (glBindVertexArray) OpenGL: (error code) " + String::ToString(error), "Game::Init");
+            //return 0;
+        }
+
 
 
         if(!program.Init()){
@@ -59,13 +89,42 @@ namespace FEngine{
         };
 
         glGenBuffers(1, &gVertexbuffer);
+        error = glGetError();
+        if(error != GL_NO_ERROR)
+        {
+            App::Get()->GetLogger()->Print("Error (glGenBuffers) OpenGL: (error code) " + String::ToString(error), "Game::Init");
+            //return 0;
+        }
+
         glBindBuffer(GL_ARRAY_BUFFER, gVertexbuffer);
+        error = glGetError();
+        if(error != GL_NO_ERROR)
+        {
+            App::Get()->GetLogger()->Print("Error (glBindBuffer) OpenGL: (error code) " + String::ToString(error), "Game::Init");
+            //return 0;
+        }
+
+
         glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
+        error = glGetError();
+        if(error != GL_NO_ERROR)
+        {
+            App::Get()->GetLogger()->Print("Error (glBufferData) OpenGL: (error code) " + String::ToString(error), "Game::Init");
+            //return 0;
+        }
 
 
         Texture t;
-        if(!t.LoadFromFile("Data/pic.png")){
+        if(!t.LoadFromFile("Data/Textures/player.png")){
             App::Get()->GetLogger()->Print("Texture loading failed...");
+        }
+        t.Bind();
+
+        error = glGetError();
+        if(error != GL_NO_ERROR)
+        {
+            App::Get()->GetLogger()->Print("Error (????) OpenGL: (error code) " + String::ToString(error), "Game::Init");
+            //return 0;
         }
 
     }

@@ -18,7 +18,7 @@ if(USING_EMSCRIPTEN)
     # Don't load glfw or glew
 else()
     include_directories("../3rdParty/glfw-3.1.2/include")
-    include_directories("../3rdParty/glew-1.13.0/include")
+    include_directories("../3rdParty/glew-2.1.0/include")
 endif(USING_EMSCRIPTEN)
 
 add_subdirectory(../3rdParty/tinyxml2 ${CMAKE_BINARY_DIR}/tinyxml2)
@@ -30,7 +30,7 @@ add_subdirectory(../3rdParty/libpng-1.6.15 ${CMAKE_BINARY_DIR}/libpng)
 if(USING_EMSCRIPTEN)
     # Don't load glfw or glew
 else()
-    add_subdirectory(../3rdParty/glew-1.13.0 ${CMAKE_BINARY_DIR}/glew)
+    add_subdirectory(../3rdParty/glew-2.1.0 ${CMAKE_BINARY_DIR}/glew)
     add_subdirectory(../3rdParty/glfw-3.1.2 ${CMAKE_BINARY_DIR}/glfw)
 endif(USING_EMSCRIPTEN)
 
