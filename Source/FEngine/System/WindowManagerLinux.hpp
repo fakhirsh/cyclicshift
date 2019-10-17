@@ -21,8 +21,8 @@ namespace FEngine
             virtual void Resize(int newWidth, int newHeight);
 
         private:
-            GLFWwindow * _window;
 
+            GLFWwindow * _window;
 
     };
     

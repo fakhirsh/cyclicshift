@@ -2,6 +2,7 @@
 #include "WindowManagerLinux.hpp"
 #include "../System/App.hpp"
 #include "../Debugging/Log.hpp"
+#include "../Utility/String.hpp"
 
 #include <chrono>
 #include <GL/glew.h>
@@ -13,6 +14,14 @@ using namespace std::chrono;
 
 namespace FEngine{
 
+
+     void _key_callback(GLFWwindow* window, int key, int scancode, int action, int mods)
+    {
+        if (key == GLFW_KEY_E && action == GLFW_PRESS){
+            //App::Get()->GetLogger()->Print("E key Pressed");
+        }
+    }
+   
 
     WindowManagerLinux::WindowManagerLinux(){
         // So why is glClearColor doing here in a TOTALLY unrelated
@@ -63,6 +72,8 @@ namespace FEngine{
 
         // Ensure we can capture the escape key being pressed below
         glfwSetInputMode(_window, GLFW_STICKY_KEYS, GL_TRUE);
+        
+        glfwSetKeyCallback(_window, _key_callback);
 
         return true;
  
@@ -78,6 +89,11 @@ namespace FEngine{
             const long int num = high_resolution_clock::period::num;
             const long int den = high_resolution_clock::period::den;
             float dt = (time - prev_time) * 1.0 * num / den;
+
+
+/*            double xpos, ypos;*/
+            //glfwGetCursorPos(_window, &xpos, &ypos);
+            /*App::Get()->GetLogger()->Print("X: " + String::ToString(xpos) + " -- Y: " + String::ToString(ypos));*/
 
             // Tick function from the App class: 
             tickDelegate(dt);
@@ -102,5 +118,7 @@ namespace FEngine{
     void WindowManagerLinux::Shutdown(){
        	glfwTerminate(); 
     }
+
+    
 
 }

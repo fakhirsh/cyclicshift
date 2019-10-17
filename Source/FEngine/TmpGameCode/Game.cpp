@@ -8,6 +8,8 @@
 #include "../Debugging/Log.hpp"
 
 #include "../Renderer/GL30/SimpleVertex2DProgram.hpp"
+#include "../Graphics2D/Texture.hpp"
+
 
 using namespace std;
 
@@ -42,15 +44,29 @@ namespace FEngine{
         }
         
 
+        float offsetX = 100.0f;
+        float offsetY = 250.0f;
+    
         static const GLfloat g_vertex_buffer_data[] = {
-             0.0f, 0.0f, 0.0f,
-             100.0f, 0.0f, 0.0f,
-             100.0f, 100.0f, 0.0f,
+             offsetX + 0.0f, offsetY + 0.0f, 0.0f,
+             offsetX + 100.0f, offsetY + 0.0f, 0.0f,
+             offsetX + 100.0f, offsetY + 100.0f, 0.0f,
+
+             offsetX + 0.0f, offsetY + 0.0f, 0.0f,
+             offsetX + 100.0f, offsetY + 100.0f, 0.0f,
+             offsetX + 0.0f, offsetY + 100.0f, 0.0f,
+
         };
 
         glGenBuffers(1, &gVertexbuffer);
         glBindBuffer(GL_ARRAY_BUFFER, gVertexbuffer);
         glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
+
+
+        Texture t;
+        if(!t.LoadFromFile("Data/pic.png")){
+            App::Get()->GetLogger()->Print("Texture loading failed...");
+        }
 
     }
     
@@ -78,7 +94,7 @@ namespace FEngine{
 		);
 
 		// Draw the triangle !
-		glDrawArrays(GL_TRIANGLES, 0, 3); // 3 indices starting at 0 -> 1 triangle
+		glDrawArrays(GL_TRIANGLES, 0, 6); // 3 indices starting at 0 -> 1 triangle
 
 		glDisableVertexAttribArray(0);
 

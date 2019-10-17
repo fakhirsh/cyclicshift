@@ -38,7 +38,7 @@ endif(USING_EMSCRIPTEN)
 set ( HDR
         Debugging/Log.hpp
         Debugging/LogDefault.hpp
-#		Graphics2D/Texture.hpp
+		Graphics2D/Texture.hpp
         System/App.hpp
 		System/WindowManager.hpp
 		ResourceCache/IOManager.hpp
@@ -64,7 +64,7 @@ endif(USING_EMSCRIPTEN)
 
 set ( SRC
 		System/App.cpp
-#        Graphics2D/Texture.cpp
+        Graphics2D/Texture.cpp
         ResourceCache/IOManagerDefault.cpp
 #        Renderer/GLES20/Program.cpp
 #        Renderer/GLES20/RendererGLES20.cpp
