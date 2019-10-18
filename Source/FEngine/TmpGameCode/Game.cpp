@@ -112,9 +112,9 @@ namespace FEngine{
 
         float W, H, u, v, uW, vH, angle, scaleX, scaleY, alpha, shearX, shearY;
         u       = 0.0f;
-        v       = 1.0f;
+        v       = 0.0f;
         uW      = 1.0f;
-        vH      = 0.0f;
+        vH      = 1.0f;
 
         W = texture->GetWidth();
         H = texture->GetHeight();
