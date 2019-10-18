@@ -49,6 +49,7 @@ set ( HDR
 #        Renderer/GLES20/SimpleVertex2DProgram.hpp
         Renderer/Program.hpp
         Renderer/GL30/SimpleVertex2DProgram.hpp
+        Renderer/GL30/TexturedVertexProgram.hpp
     	Utility/String.hpp
     	Utility/Math.hpp
 
@@ -71,6 +72,7 @@ set ( SRC
 #        Renderer/GLES20/SimpleVertex2DProgram.cpp
         Renderer/Program.cpp
         Renderer/GL30/SimpleVertex2DProgram.cpp
+        Renderer/GL30/TexturedVertexProgram.cpp        
         Debugging/Log.cpp
         Debugging/LogDefault.cpp
        	Utility/String.cpp

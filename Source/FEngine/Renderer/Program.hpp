@@ -14,6 +14,7 @@ namespace FEngine
         virtual ~Program();
         
         virtual bool Init() = 0;
+        virtual void SetMatrix (float screenWidth, float screenHeight) = 0;
 
         GLuint GetID();
         std::string GetName();

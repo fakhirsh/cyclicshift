@@ -16,13 +16,22 @@ namespace FEngine
      *      2 Positions     -   float
      *      2 UV coods      -   float
      */
-    struct  Vertex2P2UVF
+    struct  Vertex2PF2UVF
     {
         float		x, y;
         float		u, v;
     };
 
-    
+     /**
+     *      3 Positions     -   float
+     *      2 UV coods      -   float
+     */
+    struct  Vertex3PF2UVF
+    {
+        float		x, y, z;
+        float		u, v;
+    };
+   
     /**
      *      2 Positions     -   float
      *      2 UV coods      -   float
