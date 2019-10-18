@@ -7,12 +7,11 @@ project (${PROJECT_NAME})
 include_directories(../3rdParty/tinyxml2)
 include_directories(../3rdParty/glm-0.9.8.1)
 include_directories(../3rdParty/FastDelegate)
-#include_directories(../3rdParty/libvorbis-1.3.4/include)
 #include_directories(../3rdParty/PennerEasing)
 #include_directories(../3rdParty/RectangleBinPack)
 include_directories(../3rdParty/libpng-1.6.15)
-#include_directories(../3rdParty/libogg-1.3.2/include)
-#include_directories(../3rdParty/libvorbis-1.3.4/include)
+include_directories(../3rdParty/libogg-1.3.2/include)
+include_directories(../3rdParty/libvorbis-1.3.4/include)
 
 if(USING_EMSCRIPTEN)
     # Don't load glfw or glew
@@ -23,7 +22,7 @@ endif(USING_EMSCRIPTEN)
 
 add_subdirectory(../3rdParty/tinyxml2 ${CMAKE_BINARY_DIR}/tinyxml2)
 add_subdirectory(../3rdParty/libpng-1.6.15 ${CMAKE_BINARY_DIR}/libpng)
-#add_subdirectory(../3rdParty/libvorbis-1.3.4 ${CMAKE_BINARY_DIR}/libvorbis)
+add_subdirectory(../3rdParty/libvorbis-1.3.4 ${CMAKE_BINARY_DIR}/libvorbis)
 #add_subdirectory(../3rdParty/PennerEasing ${CMAKE_BINARY_DIR}/PennerEasing)
 #add_subdirectory(../3rdParty/RectangleBinPack ${CMAKE_BINARY_DIR}/RectangleBinPack)
 
@@ -102,7 +101,7 @@ else()
 TARGET_LINK_LIBRARIES( ${PROJECT_NAME}
                        tinyxml2 
                        png
-#                       vorbis
+                       vorbis
 #					   PennerEasing
 #					   RectangleBinPack
                        glfw 
