@@ -56,8 +56,11 @@ set ( HDR
 	)
 if(USING_EMSCRIPTEN)
     list ( APPEND HDR 	System/WindowManagerWeb.hpp	)
+    list ( APPEND HDR  	Renderer/GLES20/GLES20Renderer.hpp )
 else()
     list ( APPEND HDR  	System/WindowManagerLinux.hpp )
+    list ( APPEND HDR  	Renderer/GL30/GL30Renderer.hpp )
+            
 endif(USING_EMSCRIPTEN)
 
 #message(${HDR})
@@ -82,8 +85,10 @@ set ( SRC
 
 if(USING_EMSCRIPTEN)
     list ( APPEND SRC  System/WindowManagerWeb.cpp )
+    list ( APPEND SRC  	Renderer/GLES20/GLES20Renderer.cpp )
 else()
     list ( APPEND SRC  System/WindowManagerLinux.cpp )
+    list ( APPEND SRC  	Renderer/GL30/GL30Renderer.cpp )
 endif(USING_EMSCRIPTEN)
 
 #message(${HDR})

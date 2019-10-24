@@ -4,6 +4,7 @@
 #include <tinyxml2.h>
 //#include <iostream>
 #include "../ResourceCache/IOManager.hpp"
+#include "../Renderer/Renderer.hpp"
 #include "../Debugging/Log.hpp"
 #include "../Utility/String.hpp"
 

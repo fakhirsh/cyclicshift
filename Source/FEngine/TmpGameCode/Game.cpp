@@ -16,6 +16,7 @@
 
 #include "../Renderer/GL30/SimpleVertex2DProgram.hpp"
 #include "../Renderer/GL30/TexturedVertexProgram.hpp"
+#include "../Renderer/GL30/GL30Renderer.hpp"
 #include "../Graphics2D/Texture.hpp"
 
 #include "../Renderer/VertexDefinitions.hpp"

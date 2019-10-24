@@ -12,7 +12,6 @@ namespace FEngine
     class SoundManager;
     class WindowManager;
     class Log;
-    //class Renderer;
     
     class App
     {

@@ -6,6 +6,7 @@
 #include "../System/App.hpp"
 #include "../Debugging/Log.hpp"
 #include "../Utility/String.hpp"
+#include "../Renderer/Renderer.hpp"
 
 #include <fstream>
 #include <sstream>
@@ -64,12 +65,16 @@ namespace FEngine
 
     void Texture::Bind ()
     {
-        glBindTexture(GL_TEXTURE_2D, _textureID);
+        Renderer * renderer = App::Get()->GetRenderer();
+        renderer->BindTexture(_textureID);
+        //glBindTexture(GL_TEXTURE_2D, _textureID);
     }
 
     void Texture::UnBind ()
     {
-        glBindTexture(GL_TEXTURE_2D, 0);
+        Renderer * renderer = App::Get()->GetRenderer();
+        renderer->UnBindTexture();
+        //glBindTexture(GL_TEXTURE_2D, 0);
     }
 
     bool Texture::LoadFromFile (std::string fileName)
