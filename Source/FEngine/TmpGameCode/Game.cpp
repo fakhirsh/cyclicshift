@@ -1,7 +1,5 @@
 
 #include "Game.hpp"
-#include <GL/glew.h>
-#include <GLFW/glfw3.h>
 
 #include <vector>
 
@@ -42,17 +40,14 @@ namespace FEngine{
     }
 
     void Game::Init(){
-        glEnable(GL_BLEND);
-        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+        Renderer * render = App::Get()->GetRenderer();
+        render->EnableAlphaBlending();
 
         // TIP: Make sure that the alpha part is non-zero
         //   Otherwise you'll get a BLACK screen and you'll
         //   keep on wondering why :-P
-    	glClearColor(0.23046f, 0.472656f, 0.660156f, 1.0f);
+        render->ClearColor(0.23046f, 0.472656f, 0.660156f, 1.0f);
 
-        GLuint VertexArrayID;
-        glGenVertexArrays(1, &VertexArrayID);
-        glBindVertexArray(VertexArrayID);
 
         if(!playerTexture.LoadFromFile("Data/Textures/player.png")){
             App::Get()->GetLogger()->Print("Texture loading failed: player.png");
@@ -78,6 +73,9 @@ namespace FEngine{
         //glBindBuffer(GL_ARRAY_BUFFER, gVertexbuffer);
         //glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
 
+        unsigned int VertexArrayID;
+        render->GenVertexArrays(1, &VertexArrayID);
+        render->BindVertexArray(VertexArrayID);
 
     }
     
@@ -86,13 +84,22 @@ namespace FEngine{
     }
     
     void Game::Render(float dt){
-        glClear(GL_COLOR_BUFFER_BIT);
+        Renderer * render = App::Get()->GetRenderer();
+        render->Clear();
         
-        //glBindBuffer(GL_ARRAY_BUFFER, gVertexbuffer);
+        static float playerY = 100.0f;
+        static float enemyX = 200.0f;
+        static float enemyY = 250.0f;
+        static float ufoY = 400.0f;
+            
+        DrawImage(&textureProg, &playerTexture, 100, playerY);
+        DrawImage(&textureProg, &enemyShipTexture, enemyX, enemyY);
+        DrawImage(&textureProg, &enemyUFOTexture, 270, ufoY);
         
-        DrawImage(&textureProg, &playerTexture, 100, 100);
-        DrawImage(&textureProg, &enemyShipTexture, 200, 250);
-        DrawImage(&textureProg, &enemyUFOTexture, 270, 400);
+        playerY += 0.4f;
+        enemyX -= 0.2f;
+        enemyY += 0.3f;
+        ufoY -= 0.5f;
     }
     
     void Game::Shutdown(){
@@ -168,19 +175,19 @@ namespace FEngine{
         int posLoc      =   textureProg.GetPositionAttribLocation();
         int uvLoc       =   textureProg.GetUVAttribLocation();
 
-		//glEnableVertexAttribArray(program.GetPositionAttribLocation());
-		glEnableVertexAttribArray(posLoc);
- 		glEnableVertexAttribArray(uvLoc);
+        Renderer * render = App::Get()->GetRenderer();
+		
+		render->EnableVertexAttribArray(posLoc);
+		render->EnableVertexAttribArray(uvLoc);
        
-        //glVertexAttribPointer(posLoc, 3, GL_FLOAT, GL_FALSE, 0, (void*)0 );
-        glVertexAttribPointer(posLoc, 3, GL_FLOAT, GL_FALSE, 5*sizeof(GLfloat), (const GLvoid *)&_renderBatch[0].x);
-        glVertexAttribPointer(uvLoc, 2, GL_FLOAT, GL_FALSE, 5*sizeof(GLfloat),(const GLvoid *)&_renderBatch[0].u);
+        render->VertexAttribPointer(posLoc, 3, GL_FLOAT, GL_FALSE, 5*sizeof(GLfloat), (const GLvoid *)&_renderBatch[0].x);
+        render->VertexAttribPointer(uvLoc, 2, GL_FLOAT, GL_FALSE, 5*sizeof(GLfloat),(const GLvoid *)&_renderBatch[0].u);
 
 		// Draw the triangle !
-		glDrawArrays(GL_TRIANGLES, 0, _renderBatch.size()); // 3 indices starting at 0 -> 1 triangle
+		render->DrawArrays(GL_TRIANGLES, 0, _renderBatch.size());
 
-		glDisableVertexAttribArray(uvLoc);
-        glDisableVertexAttribArray(posLoc);
+        render->DisableVertexAttribArray(uvLoc);
+        render->DisableVertexAttribArray(posLoc);
 
         texture->UnBind();
         program->UnBind();

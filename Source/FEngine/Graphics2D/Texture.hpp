@@ -18,7 +18,7 @@ namespace FEngine
          * Utility functions made static for global access.
          */
         //static bool LoadPngImage(const char * fileName, int &outWidth, int &outHeight, bool &outHasAlpha, unsigned char **outData);
-        static unsigned int LoadFromPixels32(unsigned int texWidth, unsigned int texHeight, bool hasAlpha, unsigned int * pixels );
+        //static unsigned int LoadFromPixels32(unsigned int texWidth, unsigned int texHeight, bool hasAlpha, unsigned int * pixels );
         
         /**
          * @param	name		Unique string identifier used to get the texture from texture manager. eg: "Level1Atlas_1024" etc etc

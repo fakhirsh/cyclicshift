@@ -10,21 +10,50 @@ namespace FEngine
     class Renderer
     {
     public:
-        Renderer(){}
-        virtual ~Renderer(){}
+        Renderer();
+        virtual ~Renderer();
                 
-        virtual void EnableBlend() = 0;
+        virtual void EnableAlphaBlending();
         
-        virtual void ClearColor(float r, float g, float b, float a) = 0;
-        virtual void Clear() = 0;
+        void ClearColor(float r, float g, float b, float a);
+        void Clear();
         
-        virtual void SetViewPort(float x, float y, float width, float height) = 0;
+        void SetViewPort(float x, float y, float width, float height);
 
-        virtual void BindTexture(unsigned int textureId) = 0;
-        virtual void UnBindTexture() = 0;
+        void BindTexture(unsigned int textureId);
+        void UnBindTexture();
+        
+        void DeleteTextures(unsigned int size, const unsigned int * textures);
 
+        unsigned int LoadTextureFromPixels32 (unsigned int texWidth, 
+                                                unsigned int texHeight, 
+                                                bool hasAlpha, 
+                                                unsigned int * pixels );
 
+        void GenVertexArrays(unsigned int size, unsigned int * arrays);
+        void BindVertexArray(unsigned int arrayId);
+        
+        /*
+         * @param mode GL_TRIANGLE, GL_QUAD etc etc
+         * @param firstIndex
+         * @param size number of items (i.e vertices) in the vertex array
+         *
+         * Note: Vertex array is already bound before calling this function.
+         *
+         */
+        void DrawArrays(unsigned int mode, int firstIndex, int size);
 
-    };
+        void EnableVertexAttribArray(int attributeLocation);
+
+        void DisableVertexAttribArray(int attributeLocation);
+
+        void VertexAttribPointer(unsigned int index,
+                                          int size,
+                                          unsigned int type,
+                                          bool normalized,
+                                          unsigned int stride,
+                                          const void * pointer);
+
+	};
 
 };
