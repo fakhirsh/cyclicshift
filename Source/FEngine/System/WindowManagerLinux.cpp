@@ -42,7 +42,7 @@ namespace FEngine{
         // Initialise GLFW
         if( !glfwInit() )
         {
-            App::Get()->GetLogger()->Print("Failed to initialize GLFW", "WindowManagerLinux::Initialize", 24);
+            App::Get()->GetLogger()->Print("Failed to initialize GLFW", "WindowManagerLinux::Initialize");
             return false;
         }
  

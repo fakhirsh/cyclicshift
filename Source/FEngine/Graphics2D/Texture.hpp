@@ -6,8 +6,13 @@
 
 namespace FEngine
 {
-    // PLEASE ADD COMMENTS About how to use this class
-    
+    /*
+     * IMPORTANT: The textures MUST be a power of 2, specially on OpenGL ES2. 
+     *              Otherwise they won't display properly on the screen. Even
+     *              if one of the many textures is mal formed, it will screw
+     *              up all others.
+     * */
+
     class Texture
     {
     public:

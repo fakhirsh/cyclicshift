@@ -82,6 +82,7 @@ namespace FEngine
         //Source file loaded
         if( !sourceFile )
         {
+            App::Get()->GetLogger()->Print("Error: File not found: " + fileName, "Texture::LoadFromFile");
             return false;
         }
 

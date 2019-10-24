@@ -60,15 +60,15 @@ namespace FEngine{
 
 
         if(!playerTexture.LoadFromFile("Data/Textures/player.png")){
-            App::Get()->GetLogger()->Print("Texture loading failed: player.png");
+            App::Get()->GetLogger()->Print("Texture loading failed: player.png", "Game::Init");
             return;
         }
         if(!enemyShipTexture.LoadFromFile("Data/Textures/enemyShip.png")){
-            App::Get()->GetLogger()->Print("Texture loading failed: enemyShip.png");
+            App::Get()->GetLogger()->Print("Texture loading failed: enemyShip.png", "Game::Init");
             return;
         }
         if(!enemyUFOTexture.LoadFromFile("Data/Textures/enemyUFO.png")){
-            App::Get()->GetLogger()->Print("Texture loading failed: enemyUFO.png");
+            App::Get()->GetLogger()->Print("Texture loading failed: enemyUFO.png", "Game::Init");
             return;
         }
 

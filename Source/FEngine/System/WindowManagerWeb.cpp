@@ -41,7 +41,7 @@ namespace FEngine{
                             8,                 // Number of bits for alpha buffer
                             16,                // Number of bits for depth buffer (Z-buffer)
                             0,                 // Number of bits for stencil buffer
-                            GLFW_WINDOW        // We want a desktop window (could be GLFW_FULLSCREEN)
+                            GLFW_FULLSCREEN        // We want a desktop window (could be GLFW_FULLSCREEN)
                             );
 
         if (ok != GL_TRUE)

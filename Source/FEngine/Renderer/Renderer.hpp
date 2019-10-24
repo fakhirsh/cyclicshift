@@ -25,6 +25,12 @@ namespace FEngine
         
         void DeleteTextures(unsigned int size, const unsigned int * textures);
 
+        /*
+         * IMPORTANT: The textures MUST be a power of 2, specially on OpenGL ES2. 
+         *              Otherwise they won't display properly on the screen. Even
+         *              if one of the many textures is mal formed, it will screw
+         *              up all others.
+         * */
         unsigned int LoadTextureFromPixels32 (unsigned int texWidth, 
                                                 unsigned int texHeight, 
                                                 bool hasAlpha, 
@@ -53,6 +59,8 @@ namespace FEngine
                                           bool normalized,
                                           unsigned int stride,
                                           const void * pointer);
+
+        void EnableDepth();
 
 	};
 
