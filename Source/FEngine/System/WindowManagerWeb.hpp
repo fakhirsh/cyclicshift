@@ -18,9 +18,9 @@ namespace FEngine
             
             virtual void MainLoop(TickDelegate td);
                         
-        private:
-            //GLFWwindow * _window;
+            virtual void Resize(int newWidth, int newHeight);
 
+        private:
 
     };
     

@@ -43,12 +43,7 @@ set ( HDR
 		ResourceCache/IOManager.hpp
     	ResourceCache/IOManagerDefault.hpp
         Renderer/Renderer.hpp
-#        Renderer/GLES20/Program.hpp
-#        Renderer/GLES20/RendererGLES20.hpp
-#        Renderer/GLES20/SimpleVertex2DProgram.hpp
         Renderer/Program.hpp
-        Renderer/GL30/SimpleVertex2DProgram.hpp
-        Renderer/GL30/TexturedVertexProgram.hpp
     	Utility/String.hpp
     	Utility/Math.hpp
 
@@ -57,10 +52,13 @@ set ( HDR
 if(USING_EMSCRIPTEN)
     list ( APPEND HDR 	System/WindowManagerWeb.hpp	)
     list ( APPEND HDR  	Renderer/GLES20/GLES20Renderer.hpp )
+    list ( APPEND HDR  	Renderer/GLES20/SimpleVertex2DProgram.hpp)
+    list ( APPEND HDR  	Renderer/GLES20/TexturedVertexProgram.hpp)
 else()
     list ( APPEND HDR  	System/WindowManagerLinux.hpp )
     list ( APPEND HDR  	Renderer/GL30/GL30Renderer.hpp )
-            
+    list ( APPEND HDR  	Renderer/GL30/SimpleVertex2DProgram.hpp)
+    list ( APPEND HDR  	Renderer/GL30/TexturedVertexProgram.hpp)
 endif(USING_EMSCRIPTEN)
 
 #message(${HDR})
@@ -70,12 +68,7 @@ set ( SRC
         Graphics2D/Texture.cpp
         ResourceCache/IOManagerDefault.cpp
         Renderer/Renderer.cpp        
-#        Renderer/GLES20/Program.cpp
-#        Renderer/GLES20/RendererGLES20.cpp
-#        Renderer/GLES20/SimpleVertex2DProgram.cpp
         Renderer/Program.cpp
-        Renderer/GL30/SimpleVertex2DProgram.cpp
-        Renderer/GL30/TexturedVertexProgram.cpp        
         Debugging/Log.cpp
         Debugging/LogDefault.cpp
        	Utility/String.cpp
@@ -87,9 +80,13 @@ set ( SRC
 if(USING_EMSCRIPTEN)
     list ( APPEND SRC  System/WindowManagerWeb.cpp )
     list ( APPEND SRC  	Renderer/GLES20/GLES20Renderer.cpp )
+    list ( APPEND SRC  	Renderer/GLES20/SimpleVertex2DProgram.cpp)
+    list ( APPEND SRC  	Renderer/GLES20/TexturedVertexProgram.cpp)
 else()
     list ( APPEND SRC  System/WindowManagerLinux.cpp )
     list ( APPEND SRC  	Renderer/GL30/GL30Renderer.cpp )
+    list ( APPEND SRC  	Renderer/GL30/SimpleVertex2DProgram.cpp)
+    list ( APPEND SRC  	Renderer/GL30/TexturedVertexProgram.cpp)
 endif(USING_EMSCRIPTEN)
 
 #message(${HDR})
@@ -102,6 +99,7 @@ ADD_LIBRARY(FEngine STATIC
 if(USING_EMSCRIPTEN)
 TARGET_LINK_LIBRARIES( ${PROJECT_NAME}
                        tinyxml2 
+                       png
                        )
 else()
 TARGET_LINK_LIBRARIES( ${PROJECT_NAME}

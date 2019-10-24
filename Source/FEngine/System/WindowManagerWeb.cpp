@@ -84,4 +84,7 @@ namespace FEngine{
         emscripten_set_main_loop(GlobalTick, 0, 1);
     }
 
+    void WindowManagerWeb::Resize(int newWidth, int newHeight){
+         
+    }
 }

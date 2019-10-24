@@ -27,16 +27,19 @@ namespace FEngine
 
     bool Program::Link(std::string vertexShaderPath, std::string fragmentShaderPath)
     {
-        
+        FEngine::App * app = FEngine::App::Get();
+                    
         _vertexShader = LoadShaderFromFile(vertexShaderPath, GL_VERTEX_SHADER);
         if(_vertexShader == 0)
         {
+            app->GetLogger()->Print(string("Error loading vertex shader: ") + vertexShaderPath, "Program::Link");
             return false;
         }
         
         _fragmentShader = LoadShaderFromFile(fragmentShaderPath, GL_FRAGMENT_SHADER);
         if(_fragmentShader == 0)
         {
+            app->GetLogger()->Print(string("Error loading fragment shader: ") + fragmentShaderPath, "Program::Link");
             return false;
         }
         
@@ -63,7 +66,6 @@ namespace FEngine
             char* infoLog = new char[infoLogLength];
             glGetProgramInfoLog(_programID, infoLogLength, &charactersWritten, infoLog);
             
-            FEngine::App * app = FEngine::App::Get();
             app->GetLogger()->Print(string("Error linking shader: ") + infoLog);
 
 
@@ -92,7 +94,7 @@ namespace FEngine
         }
         else
         {
-            //printf( "Unable to open file %s\n", path.c_str() );
+            App::Get()->GetLogger()->Print(string("ERROR: Unable to open file: ") + path.c_str(), "Program::LoadShaderFromFile");
             shaderID = 0;
         }
         

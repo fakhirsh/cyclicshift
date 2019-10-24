@@ -32,6 +32,14 @@ include_directories("../../FEngine")
 CONFIGURE_FILE(../../../Assets/Development/Config/SystemConfig.xml Data/Config/SystemConfig.xml COPYONLY)
 CONFIGURE_FILE(../../../Assets/Development/Effects/GLES20/SimpleVertex2D.vs Data/Effects/GLES20/SimpleVertex2D.vs COPYONLY)
 CONFIGURE_FILE(../../../Assets/Development/Effects/GLES20/SimpleVertex2D.fs Data/Effects/GLES20/SimpleVertex2D.fs COPYONLY)
+CONFIGURE_FILE(../../../Assets/Development/Effects/GLES20/TexturedVertex.vs Data/Effects/GLES20/TexturedVertex.vs COPYONLY)
+CONFIGURE_FILE(../../../Assets/Development/Effects/GLES20/TexturedVertex.fs Data/Effects/GLES20/TexturedVertex.fs COPYONLY)
+
+CONFIGURE_FILE(../../../Assets/Development/Textures/player.png Data/Textures/player.png COPYONLY)
+CONFIGURE_FILE(../../../Assets/Development/Textures/enemyShip.png Data/Textures/enemyShip.png COPYONLY)
+CONFIGURE_FILE(../../../Assets/Development/Textures/enemyUFO.png Data/Textures/enemyUFO.png COPYONLY)
+
+CONFIGURE_FILE(../../../Assets/Development/Sounds/gameplayMusic.ogg Data/Sounds/gameplayMusic.ogg COPYONLY)
 
 # Add library subdirectories
 add_subdirectory(../../FEngine ${CMAKE_BINARY_DIR}/FEngine)

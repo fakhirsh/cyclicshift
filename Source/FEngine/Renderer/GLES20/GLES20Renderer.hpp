@@ -3,7 +3,7 @@
 
 #include "../Renderer.hpp"
 
-namespace Fakhir
+namespace FEngine
 {
     
     class GLES20Renderer : public Renderer
@@ -11,13 +11,7 @@ namespace Fakhir
     public:
         GLES20Renderer();
         virtual ~GLES20Renderer();
-                
-        virtual void EnableBlend();
-        
-        virtual void ClearColor(float r, float g, float b, float a);
-        virtual void Clear();
-        
-        virtual void SetViewPort(float x, float y, float width, float height);
+
     };
 
 };

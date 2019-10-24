@@ -12,11 +12,18 @@
 #include "../Debugging/Log.hpp"
 #include "../Utility/String.hpp"
 
+#define ____EMSCRIPTEN____ 
+
+#ifdef ____EMSCRIPTEN____
+#include "../Renderer/GLES20/SimpleVertex2DProgram.hpp"
+#include "../Renderer/GLES20/TexturedVertexProgram.hpp"
+#else
 #include "../Renderer/GL30/SimpleVertex2DProgram.hpp"
 #include "../Renderer/GL30/TexturedVertexProgram.hpp"
-#include "../Renderer/GL30/GL30Renderer.hpp"
-#include "../Graphics2D/Texture.hpp"
+#endif 
 
+#include "../Renderer/Renderer.hpp"
+#include "../Graphics2D/Texture.hpp"
 #include "../Renderer/VertexDefinitions.hpp"
 
 using namespace std;
@@ -47,6 +54,9 @@ namespace FEngine{
         //   Otherwise you'll get a BLACK screen and you'll
         //   keep on wondering why :-P
         render->ClearColor(0.23046f, 0.472656f, 0.660156f, 1.0f);
+
+        glEnable(GL_DEPTH_TEST);
+        glEnable(GL_DEPTH_BUFFER_BIT);
 
 
         if(!playerTexture.LoadFromFile("Data/Textures/player.png")){
