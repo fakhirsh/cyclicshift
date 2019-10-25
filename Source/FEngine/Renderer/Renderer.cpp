@@ -27,6 +27,7 @@ namespace FEngine
     void Renderer::EnableDepth(){
         glEnable(GL_DEPTH_TEST);
         glEnable(GL_DEPTH_BUFFER_BIT);
+        glDepthFunc(GL_LESS); 
     }
 
     void Renderer::ClearColor(float r, float g, float b, float a){
