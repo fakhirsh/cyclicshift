@@ -72,7 +72,6 @@ namespace FEngine{
             return;
         }
 
-
         if(!textureProg.Init()){
             App::Get()->GetLogger()->Print("ERROR: Couldn't initialize textureProgram", "Game::Init");
             return;

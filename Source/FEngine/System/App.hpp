@@ -12,17 +12,18 @@ namespace FEngine
     class SoundManager;
     class WindowManager;
     class Log;
-    
+
+
     class App
     {
         public:
             static App * Get();
             ~App();
-            
+
             bool Initialize(std::string assetDirPrefix);
 
             bool LoadConfig(std::vector<char> & buffer);
-            
+
             std::string GetClassName();
             std::string GetWindowTitle();
             int GetFps();
@@ -39,11 +40,12 @@ namespace FEngine
             WindowManager * GetWindowManager();
             void SetLogger(Log * logger);
             Log * GetLogger();
-   
+
             float GetElapsedTime();
             void RunGameLoop();
-            
+
             void Shutdown();
+
 
         private:
             App();
@@ -51,7 +53,11 @@ namespace FEngine
             void Input();
             void Update(float dt);
             void Render(float dt);
-            
+
+            void MousePosition(double x, double y);
+            void MouseBtnPress(int button, int action, double x, double y);
+            void KBPress(int key, int action);
+
             std::string   _className;
             std::string   _windowTitle;
 
@@ -82,5 +88,20 @@ namespace FEngine
 
             Game * _testGame;
     };
-    
+
+    namespace INPUT{
+        enum{
+            KEY_PRESS = 1,
+            KEY_RELEASE,
+            MOUSE_BUTTON_LEFT,
+            MOUSE_BUTTON_RIGHT,
+            KB_UP,
+            KB_DOWN,
+            KB_LEFT,
+            KB_RIGHT,
+            KB_SPACE,
+            KB_X
+        };
+    };
+
 }

@@ -76,7 +76,15 @@ namespace FEngine{
             _logger->Print("Error Initializing _windowManager", "App::Initialize");
             return false;
         }
- 
+
+        TickDelegate tick = fastdelegate::MakeDelegate(this, &App::Tick);
+        _windowManager->SetTickCallback(tick);
+
+        MousePosDelegate mpd = fastdelegate::MakeDelegate(this, &App::MousePosition);
+        MouseBtnDelegate mbd = fastdelegate::MakeDelegate(this, &App::MouseBtnPress);
+        KBDelegate kbd = fastdelegate::MakeDelegate(this, &App::KBPress);
+        _windowManager->SetInputCallbacks(mbd, mpd, kbd);
+
         _testGame->Init();
 
         return true;
@@ -250,8 +258,7 @@ namespace FEngine{
     *  We are passing the reference of "Tick" to that main loop.
     */ 
     void App::RunGameLoop(){
-        TickDelegate tick = fastdelegate::MakeDelegate(this, &App::Tick);
-        _windowManager->MainLoop(tick);
+        _windowManager->MainLoop();
     }
 
     float App::GetElapsedTime(){
@@ -261,5 +268,19 @@ namespace FEngine{
     void App::Shutdown(){
         _testGame->Shutdown();
     }
+
+    void App::MousePosition(double x, double y){
+        App::Get()->GetLogger()->Print("App::Mouse = X: " + String::ToString(x) + "-- Y: " + String::ToString(y));
+    }
+    
+    void App::MouseBtnPress(int button, int action, double x, double y){
+        
+        App::Get()->GetLogger()->Print("App::Mouse = X: " + String::ToString(x) + "-- Y: " + String::ToString(y));
+    }
+    
+    void App::KBPress(int key, int action){
+        App::Get()->GetLogger()->Print("App::KBPressed = : " + String::ToString(key));
+    }
+
 
 }
