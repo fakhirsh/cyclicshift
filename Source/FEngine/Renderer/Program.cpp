@@ -143,7 +143,7 @@ namespace FEngine
             if(shaderType == GL_VERTEX_SHADER) shaderTypeStr = "Vertex Shader";
             else if(shaderType == GL_FRAGMENT_SHADER) shaderTypeStr = "Fragment Shader";
            
-            Log * log = App::Get()->GetLogger();
+            LogPtr log = App::Get()->GetLogger();
             std::string msg = "Error compiling shader:  " + shaderTypeStr + " -- LOG:" + shaderInfoLog;
             log->Print(msg);
             log->Print("SOURCE: \n" + std::string(shaderSource));  

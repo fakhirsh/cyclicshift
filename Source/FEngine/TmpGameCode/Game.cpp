@@ -11,7 +11,6 @@
 #include "../System/App.hpp"
 #include "../Debugging/Log.hpp"
 #include "../Utility/String.hpp"
-#include "../EventManager/EventManager.hpp"
 
 //#define ____EMSCRIPTEN____ 
 
@@ -59,7 +58,7 @@ namespace FEngine{
     }
 
     void Game::Init(){
-        Renderer * render = App::Get()->GetRenderer();
+        RendererPtr render = App::Get()->GetRenderer();
 
         render->EnableAlphaBlending();
         //render->EnableDepth();
@@ -96,7 +95,7 @@ namespace FEngine{
         render->GenVertexArrays(1, &VertexArrayID);
         render->BindVertexArray(VertexArrayID);
 
-        EventManager * emgr = App::Get()->GetEventManager();
+        EventManagerPtr emgr = App::Get()->GetEventManager();
 
         auto mpd = EventDelegate::create<Game, &Game::OnEvent>(this);
         emgr->AddListener("MousePosition", mpd);
@@ -108,19 +107,19 @@ namespace FEngine{
     
     }
     
-    void Game::OnEvent(Event e){
-        if(e.GetEventType() == "MousePosition"){
-            double x = e.GetArg("x");
-            double y = e.GetArg("y");
+    void Game::OnEvent(const EventPtr & e){
+        if(e->GetEventType() == "MousePosition"){
+            double x = e->GetArg("x");
+            double y = e->GetArg("y");
             //App::Get()->GetLogger()->Print("Game::OnEvent = X: " + String::ToString(x) + "-- Y: " + String::ToString(y));
             playerX = x;
             playerY = y;
         }
-        else if(e.GetEventType() == "KBPress"){
+        else if(e->GetEventType() == "KBPress"){
             //enemyVX =enemyVY = 0.0f;
 
-            int key = e.GetArg("key");
-            int action = e.GetArg("action");
+            int key = e->GetArg("key");
+            int action = e->GetArg("action");
             
             if(action == INPUT::KEY_PRESS){
                 if(key == INPUT::KB_UP){
@@ -149,7 +148,7 @@ namespace FEngine{
     
     
     void Game::Render(float dt){
-        Renderer * render = App::Get()->GetRenderer();
+        RendererPtr render = App::Get()->GetRenderer();
         render->Clear();
         
         DrawImage(&textureProg, &playerTexture, playerX - playerTexture.GetWidth()/2, playerY - playerTexture.GetHeight()/2);
@@ -244,7 +243,7 @@ namespace FEngine{
         int posLoc      =   textureProg.GetPositionAttribLocation();
         int uvLoc       =   textureProg.GetUVAttribLocation();
 
-        Renderer * render = App::Get()->GetRenderer();
+        RendererPtr render = App::Get()->GetRenderer();
 		
 		render->EnableVertexAttribArray(posLoc);
 		render->EnableVertexAttribArray(uvLoc);

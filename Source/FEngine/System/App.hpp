@@ -2,11 +2,13 @@
 
 #include <string>
 #include <vector>
+#include <memory>
 
 namespace FEngine
 {
     class Game;
 
+    class App;
     class IOManager;
     class Renderer;
     class SoundManager;
@@ -14,6 +16,16 @@ namespace FEngine
     class Log;
     class EventManager;
 
+
+    typedef std::shared_ptr<App> AppPtr;
+    typedef std::shared_ptr<IOManager> IOManagerPtr;
+    typedef std::shared_ptr<Log> LogPtr;
+    typedef std::shared_ptr<Renderer> RendererPtr;
+    typedef std::shared_ptr<SoundManager> SoundManagerPtr;
+    typedef std::shared_ptr<EventManager> EventManagerPtr;
+    typedef std::shared_ptr<WindowManager> WindowManagerPtr;
+    
+    
     class App
     {
         public:
@@ -30,18 +42,18 @@ namespace FEngine
             int GetWindowWidth();
             int GetWindowHeight();
 
-            void SetIOManager(IOManager * iomgr);
-            IOManager * GetIOManager();
-            void SetRenderer(Renderer * renderer);
-            Renderer * GetRenderer();
-            void SetSoundManager(SoundManager * sndmgr);
-            SoundManager * GetSoundManager();
-            void SetWindowManager(WindowManager * winmgr);
-            WindowManager * GetWindowManager();
-            void SetLogger(Log * logger);
-            Log * GetLogger();
+            void SetIOManager(const IOManagerPtr & iomgr);
+            IOManagerPtr GetIOManager();
+            void SetRenderer(const RendererPtr & renderer);
+            RendererPtr GetRenderer();
+            void SetSoundManager(const SoundManagerPtr & sndmgr);
+            SoundManagerPtr GetSoundManager();
+            void SetWindowManager(const WindowManagerPtr & winmgr);
+            WindowManagerPtr GetWindowManager();
+            void SetLogger(const LogPtr & logger);
+            LogPtr GetLogger();
 
-            EventManager * GetEventManager();
+            EventManagerPtr GetEventManager();
 
             float GetElapsedTime();
             void RunGameLoop();
@@ -80,13 +92,13 @@ namespace FEngine
             bool          _allowFullScreen;
             bool          _runFullSpeed;
 
-            IOManager       *   _ioManager;
-            Renderer        *   _renderer;
-            SoundManager    *   _soundManager;
-            WindowManager   *   _windowManager;
-            Log             *   _logger;
-            static App      *   _app;
-            EventManager    *   _eventManager;
+            IOManagerPtr          _ioManager;
+            RendererPtr           _renderer;
+            SoundManagerPtr       _soundManager;
+            WindowManagerPtr      _windowManager;
+            LogPtr                _logger;
+            static App  *         _app;
+            EventManagerPtr       _eventManager;
 
             Game * _testGame;
     };

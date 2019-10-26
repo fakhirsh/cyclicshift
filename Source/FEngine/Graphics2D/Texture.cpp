@@ -63,13 +63,13 @@ namespace FEngine
 
     void Texture::Bind ()
     {
-        Renderer * renderer = App::Get()->GetRenderer();
+        RendererPtr renderer = App::Get()->GetRenderer();
         renderer->BindTexture(_textureID);
     }
 
     void Texture::UnBind ()
     {
-        Renderer * renderer = App::Get()->GetRenderer();
+        RendererPtr renderer = App::Get()->GetRenderer();
         renderer->UnBindTexture();
     }
 
@@ -117,7 +117,7 @@ namespace FEngine
         //Delete texture
         if( _textureID != 0 )
         {
-            Renderer * renderer = App::Get()->GetRenderer();
+            RendererPtr renderer = App::Get()->GetRenderer();
             renderer->DeleteTextures(1, &_textureID);
         }
     }
@@ -254,7 +254,7 @@ namespace FEngine
 
         delete [] row_pp;
 
-        Renderer * renderer = App::Get()->GetRenderer();
+        RendererPtr renderer = App::Get()->GetRenderer();
         _textureID = renderer->LoadTextureFromPixels32(_width, _height, _hasAlpha, (unsigned int *)bitmapData);
 
         delete [] bitmapData;

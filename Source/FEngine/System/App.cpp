@@ -35,11 +35,11 @@ namespace FEngine{
         _allowFullScreen   = -1;
         _runFullSpeed      = -1;
 
-        _ioManager         = NULL;
-        _renderer          = NULL;
-        _soundManager      = NULL;
-        _windowManager     = NULL;
-        _eventManager      = NULL; 
+        _ioManager         = nullptr;
+        _renderer          = nullptr;
+        _soundManager      = nullptr;
+        _windowManager     = nullptr;
+        _eventManager      = nullptr; 
 
         _testGame = new Game();
     }
@@ -57,13 +57,13 @@ namespace FEngine{
 
     bool App::Initialize(std::string assetDirPrefix){
         
-        _eventManager = new EventManager();
+        _eventManager = make_shared<EventManager>();
 
-        if(_ioManager == NULL){
+        if(_ioManager == nullptr){
             _logger->Print("IOManager MUST be set before calling Initialize()","App::Initialize");
             return false;
         }
-        if(_windowManager == NULL){
+        if(_windowManager == nullptr){
             _logger->Print("WindowManager MUST be set before calling Initialize()", "App::Initialize");
             return false;
         }
@@ -117,49 +117,47 @@ namespace FEngine{
         return _windowHeight;
     }
 
-
-
-    void App::SetIOManager(IOManager * iomgr){
+    void App::SetIOManager(const IOManagerPtr & iomgr){
         _ioManager = iomgr;
     }
 
-    IOManager * App::GetIOManager(){
+    IOManagerPtr App::GetIOManager(){
         return _ioManager;
     }
 
-    void App::SetRenderer(Renderer * renderer){
+    void App::SetRenderer(const RendererPtr & renderer){
         _renderer = renderer;
     }
 
-    Renderer * App::GetRenderer(){
+    RendererPtr App::GetRenderer(){
         return _renderer;
     }
 
-    void App::SetSoundManager(SoundManager * sndmgr){
+    void App::SetSoundManager(const SoundManagerPtr & sndmgr){
         _soundManager = sndmgr;
     }
 
-    SoundManager * App::GetSoundManager(){
+    SoundManagerPtr App::GetSoundManager(){
         return _soundManager;
     }
 
-    void App::SetWindowManager(WindowManager * winmgr){
+    void App::SetWindowManager(const WindowManagerPtr & winmgr){
         _windowManager = winmgr;
     }
 
-    WindowManager * App::GetWindowManager(){
+    WindowManagerPtr App::GetWindowManager(){
         return _windowManager;
     }
 
-    void App::SetLogger(Log * logger){
+    void App::SetLogger(const LogPtr & logger){
         _logger = logger;
     }
 
-    Log * App::GetLogger(){
+    LogPtr App::GetLogger(){
         return _logger;
     }
 
-    EventManager * App::GetEventManager(){
+    EventManagerPtr App::GetEventManager(){
         return _eventManager; 
     }
     
@@ -282,11 +280,11 @@ namespace FEngine{
     void App::MousePosition(double x, double y){
         //App::Get()->GetLogger()->Print("App::Mouse = X: " + String::ToString(x) + "-- Y: " + String::ToString(y));
         
-        Event e;
-        e.SetEventName("Mouse Position");
-        e.SetEventType("MousePosition");
-        e.SetArg("x", x);
-        e.SetArg("y", _windowHeight - y);
+        EventPtr e = make_shared<Event>();
+        e->SetEventName("Mouse Position");
+        e->SetEventType("MousePosition");
+        e->SetArg("x", x);
+        e->SetArg("y", _windowHeight - y);
         _eventManager->EnQueue(e);
     }
     
@@ -297,11 +295,11 @@ namespace FEngine{
     
     void App::KBPress(int key, int action){
         //App::Get()->GetLogger()->Print("App::KBPressed = : " + String::ToString(key));
-        Event e;
-        e.SetEventName("Keyboard Press");
-        e.SetEventType("KBPress");
-        e.SetArg("key", key);
-        e.SetArg("action", action);
+        EventPtr e = make_shared<Event>();
+        e->SetEventName("Keyboard Press");
+        e->SetEventType("KBPress");
+        e->SetArg("key", key);
+        e->SetArg("action", action);
         _eventManager->EnQueue(e);
     }
 

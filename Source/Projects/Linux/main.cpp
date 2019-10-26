@@ -6,16 +6,17 @@
 #include <Debugging/LogDefault.hpp>
 
 using namespace FEngine;
+using namespace std;
 
 int main( void )
 {
 
     App * app = App::Get();
 
-    app->SetIOManager(new IOManagerDefault());
-    app->SetWindowManager(new WindowManagerLinux());
-    app->SetLogger(new LogDefault());
-    app->SetRenderer(new GL30Renderer());
+    app->SetIOManager(make_shared<IOManagerDefault>());
+    app->SetWindowManager(make_shared<WindowManagerLinux>());
+    app->SetLogger(make_shared<LogDefault>());
+    app->SetRenderer(make_shared<GL30Renderer>());
     
     app->Initialize("Data/");
 

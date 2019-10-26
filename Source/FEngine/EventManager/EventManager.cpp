@@ -43,7 +43,7 @@ namespace FEngine{
     }
 
 
-    void EventManager::EnQueue(Event e){
+    void EventManager::EnQueue(EventPtr e){
         _eventQueue[_activeQueue].push_back(e);
     }
 
@@ -56,10 +56,10 @@ namespace FEngine{
         _eventQueue[_activeQueue].clear();
         
         while(!_eventQueue[queueToProcess].empty()){
-            Event e = _eventQueue[queueToProcess].front();
+            EventPtr e = _eventQueue[queueToProcess].front();
             _eventQueue[queueToProcess].pop_front();
 
-            EventType etype = e.GetEventType();
+            EventType etype = e->GetEventType();
             auto it = _listenerMap.find(etype);
             if(it != _listenerMap.end()){
                 // the event is listed in the event listener map. Proceed!

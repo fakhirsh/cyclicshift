@@ -1,7 +1,7 @@
 
 #pragma once
 
-#include "../../3rdParty/CppDelegates/Delegate.hpp"
+#include <Delegate.hpp>
 #include <map>
 #include <list>
 #include <string>
@@ -15,9 +15,10 @@ namespace FEngine{
     
     const int NUM_EVENT_QUEUES = 2;
 
-    typedef CppDelegates::delegate<void (Event)> EventDelegate;
+    typedef shared_ptr<Event> EventPtr;
+    typedef CppDelegates::delegate<void (const EventPtr &)> EventDelegate;
     typedef list<EventDelegate> DelegateList;
-    
+
     class EventManager{
         public:
             EventManager();
@@ -25,12 +26,12 @@ namespace FEngine{
             
             bool AddListener(EventType eventType, EventDelegate eventDelegate);
             bool RemoveListener(EventType eventType, EventDelegate eventDelegate);
-            void EnQueue(Event e);
+            void EnQueue(EventPtr e);
             void Update(float dt);
 
         private:
 
-            list<Event> _eventQueue[NUM_EVENT_QUEUES];
+            list<EventPtr> _eventQueue[NUM_EVENT_QUEUES];
             int _activeQueue;
             map<EventType, DelegateList> _listenerMap;
     };

@@ -1,9 +1,10 @@
 
 #pragma once
 
+#include "../EventManager/EventManager.hpp"
+
 namespace FEngine{
     
-    class Event;
 
     class Game{
         public:
@@ -16,7 +17,7 @@ namespace FEngine{
             void Render(float dt);
             void Shutdown();
 
-            void OnEvent(Event e);
+            void OnEvent(const EventPtr & e);
 
     };
 
