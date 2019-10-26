@@ -15,8 +15,8 @@
 //#define ____EMSCRIPTEN____ 
 
 #ifdef ____EMSCRIPTEN____
-/*#include "../Renderer/GLES20/SimpleVertex2DProgram.hpp"*/
-/*#include "../Renderer/GLES20/TexturedVertexProgram.hpp"*/
+#include "../Renderer/GLES20/SimpleVertex2DProgram.hpp"
+#include "../Renderer/GLES20/TexturedVertexProgram.hpp"
 #else
 #include "../Renderer/GL30/SimpleVertex2DProgram.hpp"
 #include "../Renderer/GL30/TexturedVertexProgram.hpp"
@@ -49,17 +49,13 @@ namespace FEngine{
     void Game::Init(){
         Renderer * render = App::Get()->GetRenderer();
 
-        //render->EnableDepth();
         render->EnableAlphaBlending();
-
+        //render->EnableDepth();
+        
         // TIP: Make sure that the alpha part is non-zero
         //   Otherwise you'll get a BLACK screen and you'll
         //   keep on wondering why :-P
         render->ClearColor(0.23046f, 0.472656f, 0.660156f, 1.0f);
-
-        /*glEnable(GL_DEPTH_TEST);*/
-        /*glEnable(GL_DEPTH_BUFFER_BIT);*/
-
 
         if(!playerTexture.LoadFromFile("Data/Textures/player.png")){
             App::Get()->GetLogger()->Print("Texture loading failed: player.png", "Game::Init");
