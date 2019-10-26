@@ -3,6 +3,8 @@
 
 namespace FEngine{
     
+    class Event;
+
     class Game{
         public:
 
@@ -13,6 +15,8 @@ namespace FEngine{
             void Update(float dt);
             void Render(float dt);
             void Shutdown();
+
+            void OnEvent(Event e);
 
     };
 

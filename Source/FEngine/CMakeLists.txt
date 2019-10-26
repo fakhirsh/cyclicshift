@@ -6,7 +6,7 @@ project (${PROJECT_NAME})
 
 include_directories(../3rdParty/tinyxml2)
 include_directories(../3rdParty/glm-0.9.8.1)
-include_directories(../3rdParty/FastDelegate)
+include_directories(../3rdParty/CppDelegates)
 #include_directories(../3rdParty/PennerEasing)
 #include_directories(../3rdParty/RectangleBinPack)
 include_directories(../3rdParty/libpng-1.6.15)
@@ -37,6 +37,8 @@ endif(USING_EMSCRIPTEN)
 set ( HDR
         Debugging/Log.hpp
         Debugging/LogDefault.hpp
+        EventManager/Event.hpp
+        EventManager/EventManager.hpp
 		Graphics2D/Texture.hpp
         System/App.hpp
 		System/WindowManager.hpp
@@ -64,6 +66,8 @@ endif(USING_EMSCRIPTEN)
 #message(${HDR})
 
 set ( SRC
+        EventManager/Event.cpp
+        EventManager/EventManager.cpp
 		System/App.cpp
         Graphics2D/Texture.cpp
         ResourceCache/IOManagerDefault.cpp

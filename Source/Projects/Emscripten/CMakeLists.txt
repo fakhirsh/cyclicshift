@@ -17,7 +17,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/../../../Game/Emscripten)
 # Current directory is the build dir. It expects to find "Data" dir in this build dir. So we have to adjuct it.
 # It can go back/back/forward/forward/back etc etc. At best it can go only a few steps back. So its best to copy the
 # assets directory right inside the build folder.
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -s ALLOW_MEMORY_GROWTH=1 -s FULL_ES2=1 --preload-file Data")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++11 -s ALLOW_MEMORY_GROWTH=1 -s FULL_ES2=1 --preload-file Data" )
 ################################
 
 #set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -s ALLOW_MEMORY_GROWTH=1 -s FULL_ES2=1 --embed-file Data")

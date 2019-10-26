@@ -12,7 +12,7 @@ namespace FEngine
     class SoundManager;
     class WindowManager;
     class Log;
-
+    class EventManager;
 
     class App
     {
@@ -40,6 +40,8 @@ namespace FEngine
             WindowManager * GetWindowManager();
             void SetLogger(Log * logger);
             Log * GetLogger();
+
+            EventManager * GetEventManager();
 
             float GetElapsedTime();
             void RunGameLoop();
@@ -84,7 +86,7 @@ namespace FEngine
             WindowManager   *   _windowManager;
             Log             *   _logger;
             static App      *   _app;
-
+            EventManager    *   _eventManager;
 
             Game * _testGame;
     };

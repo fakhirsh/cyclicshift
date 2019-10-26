@@ -11,6 +11,7 @@
 #include "../System/App.hpp"
 #include "../Debugging/Log.hpp"
 #include "../Utility/String.hpp"
+#include "../EventManager/EventManager.hpp"
 
 //#define ____EMSCRIPTEN____ 
 
@@ -37,6 +38,17 @@ namespace FEngine{
     Texture enemyUFOTexture;
 
     void DrawImage(Program * program, Texture * texture, float offsetX, float offsetY);
+
+
+    float playerX = 100.0f;
+    float playerY = 100.0f;
+    float enemyX = 200.0f;
+    float enemyY = 250.0f;
+    float enemyVX = 0.0f;
+    float enemyVY = 0.0f;
+    const float ENEMY_VELOCITY = 300;
+    float UFO_VELOCITY = -0.4;
+    float ufoY = 400.0f;
 
     Game::Game(){
     
@@ -84,29 +96,79 @@ namespace FEngine{
         render->GenVertexArrays(1, &VertexArrayID);
         render->BindVertexArray(VertexArrayID);
 
+        EventManager * emgr = App::Get()->GetEventManager();
+
+        auto mpd = EventDelegate::create<Game, &Game::OnEvent>(this);
+        emgr->AddListener("MousePosition", mpd);
+        emgr->AddListener("KBPress", mpd);
+
     }
     
     void Game::Update(float dt){
     
     }
     
+    void Game::OnEvent(Event e){
+        if(e.GetEventType() == "MousePosition"){
+            double x = e.GetArg("x");
+            double y = e.GetArg("y");
+            //App::Get()->GetLogger()->Print("Game::OnEvent = X: " + String::ToString(x) + "-- Y: " + String::ToString(y));
+            playerX = x;
+            playerY = y;
+        }
+        else if(e.GetEventType() == "KBPress"){
+            //enemyVX =enemyVY = 0.0f;
+
+            int key = e.GetArg("key");
+            int action = e.GetArg("action");
+            
+            if(action == INPUT::KEY_PRESS){
+                if(key == INPUT::KB_UP){
+                    enemyVY = ENEMY_VELOCITY;
+                }if(key == INPUT::KB_DOWN){
+                    enemyVY = -ENEMY_VELOCITY;
+                }if(key == INPUT::KB_LEFT){
+                    enemyVX = -ENEMY_VELOCITY;
+                }if(key == INPUT::KB_RIGHT){
+                    enemyVX = ENEMY_VELOCITY;
+                }
+            }
+            if(action == INPUT::KEY_RELEASE){
+                if(key == INPUT::KB_UP){
+                    enemyVY = 0.0f;
+                }if(key == INPUT::KB_DOWN){
+                    enemyVY = 0.0f;
+                }if(key == INPUT::KB_LEFT){
+                    enemyVX = 0.0f;
+                }if(key == INPUT::KB_RIGHT){
+                    enemyVX = 0.0f;
+                }
+            }
+        }
+    }
+    
+    
     void Game::Render(float dt){
         Renderer * render = App::Get()->GetRenderer();
         render->Clear();
         
-        static float playerY = 100.0f;
-        static float enemyX = 200.0f;
-        static float enemyY = 250.0f;
-        static float ufoY = 400.0f;
-            
-        DrawImage(&textureProg, &playerTexture, 100, playerY);
+        DrawImage(&textureProg, &playerTexture, playerX - playerTexture.GetWidth()/2, playerY - playerTexture.GetHeight()/2);
         DrawImage(&textureProg, &enemyShipTexture, enemyX, enemyY);
         DrawImage(&textureProg, &enemyUFOTexture, 270, ufoY);
         
-        playerY += 0.4f;
-        enemyX -= 0.2f;
-        enemyY += 0.3f;
-        ufoY -= 0.5f;
+        enemyX += enemyVX * dt;
+        enemyY += enemyVY * dt;
+        
+        //ufoY += 0.400;
+        /*
+         *if(ufoY <= 0){
+         *    UFO_VELOCITY = 0.4;
+         *}
+         *else if(ufoY > App::Get()->GetWindowHeight()){
+         *    UFO_VELOCITY = -0.4;
+         *}
+         */
+
     }
     
     void Game::Shutdown(){

@@ -7,6 +7,7 @@
 #include "../Renderer/Renderer.hpp"
 #include "../Debugging/Log.hpp"
 #include "../Utility/String.hpp"
+#include "../EventManager/EventManager.hpp"
 
 #include "../TmpGameCode/Game.hpp"
 
@@ -38,6 +39,7 @@ namespace FEngine{
         _renderer          = NULL;
         _soundManager      = NULL;
         _windowManager     = NULL;
+        _eventManager      = NULL; 
 
         _testGame = new Game();
     }
@@ -54,6 +56,9 @@ namespace FEngine{
     }
 
     bool App::Initialize(std::string assetDirPrefix){
+        
+        _eventManager = new EventManager();
+
         if(_ioManager == NULL){
             _logger->Print("IOManager MUST be set before calling Initialize()","App::Initialize");
             return false;
@@ -77,12 +82,12 @@ namespace FEngine{
             return false;
         }
 
-        TickDelegate tick = fastdelegate::MakeDelegate(this, &App::Tick);
-        _windowManager->SetTickCallback(tick);
+        auto td = TickDelegate::create<App, &App::Tick>(this);
+        _windowManager->SetTickCallback(td);
 
-        MousePosDelegate mpd = fastdelegate::MakeDelegate(this, &App::MousePosition);
-        MouseBtnDelegate mbd = fastdelegate::MakeDelegate(this, &App::MouseBtnPress);
-        KBDelegate kbd = fastdelegate::MakeDelegate(this, &App::KBPress);
+        auto mpd = MousePosDelegate::create<App, &App::MousePosition>(this);
+        auto mbd = MouseBtnDelegate::create<App, &App::MouseBtnPress>(this);
+        auto kbd = KBDelegate::create<App, &App::KBPress>(this);
         _windowManager->SetInputCallbacks(mbd, mpd, kbd);
 
         _testGame->Init();
@@ -154,6 +159,10 @@ namespace FEngine{
         return _logger;
     }
 
+    EventManager * App::GetEventManager(){
+        return _eventManager; 
+    }
+    
     bool App::LoadConfig(vector<char> & buffer)
     {
         tinyxml2::XMLDocument configXML;
@@ -234,7 +243,8 @@ namespace FEngine{
         }
 
         frames++;
-
+        
+        _eventManager->Update(dt);
         Input();
         Update(dt);
         Render(dt);
@@ -270,7 +280,14 @@ namespace FEngine{
     }
 
     void App::MousePosition(double x, double y){
-        App::Get()->GetLogger()->Print("App::Mouse = X: " + String::ToString(x) + "-- Y: " + String::ToString(y));
+        //App::Get()->GetLogger()->Print("App::Mouse = X: " + String::ToString(x) + "-- Y: " + String::ToString(y));
+        
+        Event e;
+        e.SetEventName("Mouse Position");
+        e.SetEventType("MousePosition");
+        e.SetArg("x", x);
+        e.SetArg("y", _windowHeight - y);
+        _eventManager->EnQueue(e);
     }
     
     void App::MouseBtnPress(int button, int action, double x, double y){
@@ -279,7 +296,13 @@ namespace FEngine{
     }
     
     void App::KBPress(int key, int action){
-        App::Get()->GetLogger()->Print("App::KBPressed = : " + String::ToString(key));
+        //App::Get()->GetLogger()->Print("App::KBPressed = : " + String::ToString(key));
+        Event e;
+        e.SetEventName("Keyboard Press");
+        e.SetEventType("KBPress");
+        e.SetArg("key", key);
+        e.SetArg("action", action);
+        _eventManager->EnQueue(e);
     }
 
 
