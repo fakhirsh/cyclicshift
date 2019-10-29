@@ -2,7 +2,6 @@
 #include "EventManager.hpp"
 #include <iostream>
 
-
 using namespace std;
 
 namespace FEngine{
