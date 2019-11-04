@@ -1,14 +1,14 @@
 
-#include <System/App.hpp>
-#include <ResourceCache/IOManagerDefault.hpp>
-#include <Renderer/GL30/GL30Renderer.hpp>
-#include <System/WindowManagerLinux.hpp>
 #include <Debugging/LogDefault.hpp>
+#include <Renderer/GL30/GL30Renderer.hpp>
+#include <ResourceCache/IOManagerDefault.hpp>
+#include <System/App.hpp>
+#include <System/WindowManagerLinux.hpp>
 
-using namespace FEngine;
 using namespace std;
+using namespace FEngine;
 
-int main( void )
+int main( int argc, char ** argv )
 {
 
     App * app = App::Get();

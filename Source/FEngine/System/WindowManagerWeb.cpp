@@ -108,7 +108,7 @@ namespace FEngine{
     }
 
     bool WindowManagerWeb::Initialize(int width, int height, std::string title, std::string className){
-        Log * log = App::Get()->GetLogger();
+        LogPtr log = App::Get()->GetLogger();
 
         if (glfwInit() != GL_TRUE)
         {
