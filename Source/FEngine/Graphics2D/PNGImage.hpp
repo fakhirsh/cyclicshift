@@ -9,11 +9,11 @@ namespace FEngine
     /**
         Comcrete class for manipulating PNG file format.
      */
-    class ImagePNG : public Image
+    class PNGImage : public Image
     {
     public:
-        ImagePNG();
-        virtual ~ImagePNG();
+        PNGImage();
+        virtual ~PNGImage();
         
         virtual bool CreateEmpty(int width, int height, bool hasAlpha = false);
         
@@ -58,7 +58,7 @@ namespace FEngine
          */        
         virtual bool WriteSubImage(int offsetX, int offsetY, const Image & subImage);
 
-        
+
     private:
                 
 

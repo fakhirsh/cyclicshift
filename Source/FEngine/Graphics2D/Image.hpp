@@ -81,9 +81,6 @@ namespace FEngine
         int         GetHeight           ();
         int         GetDepth            ();
 
-        unsigned int _textureID;
-
-
     protected:
 
         std::string	_name;

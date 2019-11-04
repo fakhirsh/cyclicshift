@@ -39,6 +39,8 @@ set ( HDR
         Debugging/LogDefault.hpp
         EventManager/Event.hpp
         EventManager/EventManager.hpp
+		Graphics2D/Image.hpp
+		Graphics2D/PNGImage.hpp
 		Graphics2D/Texture.hpp
         System/App.hpp
 		System/WindowManager.hpp
@@ -69,6 +71,8 @@ set ( SRC
         EventManager/Event.cpp
         EventManager/EventManager.cpp
 		System/App.cpp
+		Graphics2D/Image.cpp
+		Graphics2D/PNGImage.cpp		
         Graphics2D/Texture.cpp
         ResourceCache/IOManagerDefault.cpp
         Renderer/Renderer.cpp        
