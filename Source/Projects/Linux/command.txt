@@ -7,3 +7,4 @@ cmake -DCMAKE_BUILD_TYPE=Release -G "Unix Makefiles" ../../Source/Projects/Linux
 Then to make just execute:
 
 make [VERBOSE=1]
+
