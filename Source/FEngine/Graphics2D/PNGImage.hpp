@@ -15,7 +15,7 @@ namespace FEngine
         PNGImage();
         virtual ~PNGImage();
         
-        virtual bool CreateEmpty(int width, int height, bool hasAlpha = false);
+        virtual bool CreateEmpty(int width, int height, bool hasAlpha = true);
         
         /**
             Loads raw image data from file

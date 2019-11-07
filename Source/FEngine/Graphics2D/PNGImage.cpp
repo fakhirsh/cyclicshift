@@ -11,10 +11,147 @@
 #include <sstream>
 #include <string>
 
+
+#include <stdio.h>
+#include <math.h>
+#include <malloc.h>
+#include <unistd.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdarg.h>
+
+
 using namespace std;
 
 namespace FEngine
 {
+
+
+    inline void setRGB(png_byte *ptr, float val)
+    {
+        int v = (int)(val * 767);
+        if (v < 0) v = 0;
+        if (v > 767) v = 767;
+        int offset = v % 256;
+
+        if (v<256) {
+            ptr[0] = 0; ptr[1] = 0; ptr[2] = offset;
+        }
+        else if (v<512) {
+            ptr[0] = 0; ptr[1] = offset; ptr[2] = 255-offset;
+        }
+        else {
+            ptr[0] = offset; ptr[1] = 255-offset; ptr[2] = 0;
+        }
+    }
+
+    int writeImage(char* filename, int width, int height, float *buffer, char* title)
+    {
+        int code = 0;
+        FILE *fp = NULL;
+        png_structp png_ptr = NULL;
+        png_infop info_ptr = NULL;
+        png_bytep row = NULL;
+        
+        // Open file for writing (binary mode)
+        fp = fopen(filename, "wb");
+        if (fp == NULL) {
+            fprintf(stderr, "Could not open file %s for writing\n", filename);
+            code = 1;
+            goto finalise;
+        }
+
+        // Initialize write structure
+        png_ptr = png_create_write_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
+        if (png_ptr == NULL) {
+            fprintf(stderr, "Could not allocate write struct\n");
+            code = 1;
+            goto finalise;
+        }
+
+        // Initialize info structure
+        info_ptr = png_create_info_struct(png_ptr);
+        if (info_ptr == NULL) {
+            fprintf(stderr, "Could not allocate info struct\n");
+            code = 1;
+            goto finalise;
+        }
+
+        // Setup Exception handling
+        if (setjmp(png_jmpbuf(png_ptr))) {
+            fprintf(stderr, "Error during png creation\n");
+            code = 1;
+            goto finalise;
+        }
+
+        png_init_io(png_ptr, fp);
+
+        // Write header (8 bit colour depth)
+        png_set_IHDR(png_ptr, info_ptr, width, height,
+                8, PNG_COLOR_TYPE_RGB_ALPHA, PNG_INTERLACE_NONE,
+                PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
+
+        // Set title
+        if (title != NULL) {
+            png_text title_text;
+            title_text.compression = PNG_TEXT_COMPRESSION_NONE;
+            title_text.key = "Title";
+            title_text.text = title;
+            png_set_text(png_ptr, info_ptr, &title_text, 1);
+        }
+
+        png_write_info(png_ptr, info_ptr);
+
+        // Allocate memory for one row (3 bytes per pixel - RGB)
+        row = (png_bytep) malloc(4 * width * sizeof(png_byte));
+
+        // Write image data
+        int x, y;
+        for (y=0 ; y<height ; y++) {
+            for (x=0 ; x<width ; x++) {
+                //setRGB(&(row[x*3]), buffer[y*width + x]);
+                row[x*4+0] = 0;
+                row[x*4+1] = 255;
+                row[x*4+2] = 0;
+                row[x*4+3] = 100;
+            }
+            png_write_row(png_ptr, row);
+        }
+
+        // End write
+        png_write_end(png_ptr, NULL);
+
+        finalise:
+        if (fp != NULL) fclose(fp);
+        if (info_ptr != NULL) png_free_data(png_ptr, info_ptr, PNG_FREE_ALL, -1);
+        if (png_ptr != NULL) png_destroy_write_struct(&png_ptr, (png_infopp)NULL);
+        if (row != NULL) free(row);
+
+        return code;
+    }
+
+    float * createSolidColor(int width, int height){
+        
+        float *buffer = (float *) malloc(width * height * sizeof(float));
+        if (buffer == NULL) {
+            fprintf(stderr, "Could not create image buffer\n");
+            return NULL;
+        }
+
+        int xPos, yPos;
+
+        for (yPos=0 ; yPos<height ; yPos++)
+        {
+            for (xPos=0 ; xPos<width ; xPos++)
+            {
+                buffer[yPos * width + xPos] = 0;
+            }
+        }
+        return buffer;
+    }
+
+
 
     PNGImage::PNGImage ()
     {
@@ -26,9 +163,63 @@ namespace FEngine
 
     }
 
+/*
+ *    bool PNGImage::CreateEmpty(int width, int height, bool hasAlpha){
+ *
+ *        // Specify an output image size
+ *        //int width = 500;
+ *        //int height = 300;
+ *
+ *        // Create a test image - in this case a Mandelbrot Set fractal
+ *        // The output is a 1D array of floats, length: width * height
+ *        printf("Creating Image\n");
+ *        //float *buffer = createMandelbrotImage(width, height, -0.802, -0.177, 0.011, 110);
+ *        float *buffer = createSolidColor(width, height);
+ *        if (buffer == NULL) {
+ *            return false;
+ *        }
+ *
+ *        // Save the image to a PNG file
+ *        // The 'title' string is stored as part of the PNG file
+ *        printf("Saving PNG\n");
+ *        int result = writeImage("output.png", width, height, buffer, "This is my test image");
+ *
+ *        // Free up the memorty used to store the image
+ *        free(buffer);
+ *
+ *
+ *
+ *        return true;
+ *    }
+ *
+ */
+
     bool PNGImage::CreateEmpty(int width, int height, bool hasAlpha){
+
+        _width = width;
+        _height = height;
+        _hasAlpha = hasAlpha; 
+       
+        int numChannels = 4;
+
+        unsigned char * bitmapData = new unsigned char[ _width * numChannels * _height ];
+
+        for(int R = 0; R < _height; R++){
+            for(int C = 0; C < _width; C++){
+                bitmapData[R*_width*numChannels + C*numChannels + 0] = (unsigned char)255;   // red
+                bitmapData[R*_width*numChannels + C*numChannels + 1] = (unsigned char)0; // green
+                bitmapData[R*_width*numChannels + C*numChannels + 2] = (unsigned char)0;   // blue
+                bitmapData[R*_width*numChannels + C*numChannels + 3] = (unsigned char)255;  // alpha
+            }
+        }
+        
+        this->InitWithData(_width * numChannels, _height, (const char *)bitmapData);
+
+        delete [] bitmapData;
+
         return true;
     }
+
 
     bool PNGImage::LoadFromFile (std::string fileName){
         std::string memoryStreamString;
