@@ -89,15 +89,13 @@ namespace FEngine
         imgPtr->CreateEmpty(32, 32);
         imgPtr->SaveToFile("output.png");
 
-
-        _width = imgPtr->GetWidth();
+        _width  = imgPtr->GetWidth();
         _height = imgPtr->GetHeight();
-        _depth = imgPtr->GetDepth();
+        _depth  = imgPtr->GetDepth();
         _hasAlpha = true;
 
         RendererPtr renderer = App::Get()->GetRenderer();
         _textureID = renderer->LoadTextureFromPixels32(_width, _height, _hasAlpha, (unsigned int *)imgPtr->GetImageData());
-
 
         return true;
     }
