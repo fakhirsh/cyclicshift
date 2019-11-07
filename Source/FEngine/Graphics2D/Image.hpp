@@ -70,16 +70,18 @@ namespace FEngine
          */
         virtual bool WriteSubImage(int offsetX, int offsetY, const Image & subImage) = 0;
 
-        virtual bool InitWithData (int width, int height, const char * data);
+        virtual bool InitializeWithData (int width, int height, const unsigned char * data);
 
         void        SetName             (std::string name);
         std::string GetName             ();
 
-        const char * GetImageData();
+        const unsigned char * GetImageData();
 
         int         GetWidth            ();
         int         GetHeight           ();
         int         GetDepth            ();
+
+        bool        IsPowerOf2          (int num);
 
     protected:
 
@@ -92,7 +94,7 @@ namespace FEngine
         int         _depth;
         bool        _hasAlpha;
 
-        std::shared_ptr< std::vector<char> > _imgData;
+        std::shared_ptr< std::vector<unsigned char> > _imgData;
 
 
     };

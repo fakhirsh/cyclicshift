@@ -86,7 +86,7 @@ namespace FEngine
             return false;
         }
 
-        imgPtr->CreateEmpty(64, 64);
+        imgPtr->CreateEmpty(32, 32);
         imgPtr->SaveToFile("output.png");
 
 

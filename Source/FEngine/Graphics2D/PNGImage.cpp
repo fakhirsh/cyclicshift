@@ -53,7 +53,7 @@ namespace FEngine
         png_structp png_ptr = NULL;
         png_infop info_ptr = NULL;
         png_bytep row = NULL;
-        
+
         // Open file for writing (binary mode)
         fp = fopen(filename, "wb");
         if (fp == NULL) {
@@ -132,7 +132,7 @@ namespace FEngine
     }
 
     float * createSolidColor(int width, int height){
-        
+
         float *buffer = (float *) malloc(width * height * sizeof(float));
         if (buffer == NULL) {
             fprintf(stderr, "Could not create image buffer\n");
@@ -196,24 +196,28 @@ namespace FEngine
 
     bool PNGImage::CreateEmpty(int width, int height, bool hasAlpha){
 
+        if(!IsPowerOf2(width) || !IsPowerOf2(height)){
+            App::Get()->GetLogger()->Print("WARNING: Image dimensions are NOT a power of 2. WebGL may not even draw any images", "PNGImage::CreateEmpty");
+        }
+
         _width = width;
         _height = height;
-        _hasAlpha = hasAlpha; 
-       
+        _hasAlpha = hasAlpha;
+
         int numChannels = 4;
 
         unsigned char * bitmapData = new unsigned char[ _width * numChannels * _height ];
 
         for(int R = 0; R < _height; R++){
             for(int C = 0; C < _width; C++){
-                bitmapData[R*_width*numChannels + C*numChannels + 0] = (unsigned char)255;   // red
-                bitmapData[R*_width*numChannels + C*numChannels + 1] = (unsigned char)0; // green
-                bitmapData[R*_width*numChannels + C*numChannels + 2] = (unsigned char)0;   // blue
+                bitmapData[R*_width*numChannels + C*numChannels + 0] = (unsigned char)255;  // red
+                bitmapData[R*_width*numChannels + C*numChannels + 1] = (unsigned char)0;    // green
+                bitmapData[R*_width*numChannels + C*numChannels + 2] = (unsigned char)0;    // blue
                 bitmapData[R*_width*numChannels + C*numChannels + 3] = (unsigned char)255;  // alpha
             }
         }
-        
-        this->InitWithData(_width * numChannels, _height, (const char *)bitmapData);
+
+        InitializeWithData(_width * numChannels, _height, (const unsigned char *)bitmapData);
 
         delete [] bitmapData;
 
@@ -340,6 +344,10 @@ namespace FEngine
 
         png_get_IHDR( png_ptr, info_ptr, (png_uint_32*)&_width, (png_uint_32*)&_height, &_depth, &color_type, &interlace_type, NULL, NULL );
 
+        if(!IsPowerOf2(_width) || !IsPowerOf2(_height)){
+            App::Get()->GetLogger()->Print("WARNING: Image dimensions are NOT a power of 2. WebGL may not even draw any images", "PNGImage::LoadFromStream");
+        }
+
         switch(color_type)
         {
             case PNG_COLOR_TYPE_RGB:
@@ -356,14 +364,14 @@ namespace FEngine
         png_size_t cols = png_get_rowbytes(png_ptr, info_ptr);
 
         png_bytepp row_pp = new png_bytep[_height];
-        char * bitmapData = new char[ cols * _height ];
+        unsigned char * bitmapData = new unsigned char[ cols * _height ];
 
         for( int i = 0; i < _height; ++i )
         {
             // note that png is ordered top to
             // bottom, but OpenGL expect it bottom to top
             // so the order or swapped
-            row_pp[_height - i - 1] = (png_bytep)&((char *)bitmapData)[ i * cols ];
+            row_pp[_height - i - 1] = (png_bytep)&((unsigned char *)bitmapData)[ i * cols ];
         }
 
         png_read_image( png_ptr, row_pp );
@@ -376,7 +384,7 @@ namespace FEngine
         //RendererPtr renderer = App::Get()->GetRenderer();
         //_textureID = renderer->LoadTextureFromPixels32(_width, _height, _hasAlpha, (unsigned int *)bitmapData);
 
-        this->InitWithData(cols, _height, bitmapData);
+        InitializeWithData(cols, _height, bitmapData);
 
         delete [] bitmapData;
 
@@ -384,6 +392,9 @@ namespace FEngine
     }
 
     bool PNGImage::SaveToFile (std::string fileName){
+
+
+
         return true;
     }
 

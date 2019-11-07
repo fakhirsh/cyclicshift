@@ -21,9 +21,32 @@ namespace FEngine
 
     }
 
-    bool Image::InitWithData (int width, int height, const char * data)
+    bool Image::IsPowerOf2(int num){
+        switch(num){
+            case 1:
+            case 2:
+            case 4:
+            case 8:
+            case 16:
+            case 32:
+            case 64:
+            case 128:
+            case 256:
+            case 512:
+            case 1024:
+            case 2048:
+            case 4096:
+            case 8192:
+                return true;
+            default:
+                return false;
+        }
+        return false;
+    }
+
+    bool Image::InitializeWithData (int width, int height, const unsigned char * data)
     {
-        _imgData = std::make_shared< std::vector<char> >(data, data + width*height);
+        _imgData = std::make_shared< std::vector<unsigned char> >(data, data + width*height);
         return true;
     }
 
@@ -51,7 +74,7 @@ namespace FEngine
         return _name;
     }
         
-    const char * Image::GetImageData(){
+    const unsigned char * Image::GetImageData(){
         return _imgData->data();
     }
  
