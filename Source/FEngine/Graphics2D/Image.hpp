@@ -7,6 +7,16 @@
 
 namespace FEngine
 {
+    class Pixel;
+    class Image;
+    
+    typedef std::shared_ptr<Pixel> PixelPtr;
+    typedef std::shared_ptr<Image> ImagePtr;
+
+    struct Pixel{
+        Pixel(){r = g = b = a = 0;}
+        unsigned char r,g,b,a;
+    };
 
     /**
      *  @class Image This class serves as a base class for various image types
@@ -68,20 +78,24 @@ namespace FEngine
             @param subImage Sub-image to write on the current image pixel data.
             @return Returns the status, success or failure.
          */
-        virtual bool WriteSubImage(int offsetX, int offsetY, const Image & subImage) = 0;
+        virtual bool CopyImage(int offsetX, int offsetY, const ImagePtr & imagePtr) = 0;
 
         virtual bool InitializeWithData (int width, int height, const unsigned char * data);
 
-        void        SetName             (std::string name);
-        std::string GetName             ();
+        PixelPtr    GetPixelAt(int x, int y) const;
+        void        SetPixelAt(int x, int y, const PixelPtr & pixel);
 
-        const unsigned char * GetImageData();
+        void                SetName     (std::string name);
+        const std::string & GetName     () const;
 
-        int         GetWidth            ();
-        int         GetHeight           ();
-        int         GetDepth            ();
+        const unsigned char * GetRawData() const;
 
-        bool        IsPowerOf2          (int num);
+        int         GetWidth            () const;
+        int         GetHeight           () const;
+        int         GetDepth            () const;
+        int         GetChannelCount     () const;
+
+        bool        IsPowerOf2          (int num) const;
 
     protected:
 
@@ -92,6 +106,7 @@ namespace FEngine
         int         _width;
         int         _height;
         int         _depth;
+        int         _channelCount;
         bool        _hasAlpha;
 
         std::shared_ptr< std::vector<unsigned char> > _imgData;

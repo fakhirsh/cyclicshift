@@ -27,132 +27,6 @@ using namespace std;
 namespace FEngine
 {
 
-
-    inline void setRGB(png_byte *ptr, float val)
-    {
-        int v = (int)(val * 767);
-        if (v < 0) v = 0;
-        if (v > 767) v = 767;
-        int offset = v % 256;
-
-        if (v<256) {
-            ptr[0] = 0; ptr[1] = 0; ptr[2] = offset;
-        }
-        else if (v<512) {
-            ptr[0] = 0; ptr[1] = offset; ptr[2] = 255-offset;
-        }
-        else {
-            ptr[0] = offset; ptr[1] = 255-offset; ptr[2] = 0;
-        }
-    }
-
-    int writeImage(char* filename, int width, int height, float *buffer, char* title)
-    {
-        int code = 0;
-        FILE *fp = NULL;
-        png_structp png_ptr = NULL;
-        png_infop info_ptr = NULL;
-        png_bytep row = NULL;
-
-        // Open file for writing (binary mode)
-        fp = fopen(filename, "wb");
-        if (fp == NULL) {
-            fprintf(stderr, "Could not open file %s for writing\n", filename);
-            code = 1;
-            goto finalise;
-        }
-
-        // Initialize write structure
-        png_ptr = png_create_write_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
-        if (png_ptr == NULL) {
-            fprintf(stderr, "Could not allocate write struct\n");
-            code = 1;
-            goto finalise;
-        }
-
-        // Initialize info structure
-        info_ptr = png_create_info_struct(png_ptr);
-        if (info_ptr == NULL) {
-            fprintf(stderr, "Could not allocate info struct\n");
-            code = 1;
-            goto finalise;
-        }
-
-        // Setup Exception handling
-        if (setjmp(png_jmpbuf(png_ptr))) {
-            fprintf(stderr, "Error during png creation\n");
-            code = 1;
-            goto finalise;
-        }
-
-        png_init_io(png_ptr, fp);
-
-        // Write header (8 bit colour depth)
-        png_set_IHDR(png_ptr, info_ptr, width, height,
-                8, PNG_COLOR_TYPE_RGB_ALPHA, PNG_INTERLACE_NONE,
-                PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
-
-        // Set title
-        if (title != NULL) {
-            png_text title_text;
-            title_text.compression = PNG_TEXT_COMPRESSION_NONE;
-            title_text.key = "Title";
-            title_text.text = title;
-            png_set_text(png_ptr, info_ptr, &title_text, 1);
-        }
-
-        png_write_info(png_ptr, info_ptr);
-
-        // Allocate memory for one row (3 bytes per pixel - RGB)
-        row = (png_bytep) malloc(4 * width * sizeof(png_byte));
-
-        // Write image data
-        int x, y;
-        for (y=0 ; y<height ; y++) {
-            for (x=0 ; x<width ; x++) {
-                //setRGB(&(row[x*3]), buffer[y*width + x]);
-                row[x*4+0] = 0;
-                row[x*4+1] = 255;
-                row[x*4+2] = 0;
-                row[x*4+3] = 100;
-            }
-            png_write_row(png_ptr, row);
-        }
-
-        // End write
-        png_write_end(png_ptr, NULL);
-
-        finalise:
-        if (fp != NULL) fclose(fp);
-        if (info_ptr != NULL) png_free_data(png_ptr, info_ptr, PNG_FREE_ALL, -1);
-        if (png_ptr != NULL) png_destroy_write_struct(&png_ptr, (png_infopp)NULL);
-        if (row != NULL) free(row);
-
-        return code;
-    }
-
-    float * createSolidColor(int width, int height){
-
-        float *buffer = (float *) malloc(width * height * sizeof(float));
-        if (buffer == NULL) {
-            fprintf(stderr, "Could not create image buffer\n");
-            return NULL;
-        }
-
-        int xPos, yPos;
-
-        for (yPos=0 ; yPos<height ; yPos++)
-        {
-            for (xPos=0 ; xPos<width ; xPos++)
-            {
-                buffer[yPos * width + xPos] = 0;
-            }
-        }
-        return buffer;
-    }
-
-
-
     PNGImage::PNGImage ()
     {
         _imageType = "png";
@@ -163,36 +37,6 @@ namespace FEngine
 
     }
 
-/*
- *    bool PNGImage::CreateEmpty(int width, int height, bool hasAlpha){
- *
- *        // Specify an output image size
- *        //int width = 500;
- *        //int height = 300;
- *
- *        // Create a test image - in this case a Mandelbrot Set fractal
- *        // The output is a 1D array of floats, length: width * height
- *        printf("Creating Image\n");
- *        //float *buffer = createMandelbrotImage(width, height, -0.802, -0.177, 0.011, 110);
- *        float *buffer = createSolidColor(width, height);
- *        if (buffer == NULL) {
- *            return false;
- *        }
- *
- *        // Save the image to a PNG file
- *        // The 'title' string is stored as part of the PNG file
- *        printf("Saving PNG\n");
- *        int result = writeImage("output.png", width, height, buffer, "This is my test image");
- *
- *        // Free up the memorty used to store the image
- *        free(buffer);
- *
- *
- *
- *        return true;
- *    }
- *
- */
 
     bool PNGImage::CreateEmpty(int width, int height, bool hasAlpha){
 
@@ -203,21 +47,21 @@ namespace FEngine
         _width = width;
         _height = height;
         _hasAlpha = hasAlpha;
+        _depth = 8;
+        _channelCount = 4;
 
-        int numChannels = 4;
-
-        unsigned char * bitmapData = new unsigned char[ _width * numChannels * _height ];
+        unsigned char * bitmapData = new unsigned char[ _width * _channelCount * _height ];
 
         for(int R = 0; R < _height; R++){
             for(int C = 0; C < _width; C++){
-                bitmapData[R*_width*numChannels + C*numChannels + 0] = (unsigned char)255;  // red
-                bitmapData[R*_width*numChannels + C*numChannels + 1] = (unsigned char)0;    // green
-                bitmapData[R*_width*numChannels + C*numChannels + 2] = (unsigned char)0;    // blue
-                bitmapData[R*_width*numChannels + C*numChannels + 3] = (unsigned char)255;  // alpha
+                bitmapData[R*_width*_channelCount + C*_channelCount + 0] = (unsigned char)0;  // red
+                bitmapData[R*_width*_channelCount + C*_channelCount + 1] = (unsigned char)0;    // green
+                bitmapData[R*_width*_channelCount + C*_channelCount + 2] = (unsigned char)0;    // blue
+                bitmapData[R*_width*_channelCount + C*_channelCount + 3] = (unsigned char)0;  // alpha
             }
         }
 
-        InitializeWithData(_width * numChannels, _height, (const unsigned char *)bitmapData);
+        InitializeWithData(_width * _channelCount, _height, (const unsigned char *)bitmapData);
 
         delete [] bitmapData;
 
@@ -352,8 +196,10 @@ namespace FEngine
         {
             case PNG_COLOR_TYPE_RGB:
                 _hasAlpha = false;
+                _channelCount = 3;
                 break;
             case PNG_COLOR_TYPE_RGBA:
+                _channelCount = 4;
                 _hasAlpha = true;
                 break;
             default:
@@ -391,6 +237,9 @@ namespace FEngine
         return true;
     }
 
+    /**
+        Reference: http://zarb.org/~gc/html/libpng.html
+     */
     bool PNGImage::SaveToFile (std::string fileName){
 
         int code = 0;
@@ -400,9 +249,9 @@ namespace FEngine
         png_bytep row = NULL;
 
         // Open file for writing (binary mode)
-        fp = fopen(filename, "wb");
+        fp = fopen(fileName.c_str(), "wb");
         if (fp == NULL) {
-            fprintf(stderr, "Could not open file %s for writing\n", filename);
+            fprintf(stderr, "Could not open file %s for writing\n", fileName.c_str());
             return false;
         }
 
@@ -430,7 +279,7 @@ namespace FEngine
 
         // Write header (8 bit colour depth)
         png_set_IHDR(png_ptr, info_ptr, _width, _height,
-                8, PNG_COLOR_TYPE_RGB_ALPHA, PNG_INTERLACE_NONE,
+                _depth, PNG_COLOR_TYPE_RGB_ALPHA, PNG_INTERLACE_NONE,
                 PNG_COMPRESSION_TYPE_BASE, PNG_FILTER_TYPE_BASE);
 
         // Set title
@@ -444,18 +293,19 @@ namespace FEngine
 
         png_write_info(png_ptr, info_ptr);
 
-        // Allocate memory for one row (3 bytes per pixel - RGB)
-        row = (png_bytep) malloc(4 * _width * sizeof(png_byte));
+        // Allocate memory for one row ( [4?] bytes per pixel - RGB(A?))
+        row = (png_bytep) malloc(_channelCount * _width * sizeof(png_byte));
 
         // Write image data
         int x, y;
-        for (y=0 ; y<_height ; y++) {
-            for (x=0 ; x<_width ; x++) {
-                //setRGB(&(row[x*3]), buffer[y*width + x]);
-                row[x*4+0] = 0;
-                row[x*4+1] = 255;
-                row[x*4+2] = 0;
-                row[x*4+3] = 100;
+        for (y = 0 ; y < _height ; y++) {
+            for (x = 0 ; x < _width ; x++) {
+                PixelPtr pixel = GetPixelAt(x, y);
+
+                row[x*_channelCount+0] = pixel->r;
+                row[x*_channelCount+1] = pixel->g;
+                row[x*_channelCount+2] = pixel->b;
+                row[x*_channelCount+3] = pixel->a;
             }
             png_write_row(png_ptr, row);
         }
@@ -475,7 +325,47 @@ namespace FEngine
         return true;
     }
 
-    bool PNGImage::WriteSubImage(int offsetX, int offsetY, const Image & subImage){
+    bool PNGImage::CopyImage(int offsetX, int offsetY, const ImagePtr & subImage){
+
+        // Check boundary conditions
+        int MAX_X, MAX_Y;
+
+        if(_width >= offsetX + subImage->GetWidth()){
+            MAX_X = subImage->GetWidth();
+        }
+        else{
+            if(offsetX < _width){
+                MAX_X = _width - offsetX;
+            }
+            else{
+                MAX_X = 0;
+            }
+        }
+
+        if(_height >= offsetY + subImage->GetHeight()){
+            MAX_Y = subImage->GetHeight();
+        }
+        else{
+            if(offsetY < _height){
+                MAX_Y = _height - offsetY;
+            }
+            else{
+                MAX_Y = 0;
+            }
+        }
+
+        for(int y = 0; y < MAX_Y; y++){
+            for(int x = 0; x < MAX_X; x++){
+                PixelPtr pixel = subImage->GetPixelAt(x,y);
+
+
+                PixelPtr p = make_shared<Pixel>();
+                p->r = 255;
+                p->a = 255;
+                SetPixelAt(offsetX + x, offsetY + y, pixel);
+            }
+        }
+
         return true;
     }
 

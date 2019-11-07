@@ -56,7 +56,7 @@ namespace FEngine
             @param subImage Sub-image to write on the current image pixel data.
             @return Returns the status, success or failure.
          */        
-        virtual bool WriteSubImage(int offsetX, int offsetY, const Image & subImage);
+        virtual bool CopyImage(int offsetX, int offsetY, const ImagePtr & imagePtr);
 
 
     private:

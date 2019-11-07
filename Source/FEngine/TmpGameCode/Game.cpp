@@ -2,6 +2,7 @@
 #include "Game.hpp"
 
 #include <vector>
+#include <memory>
 
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
@@ -24,6 +25,7 @@
 
 #include "../Renderer/Renderer.hpp"
 #include "../Graphics2D/Texture.hpp"
+#include "../Graphics2D/PNGImage.hpp"
 #include "../Renderer/VertexDefinitions.hpp"
 
 using namespace std;
@@ -100,6 +102,23 @@ namespace FEngine{
         auto mpd = EventDelegate::create<Game, &Game::OnEvent>(this);
         emgr->AddListener("MousePosition", mpd);
         emgr->AddListener("KBPress", mpd);
+
+
+        std::shared_ptr<Image> player = std::make_shared<PNGImage>();
+        player->LoadFromFile("Data/Textures/player.png");
+        std::shared_ptr<Image> ufo = std::make_shared<PNGImage>();
+        ufo->LoadFromFile("Data/Textures/enemyUFO.png");
+        std::shared_ptr<Image> ship = std::make_shared<PNGImage>();
+        ship->LoadFromFile("Data/Textures/enemyShip.png");
+
+
+
+        shared_ptr<Image> imgPtr = make_shared<PNGImage>();
+        imgPtr->CreateEmpty(1024, 1024);
+        imgPtr->CopyImage(100, 100, player);
+        imgPtr->CopyImage(300, 300, ufo);
+        imgPtr->CopyImage(700, 700, ship);
+        imgPtr->SaveToFile("output.png");
 
     }
     
