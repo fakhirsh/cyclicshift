@@ -32,12 +32,16 @@ namespace FEngine
             static App * Get();
             ~App();
 
-            bool Initialize(std::string assetDirPrefix);
+
+            bool Initialize();
 
             bool LoadConfig(std::vector<char> & buffer);
 
             std::string GetClassName();
             std::string GetWindowTitle();
+            std::string GetAssetDirPrefix();
+            void SetAssetDirPrefix(std::string assetDirPrefix);
+
             int GetFps();
             int GetWindowWidth();
             int GetWindowHeight();
@@ -74,6 +78,7 @@ namespace FEngine
 
             std::string   _className;
             std::string   _windowTitle;
+            std::string   _assetDirPrefix;
 
             int           _fps;
             int           _maxFps;

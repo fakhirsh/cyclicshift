@@ -1,4 +1,10 @@
 
-#How to play the game
 
-Add some stuff here
+#Enable debugging mode in VIM:
+
+:packadd termdebug
+:Termdebug
+
+#Then in the source window:
+
+Ctrl+w & L  (capital L)

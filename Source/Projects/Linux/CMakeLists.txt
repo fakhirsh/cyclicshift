@@ -8,6 +8,14 @@ option(USING_LINUX "Using Linux, certain libraries should be enabled/disabled" O
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/../../../Game/Linux)
 
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+# https://stackoverflow.com/questions/7031126/switching-between-gcc-and-clang-llvm-using-cmake
+#set(CMAKE_C_COMPILER "/usr/bin/clang" CACHE string "clang compiler" FORCE)
+#set(CMAKE_CXX_COMPILER "/usr/bin/clang++" CACHE string "clang++ compiler" FORCE)
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17" )
+
 # Remember to specify the path within quotes " "
 include_directories("../../FEngine")
 

@@ -80,7 +80,11 @@ namespace FEngine
          */
         virtual bool CopyImage(int offsetX, int offsetY, const ImagePtr & imagePtr) = 0;
 
+
         virtual bool InitializeWithData (int width, int height, const unsigned char * data);
+
+        void RotateCCW();
+        void RotateCW();
 
         PixelPtr    GetPixelAt(int x, int y) const;
         void        SetPixelAt(int x, int y, const PixelPtr & pixel);
@@ -94,7 +98,6 @@ namespace FEngine
         int         GetHeight           () const;
         int         GetDepth            () const;
         int         GetChannelCount     () const;
-
         bool        IsPowerOf2          (int num) const;
 
     protected:

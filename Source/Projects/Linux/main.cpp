@@ -18,7 +18,8 @@ int main( int argc, char ** argv )
     app->SetLogger(make_shared<LogDefault>());
     app->SetRenderer(make_shared<GL30Renderer>());
     
-    app->Initialize("Data/");
+    app->SetAssetDirPrefix("Data/");
+    app->Initialize();
 
     app->RunGameLoop();
 

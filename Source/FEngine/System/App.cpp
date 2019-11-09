@@ -55,7 +55,7 @@ namespace FEngine{
         return _app;
     }
 
-    bool App::Initialize(std::string assetDirPrefix){
+    bool App::Initialize(){
         
         _eventManager = make_shared<EventManager>();
 
@@ -69,7 +69,7 @@ namespace FEngine{
         }
 
         vector<char> buffer;
-        string sysConfXMLPath = assetDirPrefix + "Config/SystemConfig.xml";
+        string sysConfXMLPath = _assetDirPrefix + "Config/SystemConfig.xml";
         _ioManager->GetAssetStream(sysConfXMLPath, buffer);
         if(!LoadConfig(buffer)){
             _logger->Print("Error Loading --[ " + sysConfXMLPath + " ]--", "App::Initialize");
@@ -96,7 +96,6 @@ namespace FEngine{
     }
 
 
-
     std::string App::GetClassName(){
         return _className;
     }
@@ -104,6 +103,15 @@ namespace FEngine{
     std::string App::GetWindowTitle(){
         return _windowTitle;
     }
+
+    std::string App::GetAssetDirPrefix(){
+        return _assetDirPrefix;
+    }
+    
+    void App::SetAssetDirPrefix(std::string assetDirPrefix){
+        _assetDirPrefix = assetDirPrefix;
+    }
+
 
     int App::GetFps(){
         return _fps;

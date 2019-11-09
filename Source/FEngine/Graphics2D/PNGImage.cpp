@@ -41,7 +41,7 @@ namespace FEngine
     bool PNGImage::CreateEmpty(int width, int height, bool hasAlpha){
 
         if(!IsPowerOf2(width) || !IsPowerOf2(height)){
-            App::Get()->GetLogger()->Print("WARNING: Image dimensions are NOT a power of 2. WebGL may not even draw any images", "PNGImage::CreateEmpty");
+            //App::Get()->GetLogger()->Print("WARNING: Image dimensions are NOT a power of 2. WebGL may not even draw any images", "PNGImage::CreateEmpty");
         }
 
         _width = width;
@@ -52,12 +52,13 @@ namespace FEngine
 
         unsigned char * bitmapData = new unsigned char[ _width * _channelCount * _height ];
 
+        int rowSize = _width * _channelCount;
         for(int R = 0; R < _height; R++){
-            for(int C = 0; C < _width; C++){
-                bitmapData[R*_width*_channelCount + C*_channelCount + 0] = (unsigned char)0;  // red
-                bitmapData[R*_width*_channelCount + C*_channelCount + 1] = (unsigned char)0;    // green
-                bitmapData[R*_width*_channelCount + C*_channelCount + 2] = (unsigned char)0;    // blue
-                bitmapData[R*_width*_channelCount + C*_channelCount + 3] = (unsigned char)0;  // alpha
+            for(int C = 0; C < rowSize; C += _channelCount){
+                bitmapData[R*rowSize + C + 0] = (unsigned char)0;   // red
+                bitmapData[R*rowSize + C + 1] = (unsigned char)0;   // green
+                bitmapData[R*rowSize + C + 2] = (unsigned char)0;   // blue
+                bitmapData[R*rowSize + C + 3] = (unsigned char)0;   // alpha
             }
         }
 
@@ -189,7 +190,7 @@ namespace FEngine
         png_get_IHDR( png_ptr, info_ptr, (png_uint_32*)&_width, (png_uint_32*)&_height, &_depth, &color_type, &interlace_type, NULL, NULL );
 
         if(!IsPowerOf2(_width) || !IsPowerOf2(_height)){
-            App::Get()->GetLogger()->Print("WARNING: Image dimensions are NOT a power of 2. WebGL may not even draw any images", "PNGImage::LoadFromStream");
+            //App::Get()->GetLogger()->Print("WARNING: Image dimensions are NOT a power of 2. WebGL may not even draw any images", "PNGImage::LoadFromStream");
         }
 
         switch(color_type)
@@ -217,7 +218,8 @@ namespace FEngine
             // note that png is ordered top to
             // bottom, but OpenGL expect it bottom to top
             // so the order or swapped
-            row_pp[_height - i - 1] = (png_bytep)&((unsigned char *)bitmapData)[ i * cols ];
+            //row_pp[_height - i - 1] = (png_bytep)&((unsigned char *)bitmapData)[ i * cols ];
+            row_pp[i] = (png_bytep)&((unsigned char *)bitmapData)[ i * cols ];
         }
 
         png_read_image( png_ptr, row_pp );

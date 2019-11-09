@@ -1,0 +1,9 @@
+
+Execute this command from the "<root>/Tools/AtlasMaker/Temp/Linux" directory:
+
+cmake -DCMAKE_BUILD_TYPE=Release -G "Unix Makefiles" ../../../AtlasMaker/Source/Projects/Linux
+
+
+Then to make just execute:
+
+make [VERBOSE=1]

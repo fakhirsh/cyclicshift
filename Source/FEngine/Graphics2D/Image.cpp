@@ -47,7 +47,7 @@ namespace FEngine
 
     bool Image::InitializeWithData (int width, int height, const unsigned char * data)
     {
-        _imgData = std::make_shared< std::vector<unsigned char> >(data, data + width*height);
+        _imgData = std::make_shared< std::vector<unsigned char> >(data, data + width * height);
         return true;
     }
 
@@ -106,6 +106,43 @@ namespace FEngine
         buffer[y*_width*_channelCount + x*_channelCount+1] = pixel->g;
         buffer[y*_width*_channelCount + x*_channelCount+2] = pixel->b;
         buffer[y*_width*_channelCount + x*_channelCount+3] = pixel->a;
+    }
+ 
+    void Image::RotateCW(){
+
+        // Create a new image buffer with changed width and height 
+        //  (area of the rectangle will remain the same, obviously)
+        unsigned char * bitmapData = new unsigned char[ _height * _channelCount * _width ];
+        const unsigned char * img = GetRawData();
+
+        for(int Y = 0; Y < _height; Y++){
+            for(int X = 0; X < _width; X++){
+                // Get old pixel value
+                PixelPtr p = GetPixelAt(X, Y);
+                // Calculate new pixel coordinates after rotation
+                int newX = _height - Y - 1;
+                int newY = X;
+                // Finally compute the index for a single dimension array
+                int INDEX = (newY * _height + newX) * _channelCount;
+                bitmapData[INDEX + 0] = p->r;       // red
+                bitmapData[INDEX + 1] = p->g;       // green
+                bitmapData[INDEX + 2] = p->b;       // blue
+                bitmapData[INDEX + 3] = p->a;       // alpha
+            }
+        }
+
+        // The Image is rotated now. Swap width and height:
+        int temp = _width;
+        _width = _height;
+        _height = temp;
+        InitializeWithData(_width * _channelCount, _height, (const unsigned char *)bitmapData);
+
+        delete [] bitmapData;
+    }
+
+    
+    void Image::RotateCCW(){
+    
     }
  
 };

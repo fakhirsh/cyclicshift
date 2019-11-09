@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<SystemConfig>
+	
+	<Atlas inputDir="ZombieAtlas/" atlasName="atlas01" format="png">
+	    <Dimensions width="2048" height="1024" />
+	    <Padding    amount="2" />
+	    <Packing    algorithm="Guillotine" />
+	    <Debugging  enable="false">
+	        <!-- Draws a colored rectangle behind each sprite -->
+	        <Color r="0.0" g="1.0" b="0.0" a="0.0" />
+	    </Debugging>
+	</Atlas>
+	
+	<Localization	language="English" />
+		
+</SystemConfig>
+
