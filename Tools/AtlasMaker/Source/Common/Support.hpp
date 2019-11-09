@@ -6,22 +6,24 @@
 
 namespace AtlasMaker{
 
-    struct AtlasSprite{
-        AtlasSprite(){
+    struct ImageMeta{
+        ImageMeta(){
             x = y = -1;
             width = height = -1;
             rotation = false;
+            u = v = uW = vH = 0.0f;
         }
         std::string name;
         std::string path;
         int x, y;
         int width, height;
         bool rotation;
+        float u,v,uW,vH;
     };
 
-    struct Rect{
-        int x, int y;
+    /*struct Rect{*/
+        //int x, y;
         
-    };
+    /*};*/
 
 };

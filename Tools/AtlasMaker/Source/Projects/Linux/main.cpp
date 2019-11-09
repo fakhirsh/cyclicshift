@@ -20,6 +20,13 @@ using namespace std;
  
 int main(int argc, char ** argv)
 {
+
+/*    time = high_resolution_clock::now().time_since_epoch().count();*/
+    //const long int num = high_resolution_clock::period::num;
+    //const long int den = high_resolution_clock::period::den;
+    //float dt = (time - prev_time) * 1.0 * num / den;
+
+    
     App * app = App::Get();
     app->SetIOManager(make_shared<IOManagerDefault>());
     app->SetLogger(make_shared<LogDefault>());
@@ -37,7 +44,9 @@ int main(int argc, char ** argv)
     }
 
     System::Get()->GenerateRectanglePacking();
-    
+  
+    log->Print("Generating XML file..."); 
+    System::Get()->DumpMetaXML(); 
 
     return 0;
 }

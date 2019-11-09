@@ -1,6 +1,6 @@
 
 #include "System.hpp"
-//#include "Support.hpp"
+#include "Support.hpp"
 #include <array>
 #include <tinyxml2.h>
 //#include <Graphics2D/Texture.hpp>
@@ -209,6 +209,17 @@ namespace AtlasMaker{
             ImagePtr img = FindImageWithDimensions(rect.width, rect.height);
             if(img != nullptr){
                 outPtr->CopyImage(rect.x, rect.y, img);
+
+                ImageMetaPtr metaPtr = std::make_shared<ImageMeta>();
+                metaPtr->name = img->GetName();
+                metaPtr->x = rect.x;
+                metaPtr->y = rect.y;
+                metaPtr->width = img->GetWidth();
+                metaPtr->height = img->GetHeight();
+                metaPtr->rotation = false;
+                
+                _imageMetaInfoList.push_back(metaPtr);
+
             }
         }
 
@@ -224,6 +235,20 @@ namespace AtlasMaker{
              if(img != nullptr){
                 img->RotateCW();
                 outPtr->CopyImage(rect.x, rect.y, img);
+
+                // CAREFUL: Rotateion WILL swap the width and height. This is NOT something
+                //           we want to output in the XML. We need to output the original 
+                //           width and height but with rotation field set to true.
+                ImageMetaPtr metaPtr = std::make_shared<ImageMeta>();
+                metaPtr->name = img->GetName();
+                metaPtr->x = rect.x;
+                metaPtr->y = rect.y;
+                metaPtr->width = img->GetHeight();
+                metaPtr->height = img->GetWidth();
+                metaPtr->rotation = true;
+                
+                _imageMetaInfoList.push_back(metaPtr);
+
             }
 
         }
@@ -249,5 +274,35 @@ namespace AtlasMaker{
             ImagePtr img = (*it);
             App::Get()->GetLogger()->Print(img->GetName());
         }
+    }
+
+
+    void System::DumpMetaXML(){
+
+        std::string filename = _atlasName + ".xml"; 
+        
+        tinyxml2::XMLDocument xmlDoc;
+        tinyxml2::XMLElement * pRoot = xmlDoc.NewElement("Atlas");
+        pRoot->SetAttribute("imageFile", filename.c_str());
+        pRoot->SetAttribute("spriteCount", (int)_imageMetaInfoList.size());
+        xmlDoc.InsertFirstChild(pRoot);
+
+        
+        for(auto it = _imageMetaInfoList.begin(); it != _imageMetaInfoList.end(); ++it){
+            ImageMetaPtr imgPtr = (*it);
+            tinyxml2::XMLElement * pElement = xmlDoc.NewElement("Sprite");
+            // Delete the 'prefix' root folder from each sprite name:
+            std::string filename = imgPtr->name.erase(0, _inputDir.size());
+            pElement->SetAttribute("name", filename.c_str());
+            pElement->SetAttribute("x", imgPtr->x);
+            pElement->SetAttribute("y", imgPtr->y);
+            pElement->SetAttribute("width", imgPtr->width);
+            pElement->SetAttribute("height", imgPtr->height);
+            pElement->SetAttribute("rotation", imgPtr->rotation);
+            pRoot->InsertEndChild(pElement);
+        }
+
+
+        tinyxml2::XMLError eResult = xmlDoc.SaveFile(filename.c_str());
     }
 };

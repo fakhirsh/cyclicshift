@@ -12,10 +12,15 @@
 
 #include <Graphics2D/PNGImage.hpp>
 
+
 using namespace FEngine;
 
 namespace AtlasMaker{
 
+
+    class ImageMeta;
+
+    typedef std::shared_ptr<ImageMeta> ImageMetaPtr;
     
     class System{
         public:
@@ -37,11 +42,15 @@ namespace AtlasMaker{
             ImagePtr FindImageWithDimensions(int width, int height);
 
             void PrintImageList();
-
-            System();
             
+            void DumpMetaXML();
+
+            
+            System();
+
         private:
         
+            
             std::string _inputDir;
             
             std::string _atlasName;
@@ -60,6 +69,8 @@ namespace AtlasMaker{
             static std::shared_ptr<System> _instance;
             
             std::vector< ImagePtr > _imageList;
+
+            std::vector< ImageMetaPtr > _imageMetaInfoList;
 
         private:
             
