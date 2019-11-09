@@ -282,6 +282,9 @@ namespace AtlasMaker{
         std::string filename = _atlasName + ".xml"; 
         
         tinyxml2::XMLDocument xmlDoc;
+        tinyxml2::XMLDeclaration * decl = xmlDoc.NewDeclaration();
+        decl->SetValue("xml version=\"1.0\" encoding=\"UTF-8\"");
+
         tinyxml2::XMLElement * pRoot = xmlDoc.NewElement("Atlas");
         pRoot->SetAttribute("imageFile", filename.c_str());
         pRoot->SetAttribute("spriteCount", (int)_imageMetaInfoList.size());
