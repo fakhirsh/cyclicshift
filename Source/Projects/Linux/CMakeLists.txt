@@ -32,6 +32,16 @@ CONFIGURE_FILE(../../../Assets/Development/Textures/enemyUFO.png ../../Game/Linu
 
 CONFIGURE_FILE(../../../Assets/Development/Sounds/gameplayMusic.ogg ../../Game/Linux/Data/Sounds/gameplayMusic.ogg COPYONLY)
 
+add_custom_command(
+        TARGET foo POST_BUILD
+        COMMAND ${CMAKE_COMMAND} copy
+                ${CMAKE_BINARY_DIR}/compile_commands.json
+                ../../compile_commands.json)
+
+
+add_custom_target(foo)
+
+
 add_subdirectory(../../FEngine ${CMAKE_BINARY_DIR}/FEngine)
 
 set ( HDR

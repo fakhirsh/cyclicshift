@@ -103,40 +103,6 @@ namespace FEngine{
         emgr->AddListener("MousePosition", mpd);
         emgr->AddListener("KBPress", mpd);
 
-
-        std::shared_ptr<Image> player = std::make_shared<PNGImage>();
-        player->LoadFromFile("Data/Textures/player.png");
-        std::shared_ptr<Image> ufo = std::make_shared<PNGImage>();
-        ufo->LoadFromFile("Data/Textures/enemyUFO.png");
-        std::shared_ptr<Image> ship = std::make_shared<PNGImage>();
-        ship->LoadFromFile("Data/Textures/enemyShip.png");
-        std::shared_ptr<Image> logo = std::make_shared<PNGImage>();
-        logo->LoadFromFile("Data/Textures/delaLogo.png");
-
-        std::shared_ptr<Image> test = std::make_shared<PNGImage>();
-        test->LoadFromFile("Data/Textures/test_3x1.png");
-        std::shared_ptr<Image> test2 = std::make_shared<PNGImage>();
-        test2->LoadFromFile("Data/Textures/test_3x1.png");
-
-
-
-        /*player->RotateCW();*/
-        //ship->RotateCW();
-        logo->RotateCW();
-        test->RotateCW();
-
-
-        shared_ptr<Image> imgPtr = make_shared<PNGImage>();
-        imgPtr->CreateEmpty(1024, 1024);
-        imgPtr->CopyImage(100, 100, player);
-        imgPtr->CopyImage(0, 0, test2);
-        imgPtr->CopyImage(0, 4, test);
-        imgPtr->CopyImage(300, 300, ufo);
-        imgPtr->CopyImage(700, 700, ship);
-        imgPtr->CopyImage(250, 550, logo);
-        //imgPtr->RotateCW();
-        imgPtr->SaveToFile("output.png");
-
     }
     
     void Game::Update(float dt){
