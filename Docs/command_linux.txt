@@ -1,0 +1,17 @@
+# Execute this command from the "Build/Linux" directory:
+cmake -DCMAKE_BUILD_TYPE=Release -G "Unix Makefiles" ../../Source/Projects/Linux
+
+# Then to make just execute:
+make [VERBOSE=1]
+
+#------------------------------------------------------------
+
+## VIM YCM Comfiguration: (gVim hangs for no appearent reason!)
+# Generate compiler flags database by enabling it in CMake:
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+# Finally copy the output "compile_commands.json" anywhere in any toplevel
+   directory of the project.
+   
+# Also enable YCM clangd option within .vimrc
+let g:ycm_use_clangd = 1
