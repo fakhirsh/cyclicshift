@@ -35,6 +35,7 @@ endif(USING_EMSCRIPTEN)
 
 
 set ( HDR
+        ActorManager/Actor.hpp
         Debugging/Log.hpp
         Debugging/LogDefault.hpp
         EventManager/Event.hpp
@@ -68,6 +69,7 @@ endif(USING_EMSCRIPTEN)
 #message(${HDR})
 
 set ( SRC
+        ActorManager/Actor.cpp
         EventManager/Event.cpp
         EventManager/EventManager.cpp
 		System/App.cpp
