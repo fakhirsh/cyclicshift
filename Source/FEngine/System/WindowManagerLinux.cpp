@@ -1,8 +1,8 @@
 
 #include "WindowManagerLinux.hpp"
-#include "../System/App.hpp"
-#include "../Debugging/Log.hpp"
-#include "../Utility/String.hpp"
+#include <System/App.hpp>
+#include <Debugging/Log.hpp>
+#include <Utility/String.hpp>
 
 #include <chrono>
 #include <GL/glew.h>

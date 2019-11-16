@@ -9,24 +9,26 @@
 #include <glm/gtx/transform2.hpp>
 #include <glm/gtx/string_cast.hpp>
 
-#include "../System/App.hpp"
-#include "../Debugging/Log.hpp"
-#include "../Utility/String.hpp"
+#include <System/App.hpp>
+#include <Debugging/Log.hpp>
+#include <Utility/String.hpp>
+
+#include <EventManager/Event.hpp>
 
 //#define ____EMSCRIPTEN____ 
 
 #ifdef ____EMSCRIPTEN____
-#include "../Renderer/GLES20/SimpleVertex2DProgram.hpp"
-#include "../Renderer/GLES20/TexturedVertexProgram.hpp"
+#include <Renderer/GLES20/SimpleVertex2DProgram.hpp>
+#include <Renderer/GLES20/TexturedVertexProgram.hpp>
 #else
-#include "../Renderer/GL30/SimpleVertex2DProgram.hpp"
-#include "../Renderer/GL30/TexturedVertexProgram.hpp"
+#include <Renderer/GL30/SimpleVertex2DProgram.hpp>
+#include <Renderer/GL30/TexturedVertexProgram.hpp>
 #endif 
 
-#include "../Renderer/Renderer.hpp"
-#include "../Graphics2D/Texture.hpp"
-#include "../Graphics2D/PNGImage.hpp"
-#include "../Renderer/VertexDefinitions.hpp"
+#include <Renderer/Renderer.hpp>
+#include <Graphics2D/Texture.hpp>
+#include <Graphics2D/PNGImage.hpp>
+#include <Renderer/VertexDefinitions.hpp>
 
 using namespace std;
 
@@ -52,7 +54,7 @@ namespace FEngine{
     float ufoY = 400.0f;
 
     Game::Game(){
-    
+
     }
 
     Game::~Game(){

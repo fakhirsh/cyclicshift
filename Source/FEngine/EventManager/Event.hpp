@@ -3,13 +3,13 @@
 
 #include <string>
 #include <map>
-#include <memory>
+
+#include "../System/Definitions.hpp"
 
 using namespace std;
 
 namespace FEngine{
 
-    typedef string EventType;
     /*
      * The Event object. Right now event type is a string. A dictionary of
      *   arguments with key as string and values as ONLY doubles.

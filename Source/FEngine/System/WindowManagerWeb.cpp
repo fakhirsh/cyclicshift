@@ -5,8 +5,8 @@
 #include <iostream>
 #include <chrono>
 
-#include "../System/App.hpp"
-#include "../Debugging/Log.hpp"
+#include <System/App.hpp>
+#include <Debugging/Log.hpp>
 
 using namespace std;
 using namespace chrono;

@@ -2,7 +2,7 @@
 #include "App.hpp"
 #include <tinyxml2.h>
 #include <iostream>
-#include "../ResourceCache/IOManager.hpp"
+#include <ResourceCache/IOManager.hpp>
 
 using namespace std;
 

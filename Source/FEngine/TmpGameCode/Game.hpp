@@ -1,7 +1,7 @@
 
 #pragma once
 
-#include "../EventManager/EventManager.hpp"
+#include <EventManager/EventManager.hpp>
 
 namespace FEngine{
     

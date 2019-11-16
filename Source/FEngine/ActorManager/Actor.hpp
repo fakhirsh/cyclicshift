@@ -1,9 +1,11 @@
 
 #pragma once
 
+#include <map>
+#include "../System/Definitions.hpp"
 
 namespace FEngine{
-    
+
     class Actor{
         public:
 
@@ -11,12 +13,13 @@ namespace FEngine{
             ~Actor();
             
             unsigned int GetId();
-
-            static unsigned int GenNextId();
+            virtual void Update(float dt);
 
         private:
-            static unsigned int _nextId;
             unsigned int _id;
+
+            std::map<int, ComponentPtr> _componentMap;
+
     };
 
 }

@@ -3,35 +3,20 @@
 #include <string>
 #include <vector>
 #include <memory>
+#include "Definitions.hpp"
 
 namespace FEngine
 {
     class Game;
-
-    class App;
-    class IOManager;
-    class Renderer;
-    class SoundManager;
-    class WindowManager;
-    class Log;
-    class EventManager;
-
-
-    typedef std::shared_ptr<App> AppPtr;
-    typedef std::shared_ptr<IOManager> IOManagerPtr;
-    typedef std::shared_ptr<Log> LogPtr;
-    typedef std::shared_ptr<Renderer> RendererPtr;
-    typedef std::shared_ptr<SoundManager> SoundManagerPtr;
-    typedef std::shared_ptr<EventManager> EventManagerPtr;
-    typedef std::shared_ptr<WindowManager> WindowManagerPtr;
-    
-    
+   
     class App
     {
         public:
+            // Return an object reference or a smart pointer:
+            // https://stackoverflow.com/questions/45127107/private-constructor-and-make-shared
             static App * Get();
-            ~App();
 
+            ~App();
 
             bool Initialize();
 

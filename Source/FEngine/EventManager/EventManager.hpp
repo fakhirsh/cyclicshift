@@ -6,7 +6,7 @@
 #include <list>
 #include <string>
 
-#include "Event.hpp"
+#include "../System/Definitions.hpp"
 
 using namespace CppDelegates;
 using namespace std;
@@ -15,7 +15,6 @@ namespace FEngine{
     
     const int NUM_EVENT_QUEUES = 2;
 
-    typedef shared_ptr<Event> EventPtr;
     typedef CppDelegates::delegate<void (const EventPtr &)> EventDelegate;
     typedef list<EventDelegate> DelegateList;
 

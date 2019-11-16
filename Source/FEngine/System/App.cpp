@@ -2,12 +2,12 @@
 #include "App.hpp"
 #include "WindowManager.hpp"
 #include <tinyxml2.h>
-//#include <iostream>
-#include "../ResourceCache/IOManager.hpp"
-#include "../Renderer/Renderer.hpp"
-#include "../Debugging/Log.hpp"
-#include "../Utility/String.hpp"
-#include "../EventManager/EventManager.hpp"
+#include <ResourceCache/IOManager.hpp>
+#include <Renderer/Renderer.hpp>
+#include <Debugging/Log.hpp>
+#include <Utility/String.hpp>
+#include <EventManager/EventManager.hpp>
+#include <EventManager/Event.hpp>
 
 #include "../TmpGameCode/Game.hpp"
 

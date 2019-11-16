@@ -36,6 +36,13 @@ endif(USING_EMSCRIPTEN)
 
 set ( HDR
         ActorManager/Actor.hpp
+        ActorManager/ActorFactory.hpp
+        ActorManager/Components/Component.hpp
+        ActorManager/Components/ComponentFactory.hpp
+        ActorManager/Components/KBComponent.hpp
+        ActorManager/Components/MouseComponent.hpp
+        ActorManager/Components/TransformComponent.hpp
+        ActorManager/Components/ViewComponent.hpp
         Debugging/Log.hpp
         Debugging/LogDefault.hpp
         EventManager/Event.hpp
@@ -44,6 +51,7 @@ set ( HDR
 		Graphics2D/PNGImage.hpp
 		Graphics2D/Texture.hpp
         System/App.hpp
+        System/Definitions.hpp
 		System/WindowManager.hpp
 		ResourceCache/IOManager.hpp
     	ResourceCache/IOManagerDefault.hpp
@@ -70,6 +78,13 @@ endif(USING_EMSCRIPTEN)
 
 set ( SRC
         ActorManager/Actor.cpp
+        ActorManager/ActorFactory.cpp
+        ActorManager/Components/Component.cpp
+        ActorManager/Components/ComponentFactory.cpp
+        ActorManager/Components/KBComponent.cpp
+        ActorManager/Components/MouseComponent.cpp
+        ActorManager/Components/TransformComponent.cpp
+        ActorManager/Components/ViewComponent.cpp
         EventManager/Event.cpp
         EventManager/EventManager.cpp
 		System/App.cpp
