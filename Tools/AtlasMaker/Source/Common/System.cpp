@@ -302,6 +302,18 @@ namespace AtlasMaker{
             pElement->SetAttribute("width", imgPtr->width);
             pElement->SetAttribute("height", imgPtr->height);
             pElement->SetAttribute("rotation", imgPtr->rotation);
+            
+            float  u     = float(imgPtr->x) / float(_atlasWidth);
+            float  v     = 1.0f - float(imgPtr->y) / float(_atlasHeight);
+            float uW     = float(imgPtr->x + imgPtr->width) / float(_atlasWidth);
+            float vH     = 1.0f - float(imgPtr->y + imgPtr->height) / float(_atlasHeight);
+
+
+            pElement->SetAttribute("u", u);
+            pElement->SetAttribute("v", v);
+            pElement->SetAttribute("uW", uW);
+            pElement->SetAttribute("vH", vH);
+            
             pRoot->InsertEndChild(pElement);
         }
 

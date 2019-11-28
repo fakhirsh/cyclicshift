@@ -1,20 +1,18 @@
 
 #include "Texture.hpp"
-#include <png.h>
-#include <iostream>
-
-#include "../System/App.hpp"
-#include "../Debugging/Log.hpp"
-#include "../Utility/String.hpp"
-#include "../Renderer/Renderer.hpp"
+#include <System/App.hpp>
+#include <Debugging/Log.hpp>
+#include <Utility/String.hpp>
+#include <Renderer/Renderer.hpp>
 
 #include "PNGImage.hpp"
 
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <png.h>
+#include <iostream>
 
-#include <memory>
 
 namespace FEngine
 {
@@ -79,7 +77,7 @@ namespace FEngine
 
     bool Texture::LoadFromFile (std::string fileName)
     {
-        std::shared_ptr<Image> imgPtr = std::make_shared<PNGImage>();
+        ImagePtr imgPtr = FENew(PNGImage);
 
         if(!imgPtr->LoadFromFile(fileName)){
             App::Get()->GetLogger()->Print("Error: Loading from File: " + fileName, "Texture::LoadFromFile");

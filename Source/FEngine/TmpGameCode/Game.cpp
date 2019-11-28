@@ -29,6 +29,8 @@
 #include <Graphics2D/Texture.hpp>
 #include <Graphics2D/PNGImage.hpp>
 #include <Renderer/VertexDefinitions.hpp>
+#include <Graphics2D/Atlas.hpp>
+
 
 using namespace std;
 
@@ -39,6 +41,8 @@ namespace FEngine{
     Texture playerTexture;
     Texture enemyShipTexture;
     Texture enemyUFOTexture;
+
+    Atlas atlas;
 
     void DrawImage(Program * program, Texture * texture, float offsetX, float offsetY);
 
@@ -54,11 +58,9 @@ namespace FEngine{
     float ufoY = 400.0f;
 
     Game::Game(){
-
     }
 
     Game::~Game(){
-    
     }
 
     void Game::Init(){
@@ -72,15 +74,19 @@ namespace FEngine{
         //   keep on wondering why :-P
         render->ClearColor(0.23046f, 0.472656f, 0.660156f, 1.0f);
 
-        if(!playerTexture.LoadFromFile("Data/Textures/player.png")){
+        if(!atlas.LoadFromFile("Textures/game.png", "Textures/game.xml")){
+            return;
+        }
+
+        if(!playerTexture.LoadFromFile("Textures/player.png")){
             App::Get()->GetLogger()->Print("Texture loading failed: player.png", "Game::Init");
             return;
         }
-        if(!enemyShipTexture.LoadFromFile("Data/Textures/enemyShip.png")){
+        if(!enemyShipTexture.LoadFromFile("Textures/enemyShip.png")){
             App::Get()->GetLogger()->Print("Texture loading failed: enemyShip.png", "Game::Init");
             return;
         }
-        if(!enemyUFOTexture.LoadFromFile("Data/Textures/enemyUFO.png")){
+        if(!enemyUFOTexture.LoadFromFile("Textures/enemyUFO.png")){
             App::Get()->GetLogger()->Print("Texture loading failed: enemyUFO.png", "Game::Init");
             return;
         }

@@ -71,13 +71,17 @@ namespace FEngine
 
 
     bool PNGImage::LoadFromFile (std::string fileName){
+
+        string assetDirPrefix = App::Get()->GetAssetDirPrefix();
+        string fullPath = assetDirPrefix + fileName;
+
         std::string memoryStreamString;
-        std::ifstream sourceFile( fileName.c_str() );
+        std::ifstream sourceFile( fullPath.c_str() );
 
         //Source file loaded
         if( !sourceFile )
         {
-            App::Get()->GetLogger()->Print("Error: File not found: " + fileName, "PNGImage::LoadFromFile");
+            App::Get()->GetLogger()->Print("Error: File not found: " + fullPath, "PNGImage::LoadFromFile");
             return false;
         }
 

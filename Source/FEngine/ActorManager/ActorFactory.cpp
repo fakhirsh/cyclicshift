@@ -24,7 +24,7 @@ namespace FEngine{
     }
     
     ActorPtr ActorFactory::CreateActor(const tinyxml2::XMLElement & actorXml){
-        ActorPtr aptr = std::make_shared<Actor>();
+        ActorPtr aptr = FENew(Actor);
         return aptr;
     }
 }

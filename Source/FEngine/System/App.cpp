@@ -57,7 +57,7 @@ namespace FEngine{
 
     bool App::Initialize(){
         
-        _eventManager = make_shared<EventManager>();
+        _eventManager = FENew(EventManager);
 
         if(_ioManager == nullptr){
             _logger->Print("IOManager MUST be set before calling Initialize()","App::Initialize");

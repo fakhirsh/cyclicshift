@@ -41,5 +41,10 @@ namespace FEngine
     class Component;
     typedef std::shared_ptr<Component> ComponentPtr;
     
+    class Texture;
+    typedef std::shared_ptr<Texture> TexturePtr;    
+
+    class SpriteMetaData;
+    typedef std::shared_ptr<SpriteMetaData> SpriteMetaDataPtr;
 
 }

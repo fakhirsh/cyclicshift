@@ -43,6 +43,9 @@ int main(int argc, char ** argv)
         return -1;
     }
 
+    // Need to reset the asset path because the sprite directory CAN BE
+    //   outside the asset path.  
+    app->SetAssetDirPrefix("");
     System::Get()->GenerateRectanglePacking();
   
     log->Print("Generating XML file..."); 
