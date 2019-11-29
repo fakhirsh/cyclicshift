@@ -58,6 +58,8 @@ namespace FEngine{
     const float ENEMY_VELOCITY = 300;
     float UFO_VELOCITY = -0.4;
     float ufoY = 400.0f;
+    float g_angle = 0.0f;
+    float scale = 1.0f;
 
     Game::Game(){
     }
@@ -117,7 +119,7 @@ namespace FEngine{
     }
     
     void Game::Update(float dt){
-    
+        g_angle += 0.1;
     }
     
     void Game::OnEvent(const EventPtr & e){
@@ -133,7 +135,8 @@ namespace FEngine{
 
             int key = e->GetArg("key");
             int action = e->GetArg("action");
-            
+    
+
             if(action == INPUT::KEY_PRESS){
                 if(key == INPUT::KB_UP){
                     enemyVY = ENEMY_VELOCITY;
@@ -157,6 +160,7 @@ namespace FEngine{
                 }
             }
         }
+
     }
     
     
@@ -175,6 +179,9 @@ namespace FEngine{
         RenderSprite(&textureProg, "enemyUFO.png", 270, ufoY);
         RenderSprite(&textureProg, "Kings and Pigs/Sprites/02-King Pig/Fall (38x28).png", 70, ufoY);
         RenderSprite(&textureProg, "loadinglbl.png", App::Get()->GetWindowWidth()/2.0f, App::Get()->GetWindowHeight()/2.0f);
+        RenderSprite(&textureProg, "lbl_getReady.png", App::Get()->GetWindowWidth()/2.0f, 500.0f);
+        RenderSprite(&textureProg, "PixelArt/Enemies/FatBird/Fall (40x48).png", App::Get()->GetWindowWidth()/2.0f, 150.0f);
+
 
         enemyX += enemyVX * dt;
         enemyY += enemyVY * dt;
@@ -314,7 +321,7 @@ namespace FEngine{
 
         glm::mat4 translate = glm::translate<GLfloat>(glm::mat4(1.0f), glm::vec3(offsetX, offsetY, 0.0f));
         glm::mat4 rotate    = glm::rotate   <GLfloat>(glm::mat4(1.0f),
-                                                      Math::DegToRad(angle),
+                                                      Math::DegToRad(g_angle + angle),
                                                       glm::vec3(0.0f, 0.0f, 1.0f));
         
         glm::mat4 scale     = glm::scale    <GLfloat>(glm::mat4(1.0f), glm::vec3(1.0f,

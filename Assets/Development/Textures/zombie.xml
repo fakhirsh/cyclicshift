@@ -1,0 +1,251 @@
+<Atlas imageFile="zombie.xml" spriteCount="249">
+    <Sprite name="player.png" x="0" y="0" width="99" height="75" rotation="false" u1="0" v1="0" u2="0.048339844" v2="0.036621094"/>
+    <Sprite name="num_1.png" x="101" y="0" width="30" height="64" rotation="false" u1="0.049316406" v1="0" u2="0.063964844" v2="0.03125"/>
+    <Sprite name="num_9.png" x="133" y="0" width="44" height="65" rotation="false" u1="0.064941406" v1="0" u2="0.086425781" v2="0.031738281"/>
+    <Sprite name="bg1.png" x="0" y="77" width="90" height="120" rotation="false" u1="0" v1="0.037597656" u2="0.043945312" v2="0.096191406"/>
+    <Sprite name="head_lower.png" x="661" y="0" width="77" height="69" rotation="false" u1="0.32275391" v1="0" u2="0.36035156" v2="0.033691406"/>
+    <Sprite name="lbl_currentScore.png" x="872" y="0" width="327" height="71" rotation="false" u1="0.42578125" v1="0" u2="0.58544922" v2="0.034667969"/>
+    <Sprite name="head_upper.png" x="92" y="77" width="100" height="110" rotation="false" u1="0.044921875" v1="0.037597656" u2="0.09375" v2="0.091308594"/>
+    <Sprite name="head_upper_Large.png" x="194" y="77" width="180" height="193" rotation="false" u1="0.094726562" v1="0.037597656" u2="0.18261719" v2="0.13183594"/>
+    <Sprite name="playBtn.png" x="376" y="77" width="192" height="191" rotation="false" u1="0.18359375" v1="0.037597656" u2="0.27734375" v2="0.13085938"/>
+    <Sprite name="menuTitle_Zombie.png" x="376" y="270" width="537" height="197" rotation="false" u1="0.18359375" v1="0.13183594" u2="0.44580078" v2="0.22802734"/>
+    <Sprite name="lbl_musicBy.png" x="1296" y="0" width="218" height="20" rotation="false" u1="0.6328125" v1="0" u2="0.73925781" v2="0.009765625"/>
+    <Sprite name="numL_9.png" x="0" y="768" width="66" height="93" rotation="false" u1="0" v1="0.375" u2="0.032226562" v2="0.42041016"/>
+    <Sprite name="numL_4.png" x="0" y="863" width="77" height="94" rotation="false" u1="0" v1="0.42138672" u2="0.037597656" v2="0.46728516"/>
+    <Sprite name="lbl_great.png" x="915" y="270" width="283" height="112" rotation="false" u1="0.44677734" v1="0.13183594" u2="0.58496094" v2="0.18652344"/>
+    <Sprite name="num_4.png" x="915" y="384" width="53" height="67" rotation="false" u1="0.44677734" v1="0.1875" u2="0.47265625" v2="0.22021484"/>
+    <Sprite name="head_lower_Large.png" x="1200" y="270" width="127" height="126" rotation="false" u1="0.5859375" v1="0.13183594" u2="0.64794922" v2="0.19335938"/>
+    <Sprite name="delaLogo.png" x="1329" y="270" width="331" height="133" rotation="false" u1="0.64892578" v1="0.13183594" u2="0.81054688" v2="0.19677734"/>
+    <Sprite name="lbl_fakhir.png" x="1516" y="0" width="213" height="20" rotation="false" u1="0.74023438" v1="0" u2="0.84423828" v2="0.009765625"/>
+    <Sprite name="num_0.png" x="1200" y="398" width="43" height="63" rotation="false" u1="0.5859375" v1="0.19433594" u2="0.60693359" v2="0.22509766"/>
+    <Sprite name="white_patch.png" x="1662" y="270" width="90" height="120" rotation="false" u1="0.81152344" v1="0.13183594" u2="0.85546875" v2="0.19042969"/>
+    <Sprite name="particle_burp.png" x="808" y="19" width="36" height="36" rotation="false" u1="0.39453125" v1="0.0092773438" u2="0.41210938" v2="0.026855469"/>
+    <Sprite name="btnHome.png" x="1754" y="270" width="91" height="96" rotation="false" u1="0.85644531" v1="0.13183594" u2="0.90087891" v2="0.17871094"/>
+    <Sprite name="num_8.png" x="1245" y="398" width="50" height="67" rotation="false" u1="0.60791016" v1="0.19433594" u2="0.63232422" v2="0.22705078"/>
+    <Sprite name="num_2.png" x="1662" y="392" width="44" height="66" rotation="false" u1="0.81152344" v1="0.19140625" u2="0.83300781" v2="0.22363281"/>
+    <Sprite name="enemyUFO.png" x="1754" y="368" width="91" height="91" rotation="false" u1="0.85644531" v1="0.1796875" u2="0.90087891" v2="0.22412109"/>
+    <Sprite name="numL_3.png" x="1847" y="270" width="64" height="93" rotation="false" u1="0.90185547" v1="0.13183594" u2="0.93310547" v2="0.17724609"/>
+    <Sprite name="num_7.png" x="1847" y="365" width="46" height="67" rotation="false" u1="0.90185547" v1="0.17822266" u2="0.92431641" v2="0.2109375"/>
+    <Sprite name="lbl_tap_to_retry.png" x="1329" y="405" width="194" height="47" rotation="false" u1="0.64892578" v1="0.19775391" u2="0.74365234" v2="0.22070312"/>
+    <Sprite name="gameOver_scoreBG.png" x="376" y="469" width="202" height="210" rotation="false" u1="0.18359375" v1="0.22900391" u2="0.28222656" v2="0.33154297"/>
+    <Sprite name="numL_1.png" x="1913" y="270" width="50" height="91" rotation="false" u1="0.93408203" v1="0.13183594" u2="0.95849609" v2="0.17626953"/>
+    <Sprite name="numL_5.png" x="1965" y="270" width="67" height="94" rotation="false" u1="0.95947266" v1="0.13183594" u2="0.9921875" v2="0.17773438"/>
+    <Sprite name="touch.png" x="1965" y="366" width="75" height="75" rotation="false" u1="0.95947266" v1="0.17871094" u2="0.99609375" v2="0.21533203"/>
+    <Sprite name="btnFacebook.png" x="376" y="681" width="109" height="115" rotation="false" u1="0.18359375" v1="0.33251953" u2="0.23681641" v2="0.38867188"/>
+    <Sprite name="candy.png" x="487" y="681" width="80" height="80" rotation="false" u1="0.23779297" v1="0.33251953" u2="0.27685547" v2="0.37158203"/>
+    <Sprite name="lbl_getReady.png" x="580" y="469" width="305" height="219" rotation="false" u1="0.28320312" v1="0.22900391" u2="0.43212891" v2="0.3359375"/>
+    <Sprite name="numL_7.png" x="0" y="1411" width="69" height="94" rotation="false" u1="0" v1="0.68896484" u2="0.033691406" v2="0.73486328"/>
+    <Sprite name="numL_0.png" x="0" y="1507" width="66" height="91" rotation="false" u1="0" v1="0.73583984" u2="0.032226562" v2="0.78027344"/>
+    <Sprite name="btnRetry.png" x="92" y="572" width="91" height="96" rotation="false" u1="0.044921875" v1="0.27929688" u2="0.089355469" v2="0.32617188"/>
+    <Sprite name="num_6.png" x="1708" y="392" width="43" height="65" rotation="false" u1="0.83398438" v1="0.19140625" u2="0.85498047" v2="0.22314453"/>
+    <Sprite name="Kings and Pigs/Sprites/Kings and Pigs.png" x="1731" y="0" width="134" height="14" rotation="false" u1="0.84521484" v1="0" u2="0.91064453" v2="0.0068359375"/>
+    <Sprite name="Kings and Pigs/Sprites/01-King Human/Door In (78x58).png" x="887" y="469" width="624" height="58" rotation="false" u1="0.43310547" v1="0.22900391" u2="0.73779297" v2="0.25732422"/>
+    <Sprite name="Kings and Pigs/Sprites/01-King Human/Run (78x58).png" x="887" y="529" width="624" height="58" rotation="false" u1="0.43310547" v1="0.25830078" u2="0.73779297" v2="0.28662109"/>
+    <Sprite name="Kings and Pigs/Sprites/01-King Human/Door Out (78x58).png" x="887" y="589" width="624" height="58" rotation="false" u1="0.43310547" v1="0.28759766" u2="0.73779297" v2="0.31591797"/>
+    <Sprite name="Kings and Pigs/Sprites/08-Box/Idle.png" x="808" y="57" width="22" height="16" rotation="false" u1="0.39453125" v1="0.027832031" u2="0.40527344" v2="0.035644531"/>
+    <Sprite name="Kings and Pigs/Sprites/08-Box/Box Pieces 3.png" x="832" y="57" width="10" height="10" rotation="false" u1="0.40625" v1="0.027832031" u2="0.41113281" v2="0.032714844"/>
+    <Sprite name="Kings and Pigs/Sprites/08-Box/Box Pieces 2.png" x="915" y="453" width="10" height="10" rotation="false" u1="0.44677734" v1="0.22119141" u2="0.45166016" v2="0.22607422"/>
+    <Sprite name="Kings and Pigs/Sprites/08-Box/Box Pieces 4.png" x="927" y="453" width="10" height="10" rotation="false" u1="0.45263672" v1="0.22119141" u2="0.45751953" v2="0.22607422"/>
+    <Sprite name="Kings and Pigs/Sprites/08-Box/Box Pieces 1.png" x="939" y="453" width="10" height="10" rotation="false" u1="0.45849609" v1="0.22119141" u2="0.46337891" v2="0.22607422"/>
+    <Sprite name="Kings and Pigs/Sprites/14-TileSets/Terrain (32x32).png" x="580" y="690" width="608" height="416" rotation="false" u1="0.28320312" v1="0.33691406" u2="0.58007812" v2="0.54003906"/>
+    <Sprite name="Kings and Pigs/Sprites/14-TileSets/Decorations (32x32).png" x="1513" y="469" width="224" height="192" rotation="false" u1="0.73876953" v1="0.22900391" u2="0.84814453" v2="0.32275391"/>
+    <Sprite name="Kings and Pigs/Sprites/02-King Pig/Fall (38x28).png" x="1847" y="434" width="38" height="28" rotation="false" u1="0.90185547" v1="0.21191406" u2="0.92041016" v2="0.22558594"/>
+    <Sprite name="Kings and Pigs/Sprites/02-King Pig/Idle (38x28).png" x="887" y="649" width="456" height="28" rotation="false" u1="0.43310547" v1="0.31689453" u2="0.65576172" v2="0.33056641"/>
+    <Sprite name="Kings and Pigs/Sprites/07-Pig With a Match/Lighting the Match (26x18).png" x="1965" y="443" width="78" height="18" rotation="false" u1="0.95947266" v1="0.21630859" u2="0.99755859" v2="0.22509766"/>
+    <Sprite name="Kings and Pigs/Sprites/10-Cannon/Idle.png" x="487" y="763" width="44" height="28" rotation="false" u1="0.23779297" v1="0.37255859" u2="0.25927734" v2="0.38623047"/>
+    <Sprite name="Kings and Pigs/Sprites/10-Cannon/Cannon Ball.png" x="533" y="763" width="44" height="28" rotation="false" u1="0.26025391" v1="0.37255859" u2="0.28173828" v2="0.38623047"/>
+    <Sprite name="Kings and Pigs/Sprites/12-Live and Coins/Big Diamond Hit (18x14).png" x="1525" y="452" width="36" height="14" rotation="false" u1="0.74462891" v1="0.22070312" u2="0.76220703" v2="0.22753906"/>
+    <Sprite name="Kings and Pigs/Sprites/12-Live and Coins/Big Diamond Idle (18x14).png" x="1513" y="663" width="180" height="14" rotation="false" u1="0.73876953" v1="0.32373047" u2="0.82666016" v2="0.33056641"/>
+    <Sprite name="Kings and Pigs/Sprites/12-Live and Coins/Live Bar.png" x="1594" y="405" width="66" height="34" rotation="false" u1="0.77832031" v1="0.19775391" u2="0.81054688" v2="0.21435547"/>
+    <Sprite name="Kings and Pigs/Sprites/12-Live and Coins/Small Diamond (18x14).png" x="1867" y="0" width="144" height="14" rotation="false" u1="0.91162109" v1="0" u2="0.98193359" v2="0.0068359375"/>
+    <Sprite name="Kings and Pigs/Sprites/12-Live and Coins/Big Heart Idle (18x14).png" x="1345" y="649" width="144" height="14" rotation="false" u1="0.65673828" v1="0.31689453" u2="0.72705078" v2="0.32373047"/>
+    <Sprite name="Kings and Pigs/Sprites/12-Live and Coins/Small Heart Idle (18x14).png" x="1345" y="665" width="144" height="14" rotation="false" u1="0.65673828" v1="0.32470703" u2="0.72705078" v2="0.33154297"/>
+    <Sprite name="Kings and Pigs/Sprites/12-Live and Coins/Big Heart Hit (18x14).png" x="1695" y="663" width="36" height="14" rotation="false" u1="0.82763672" v1="0.32373047" u2="0.84521484" v2="0.33056641"/>
+    <Sprite name="Kings and Pigs/Sprites/11-Door/Idle.png" x="376" y="1894" width="46" height="56" rotation="false" u1="0.18359375" v1="0.92480469" u2="0.20605469" v2="0.95214844"/>
+    <Sprite name="Kings and Pigs/Sprites/11-Door/Opening (46x56).png" x="1739" y="469" width="230" height="56" rotation="false" u1="0.84912109" v1="0.22900391" u2="0.96142578" v2="0.25634766"/>
+    <Sprite name="Kings and Pigs/Sprites/04-Pig Throwing a Box/Idle (26x30).png" x="1296" y="22" width="234" height="30" rotation="false" u1="0.6328125" v1="0.010742188" u2="0.74707031" v2="0.025390625"/>
+    <Sprite name="Kings and Pigs/Sprites/04-Pig Throwing a Box/Run (26x30).png" x="1532" y="22" width="156" height="30" rotation="false" u1="0.74804688" v1="0.010742188" u2="0.82421875" v2="0.025390625"/>
+    <Sprite name="Kings and Pigs/Sprites/04-Pig Throwing a Box/Picking Box (26x30).png" x="1690" y="22" width="130" height="30" rotation="false" u1="0.82519531" v1="0.010742188" u2="0.88867188" v2="0.025390625"/>
+    <Sprite name="Kings and Pigs/Sprites/04-Pig Throwing a Box/Throwing Box (26x30).png" x="1822" y="22" width="130" height="30" rotation="false" u1="0.88964844" v1="0.010742188" u2="0.953125" v2="0.025390625"/>
+    <Sprite name="Kings and Pigs/Sprites/06-Pig Hide in the Box/Fall (26x20).png" x="62" y="1381" width="26" height="20" rotation="false" u1="0.030273438" v1="0.67431641" u2="0.04296875" v2="0.68408203"/>
+    <Sprite name="Kings and Pigs/Sprites/06-Pig Hide in the Box/Jump Anticipation (26x20).png" x="517" y="1476" width="52" height="20" rotation="false" u1="0.25244141" v1="0.72070312" u2="0.27783203" v2="0.73046875"/>
+    <Sprite name="Kings and Pigs/Sprites/13-Dialogue Boxes/Interrogation Out (24x8).png" x="1954" y="22" width="68" height="16" rotation="false" u1="0.95410156" v1="0.010742188" u2="0.98730469" v2="0.018554688"/>
+    <Sprite name="Kings and Pigs/Sprites/13-Dialogue Boxes/No In (24x8).png" x="1296" y="54" width="102" height="16" rotation="false" u1="0.6328125" v1="0.026367188" u2="0.68261719" v2="0.034179688"/>
+    <Sprite name="Kings and Pigs/Sprites/13-Dialogue Boxes/Boom In (24x8).png" x="1400" y="54" width="102" height="16" rotation="false" u1="0.68359375" v1="0.026367188" u2="0.73339844" v2="0.034179688"/>
+    <Sprite name="Kings and Pigs/Sprites/13-Dialogue Boxes/Hi In (24x8).png" x="1504" y="54" width="102" height="16" rotation="false" u1="0.734375" v1="0.026367188" u2="0.78417969" v2="0.034179688"/>
+    <Sprite name="Kings and Pigs/Sprites/13-Dialogue Boxes/Attack In (24x8).png" x="1608" y="54" width="102" height="16" rotation="false" u1="0.78515625" v1="0.026367188" u2="0.83496094" v2="0.034179688"/>
+    <Sprite name="Kings and Pigs/Sprites/13-Dialogue Boxes/Hello In (24x8).png" x="1712" y="54" width="102" height="16" rotation="false" u1="0.8359375" v1="0.026367188" u2="0.88574219" v2="0.034179688"/>
+    <Sprite name="Kings and Pigs/Sprites/13-Dialogue Boxes/Hi Out (24x8).png" x="1971" y="469" width="68" height="16" rotation="false" u1="0.96240234" v1="0.22900391" u2="0.99560547" v2="0.23681641"/>
+    <Sprite name="Kings and Pigs/Sprites/13-Dialogue Boxes/WTF In (24x8).png" x="1816" y="54" width="102" height="16" rotation="false" u1="0.88671875" v1="0.026367188" u2="0.93652344" v2="0.034179688"/>
+    <Sprite name="Kings and Pigs/Sprites/13-Dialogue Boxes/Dead In (24x8).png" x="1920" y="54" width="102" height="16" rotation="false" u1="0.9375" v1="0.026367188" u2="0.98730469" v2="0.034179688"/>
+    <Sprite name="Kings and Pigs/Sprites/13-Dialogue Boxes/Boom Out (24x8).png" x="1971" y="487" width="68" height="16" rotation="false" u1="0.96240234" v1="0.23779297" u2="0.99560547" v2="0.24560547"/>
+    <Sprite name="Kings and Pigs/Sprites/13-Dialogue Boxes/WTF Out (24x8).png" x="1971" y="505" width="68" height="16" rotation="false" u1="0.96240234" v1="0.24658203" u2="0.99560547" v2="0.25439453"/>
+    <Sprite name="Kings and Pigs/Sprites/09-Bomb/Bomb Off.png" x="436" y="1814" width="52" height="56" rotation="false" u1="0.21289062" v1="0.88574219" u2="0.23828125" v2="0.91308594"/>
+    <Sprite name="particle_candy/particle_candy_3.png" x="524" y="1848" width="38" height="54" rotation="false" u1="0.25585938" v1="0.90234375" u2="0.27441406" v2="0.92871094"/>
+    <Sprite name="particle_candy/particle_candy_5.png" x="524" y="1904" width="40" height="32" rotation="false" u1="0.25585938" v1="0.9296875" u2="0.27539062" v2="0.9453125"/>
+    <Sprite name="particle_candy/particle_candy_2.png" x="524" y="1938" width="41" height="33" rotation="false" u1="0.25585938" v1="0.94628906" u2="0.27587891" v2="0.96240234"/>
+    <Sprite name="particle_candy/particle_candy_1.png" x="524" y="1973" width="29" height="48" rotation="false" u1="0.25585938" v1="0.96337891" u2="0.27001953" v2="0.98681641"/>
+    <Sprite name="particle_candy/particle_candy_6.png" x="152" y="1359" width="33" height="40" rotation="false" u1="0.07421875" v1="0.66357422" u2="0.090332031" v2="0.68310547"/>
+    <Sprite name="PixelArt/Enemies/Radish/Idle 2 (30x38).png" x="1739" y="527" width="270" height="38" rotation="false" u1="0.84912109" v1="0.25732422" u2="0.98095703" v2="0.27587891"/>
+    <Sprite name="PixelArt/Enemies/Radish/Hit (30x38).png" x="1739" y="567" width="150" height="38" rotation="false" u1="0.84912109" v1="0.27685547" u2="0.92236328" v2="0.29541016"/>
+    <Sprite name="PixelArt/Enemies/Radish/Leafs.png" x="58" y="2030" width="32" height="16" rotation="false" u1="0.028320312" v1="0.99121094" u2="0.043945312" v2="0.99902344"/>
+    <Sprite name="PixelArt/Enemies/FatBird/Hit (40x48).png" x="1739" y="607" width="200" height="48" rotation="false" u1="0.84912109" v1="0.29638672" u2="0.94677734" v2="0.31982422"/>
+    <Sprite name="PixelArt/Enemies/FatBird/Ground (40x48).png" x="570" y="77" width="160" height="48" rotation="false" u1="0.27832031" v1="0.037597656" u2="0.35644531" v2="0.061035156"/>
+    <Sprite name="PixelArt/Enemies/FatBird/Fall (40x48).png" x="570" y="127" width="160" height="48" rotation="false" u1="0.27832031" v1="0.062011719" u2="0.35644531" v2="0.085449219"/>
+    <Sprite name="PixelArt/Enemies/FatBird/Idle (40x48).png" x="732" y="77" width="320" height="48" rotation="false" u1="0.35742188" v1="0.037597656" u2="0.51367188" v2="0.061035156"/>
+    <Sprite name="PixelArt/Enemies/Duck/Fall (36x36).png" x="152" y="1945" width="36" height="36" rotation="false" u1="0.07421875" v1="0.94970703" u2="0.091796875" v2="0.96728516"/>
+    <Sprite name="PixelArt/Enemies/Duck/Jump Anticipation (36x36).png" x="1891" y="567" width="144" height="36" rotation="false" u1="0.92333984" v1="0.27685547" u2="0.99365234" v2="0.29443359"/>
+    <Sprite name="PixelArt/Enemies/Duck/Hit (36x36).png" x="732" y="127" width="180" height="36" rotation="false" u1="0.35742188" v1="0.062011719" u2="0.4453125" v2="0.079589844"/>
+    <Sprite name="PixelArt/Enemies/Duck/Jump (36x36).png" x="152" y="1983" width="36" height="36" rotation="false" u1="0.07421875" v1="0.96826172" u2="0.091796875" v2="0.98583984"/>
+    <Sprite name="PixelArt/Enemies/Duck/Idle (36x36).png" x="1054" y="77" width="360" height="36" rotation="false" u1="0.51464844" v1="0.037597656" u2="0.69042969" v2="0.055175781"/>
+    <Sprite name="PixelArt/Enemies/Ghost/Hit (44x30).png" x="1739" y="657" width="220" height="31" rotation="false" u1="0.84912109" v1="0.32080078" u2="0.95654297" v2="0.3359375"/>
+    <Sprite name="PixelArt/Enemies/Ghost/Desappear (44x30).png" x="1416" y="77" width="176" height="30" rotation="false" u1="0.69140625" v1="0.037597656" u2="0.77734375" v2="0.052246094"/>
+    <Sprite name="PixelArt/Enemies/Ghost/Idle (44x30).png" x="1594" y="77" width="440" height="30" rotation="false" u1="0.77832031" v1="0.037597656" u2="0.99316406" v2="0.052246094"/>
+    <Sprite name="PixelArt/Enemies/Ghost/Appear (44x30).png" x="732" y="165" width="176" height="30" rotation="false" u1="0.35742188" v1="0.080566406" u2="0.44335938" v2="0.095214844"/>
+    <Sprite name="PixelArt/Enemies/Bat/Hit (46x30).png" x="732" y="197" width="230" height="30" rotation="false" u1="0.35742188" v1="0.096191406" u2="0.46972656" v2="0.11083984"/>
+    <Sprite name="PixelArt/Enemies/Bat/Flying (46x30).png" x="1054" y="115" width="322" height="30" rotation="false" u1="0.51464844" v1="0.056152344" u2="0.671875" v2="0.070800781"/>
+    <Sprite name="PixelArt/Enemies/Bat/Idle (46x30).png" x="1378" y="115" width="552" height="30" rotation="false" u1="0.67285156" v1="0.056152344" u2="0.94238281" v2="0.070800781"/>
+    <Sprite name="PixelArt/Enemies/Bat/Ceiling Out (46x30).png" x="1054" y="147" width="322" height="30" rotation="false" u1="0.51464844" v1="0.071777344" u2="0.671875" v2="0.086425781"/>
+    <Sprite name="PixelArt/Enemies/Bat/Ceiling In (46x30).png" x="1378" y="147" width="322" height="30" rotation="false" u1="0.67285156" v1="0.071777344" u2="0.83007812" v2="0.086425781"/>
+    <Sprite name="PixelArt/Enemies/Mushroom/Run (32x32).png" x="1054" y="179" width="512" height="32" rotation="false" u1="0.51464844" v1="0.087402344" u2="0.76464844" v2="0.10302734"/>
+    <Sprite name="PixelArt/Enemies/Mushroom/Hit.png" x="732" y="229" width="160" height="32" rotation="false" u1="0.35742188" v1="0.11181641" u2="0.43554688" v2="0.12744141"/>
+    <Sprite name="PixelArt/Enemies/Mushroom/Idle (32x32).png" x="1568" y="179" width="448" height="32" rotation="false" u1="0.765625" v1="0.087402344" u2="0.984375" v2="0.10302734"/>
+    <Sprite name="PixelArt/Enemies/Bunny/Run (34x44).png" x="1054" y="213" width="408" height="44" rotation="false" u1="0.51464844" v1="0.10400391" u2="0.71386719" v2="0.12548828"/>
+    <Sprite name="PixelArt/Enemies/Bunny/Hit (34x44).png" x="1464" y="213" width="170" height="44" rotation="false" u1="0.71484375" v1="0.10400391" u2="0.79785156" v2="0.12548828"/>
+    <Sprite name="PixelArt/Enemies/Bunny/Idle (34x44).png" x="1636" y="213" width="272" height="44" rotation="false" u1="0.79882812" v1="0.10400391" u2="0.93164062" v2="0.12548828"/>
+    <Sprite name="PixelArt/Enemies/AngryPig/Hit 1 (36x30).png" x="1702" y="147" width="180" height="30" rotation="false" u1="0.83105469" v1="0.071777344" u2="0.91894531" v2="0.086425781"/>
+    <Sprite name="PixelArt/Enemies/Trunk/Bullet.png" x="2024" y="22" width="16" height="16" rotation="false" u1="0.98828125" v1="0.010742188" u2="0.99609375" v2="0.018554688"/>
+    <Sprite name="PixelArt/Enemies/Skull/Orange Particle.png" x="2024" y="54" width="16" height="16" rotation="false" u1="0.98828125" v1="0.026367188" u2="0.99609375" v2="0.034179688"/>
+    <Sprite name="PixelArt/Enemies/Skull/Red Particle.png" x="523" y="1130" width="16" height="16" rotation="false" u1="0.25537109" v1="0.55175781" u2="0.26318359" v2="0.55957031"/>
+    <Sprite name="PixelArt/Enemies/Skull/Hit Wall 1 (52x54).png" x="1190" y="690" width="364" height="54" rotation="false" u1="0.58105469" v1="0.33691406" u2="0.75878906" v2="0.36328125"/>
+    <Sprite name="PixelArt/Enemies/Plant/Idle (44x42).png" x="1556" y="690" width="484" height="42" rotation="false" u1="0.75976562" v1="0.33691406" u2="0.99609375" v2="0.35742188"/>
+    <Sprite name="PixelArt/Enemies/Plant/Attack (44x42).png" x="1190" y="746" width="352" height="42" rotation="false" u1="0.58105469" v1="0.36425781" u2="0.75292969" v2="0.38476562"/>
+    <Sprite name="PixelArt/Enemies/Plant/Bullet.png" x="524" y="2023" width="16" height="16" rotation="false" u1="0.25585938" v1="0.98779297" u2="0.26367188" v2="0.99560547"/>
+    <Sprite name="PixelArt/Enemies/Turtle/Spikes in (44x26).png" x="1544" y="746" width="352" height="26" rotation="false" u1="0.75390625" v1="0.36425781" u2="0.92578125" v2="0.37695312"/>
+    <Sprite name="PixelArt/Enemies/Turtle/Spikes out (44x26).png" x="1190" y="790" width="352" height="26" rotation="false" u1="0.58105469" v1="0.38574219" u2="0.75292969" v2="0.3984375"/>
+    <Sprite name="PixelArt/Enemies/Turtle/Idle 1 (44x26).png" x="1190" y="818" width="616" height="26" rotation="false" u1="0.58105469" v1="0.39941406" u2="0.88183594" v2="0.41210938"/>
+    <Sprite name="PixelArt/Enemies/Turtle/Idle 2 (44x26).png" x="1190" y="846" width="616" height="26" rotation="false" u1="0.58105469" v1="0.41308594" u2="0.88183594" v2="0.42578125"/>
+    <Sprite name="PixelArt/Enemies/Chameleon/Idle (84x38).png" x="580" y="1108" width="1092" height="38" rotation="false" u1="0.28320312" v1="0.54101562" u2="0.81640625" v2="0.55957031"/>
+    <Sprite name="PixelArt/Enemies/Chameleon/Hit (84x38).png" x="1544" y="774" width="420" height="38" rotation="false" u1="0.75390625" v1="0.37792969" u2="0.95898438" v2="0.39648438"/>
+    <Sprite name="PixelArt/Enemies/Chameleon/Run (84x38).png" x="1190" y="874" width="672" height="38" rotation="false" u1="0.58105469" v1="0.42675781" u2="0.90917969" v2="0.4453125"/>
+    <Sprite name="PixelArt/Enemies/Chameleon/Attack (84x38).png" x="1190" y="914" width="840" height="38" rotation="false" u1="0.58105469" v1="0.44628906" u2="0.99121094" v2="0.46484375"/>
+    <Sprite name="PixelArt/Enemies/Rocks/Rock1_Run (38x34).png" x="1190" y="954" width="532" height="34" rotation="false" u1="0.58105469" v1="0.46582031" u2="0.84082031" v2="0.48242188"/>
+    <Sprite name="PixelArt/Enemies/Rocks/Rock3_Run (22x18).png" x="1724" y="954" width="308" height="18" rotation="false" u1="0.84179688" v1="0.46582031" u2="0.9921875" v2="0.47460938"/>
+    <Sprite name="PixelArt/Enemies/Rocks/Rock2_Idle (32x28).png" x="1190" y="990" width="416" height="28" rotation="false" u1="0.58105469" v1="0.48339844" u2="0.78417969" v2="0.49707031"/>
+    <Sprite name="PixelArt/Enemies/Rocks/Rock1_Idle (38x34).png" x="1190" y="1020" width="532" height="34" rotation="false" u1="0.58105469" v1="0.49804688" u2="0.84082031" v2="0.51464844"/>
+    <Sprite name="PixelArt/Enemies/Rocks/Rock2_Run (32x28).png" x="1190" y="1056" width="448" height="28" rotation="false" u1="0.58105469" v1="0.515625" u2="0.79980469" v2="0.52929688"/>
+    <Sprite name="PixelArt/Enemies/Chicken/Hit (32x34).png" x="1864" y="874" width="160" height="34" rotation="false" u1="0.91015625" v1="0.42675781" u2="0.98828125" v2="0.44335938"/>
+    <Sprite name="PixelArt/Enemies/Chicken/Idle (32x34).png" x="580" y="1148" width="416" height="34" rotation="false" u1="0.28320312" v1="0.56054688" u2="0.48632812" v2="0.57714844"/>
+    <Sprite name="PixelArt/Enemies/Chicken/Run (32x34).png" x="998" y="1148" width="448" height="34" rotation="false" u1="0.48730469" v1="0.56054688" u2="0.70605469" v2="0.57714844"/>
+    <Sprite name="PixelArt/Enemies/Snail/Idle (38x24).png" x="1448" y="1148" width="570" height="24" rotation="false" u1="0.70703125" v1="0.56054688" u2="0.98535156" v2="0.57226562"/>
+    <Sprite name="PixelArt/Enemies/Snail/Shell Idle (38x24).png" x="1724" y="1020" width="228" height="24" rotation="false" u1="0.84179688" v1="0.49804688" u2="0.953125" v2="0.50976562"/>
+    <Sprite name="PixelArt/Enemies/Snail/Walk (38x24).png" x="1608" y="990" width="380" height="24" rotation="false" u1="0.78515625" v1="0.48339844" u2="0.97070312" v2="0.49511719"/>
+    <Sprite name="PixelArt/Enemies/Snail/Hit (38x24).png" x="1808" y="818" width="190" height="24" rotation="false" u1="0.8828125" v1="0.39941406" u2="0.97558594" v2="0.41113281"/>
+    <Sprite name="PixelArt/Enemies/Snail/Snail without shell.png" x="152" y="2021" width="38" height="24" rotation="false" u1="0.07421875" v1="0.98681641" u2="0.092773438" v2="0.99853516"/>
+    <Sprite name="PixelArt/Enemies/Bee/Hit (36x34).png" x="1674" y="1108" width="180" height="34" rotation="false" u1="0.81738281" v1="0.54101562" u2="0.90527344" v2="0.55761719"/>
+    <Sprite name="PixelArt/Enemies/Bee/Attack (36x34).png" x="1640" y="1056" width="288" height="34" rotation="false" u1="0.80078125" v1="0.515625" u2="0.94140625" v2="0.53222656"/>
+    <Sprite name="PixelArt/Enemies/Bee/Bullet.png" x="552" y="1692" width="16" height="16" rotation="false" u1="0.26953125" v1="0.82617188" u2="0.27734375" v2="0.83398438"/>
+    <Sprite name="PixelArt/Enemies/Bee/Idle (36x34).png" x="580" y="1184" width="216" height="34" rotation="false" u1="0.28320312" v1="0.578125" u2="0.38867188" v2="0.59472656"/>
+    <Sprite name="PixelArt/Enemies/Slime/Hit (44x30).png" x="798" y="1184" width="220" height="30" rotation="false" u1="0.38964844" v1="0.578125" u2="0.49707031" v2="0.59277344"/>
+    <Sprite name="PixelArt/Enemies/Slime/Idle-Run (44x30).png" x="1020" y="1184" width="440" height="30" rotation="false" u1="0.49804688" v1="0.578125" u2="0.71289062" v2="0.59277344"/>
+    <Sprite name="PixelArt/Enemies/Rino/Run (52x34).png" x="1462" y="1184" width="312" height="34" rotation="false" u1="0.71386719" v1="0.578125" u2="0.86621094" v2="0.59472656"/>
+    <Sprite name="PixelArt/Enemies/Rino/Hit Wall (52x34).png" x="1776" y="1184" width="208" height="34" rotation="false" u1="0.8671875" v1="0.578125" u2="0.96875" v2="0.59472656"/>
+    <Sprite name="PixelArt/Enemies/Rino/Idle (52x34).png" x="580" y="1220" width="572" height="34" rotation="false" u1="0.28320312" v1="0.59570312" u2="0.5625" v2="0.61230469"/>
+    <Sprite name="PixelArt/Enemies/Rino/Hit (52x34).png" x="1154" y="1220" width="260" height="34" rotation="false" u1="0.56347656" v1="0.59570312" u2="0.69042969" v2="0.61230469"/>
+    <Sprite name="frame_left.png" x="179" y="0" width="480" height="65" rotation="true" u1="0.087402344" v1="0" u2="0.32177734" v2="0.031738281"/>
+    <Sprite name="loadinglbl.png" x="0" y="199" width="76" height="306" rotation="true" u1="0" v1="0.097167969" u2="0.037109375" v2="0.24658203"/>
+    <Sprite name="lbl_highScore.png" x="0" y="507" width="79" height="259" rotation="true" u1="0" v1="0.24755859" u2="0.038574219" v2="0.37402344"/>
+    <Sprite name="ray1.png" x="740" y="0" width="130" height="17" rotation="true" u1="0.36132812" v1="0" u2="0.42480469" v2="0.0083007812"/>
+    <Sprite name="num_3.png" x="740" y="19" width="66" height="42" rotation="true" u1="0.36132812" v1="0.0092773438" u2="0.39355469" v2="0.029785156"/>
+    <Sprite name="numL_2.png" x="1201" y="0" width="93" height="67" rotation="true" u1="0.58642578" v1="0" u2="0.63183594" v2="0.032714844"/>
+    <Sprite name="cloud2.png" x="92" y="189" width="98" height="127" rotation="true" u1="0.044921875" v1="0.092285156" u2="0.092773438" v2="0.15429688"/>
+    <Sprite name="cloud3.png" x="92" y="318" width="95" height="126" rotation="true" u1="0.044921875" v1="0.15527344" u2="0.091308594" v2="0.21679688"/>
+    <Sprite name="cloud1.png" x="92" y="446" width="93" height="124" rotation="true" u1="0.044921875" v1="0.21777344" u2="0.090332031" v2="0.27832031"/>
+    <Sprite name="numL_8.png" x="970" y="384" width="95" height="74" rotation="true" u1="0.47363281" v1="0.1875" u2="0.52001953" v2="0.22363281"/>
+    <Sprite name="frame_top.png" x="0" y="959" width="60" height="450" rotation="true" u1="0" v1="0.46826172" u2="0.029296875" v2="0.68798828"/>
+    <Sprite name="numL_6.png" x="1067" y="384" width="93" height="67" rotation="true" u1="0.52099609" v1="0.1875" u2="0.56640625" v2="0.22021484"/>
+    <Sprite name="num_5.png" x="1525" y="405" width="67" height="45" rotation="true" u1="0.74462891" v1="0.19775391" u2="0.77734375" v2="0.21972656"/>
+    <Sprite name="lbl_oops.png" x="376" y="798" width="145" height="358" rotation="true" u1="0.18359375" v1="0.38964844" u2="0.25439453" v2="0.56445312"/>
+    <Sprite name="enemyShip.png" x="1913" y="363" width="50" height="98" rotation="true" u1="0.93408203" v1="0.17724609" u2="0.95849609" v2="0.22509766"/>
+    <Sprite name="drag.png" x="92" y="670" width="99" height="266" rotation="true" u1="0.044921875" v1="0.32714844" u2="0.093261719" v2="0.45703125"/>
+    <Sprite name="menuTitle_Treat.png" x="376" y="1158" width="139" height="340" rotation="true" u1="0.18359375" v1="0.56542969" u2="0.25146484" v2="0.73144531"/>
+    <Sprite name="Kings and Pigs/Sprites/01-King Human/Ground (78x58).png" x="517" y="1158" width="58" height="78" rotation="true" u1="0.25244141" v1="0.56542969" u2="0.28076172" v2="0.60351562"/>
+    <Sprite name="Kings and Pigs/Sprites/01-King Human/Fall (78x58).png" x="517" y="1238" width="58" height="78" rotation="true" u1="0.25244141" v1="0.60449219" u2="0.28076172" v2="0.64257812"/>
+    <Sprite name="Kings and Pigs/Sprites/01-King Human/Hit (78x58).png" x="517" y="1318" width="58" height="156" rotation="true" u1="0.25244141" v1="0.64355469" u2="0.28076172" v2="0.71972656"/>
+    <Sprite name="Kings and Pigs/Sprites/01-King Human/Attack (78x58).png" x="0" y="1600" width="58" height="234" rotation="true" u1="0" v1="0.78125" u2="0.028320312" v2="0.89550781"/>
+    <Sprite name="Kings and Pigs/Sprites/01-King Human/Idle (78x58).png" x="92" y="938" width="58" height="858" rotation="true" u1="0.044921875" v1="0.45800781" u2="0.073242188" v2="0.87695312"/>
+    <Sprite name="Kings and Pigs/Sprites/01-King Human/Dead (78x58).png" x="376" y="1500" width="58" height="312" rotation="true" u1="0.18359375" v1="0.73242188" u2="0.21191406" v2="0.88476562"/>
+    <Sprite name="Kings and Pigs/Sprites/01-King Human/Jump (78x58).png" x="376" y="1814" width="58" height="78" rotation="true" u1="0.18359375" v1="0.88574219" u2="0.21191406" v2="0.92382812"/>
+    <Sprite name="Kings and Pigs/Sprites/08-Box/Hit.png" x="1895" y="365" width="16" height="22" rotation="true" u1="0.92529297" v1="0.17822266" u2="0.93310547" v2="0.18896484"/>
+    <Sprite name="Kings and Pigs/Sprites/02-King Pig/Hit (38x28).png" x="1162" y="384" width="28" height="76" rotation="true" u1="0.56738281" v1="0.1875" u2="0.58105469" v2="0.22460938"/>
+    <Sprite name="Kings and Pigs/Sprites/02-King Pig/Dead (38x28).png" x="60" y="1600" width="28" height="152" rotation="true" u1="0.029296875" v1="0.78125" u2="0.04296875" v2="0.85546875"/>
+    <Sprite name="Kings and Pigs/Sprites/02-King Pig/Ground (38x28).png" x="1297" y="398" width="28" height="38" rotation="true" u1="0.63330078" v1="0.19433594" u2="0.64697266" v2="0.21289062"/>
+    <Sprite name="Kings and Pigs/Sprites/02-King Pig/Run (38x28).png" x="62" y="959" width="28" height="228" rotation="true" u1="0.030273438" v1="0.46826172" u2="0.043945312" v2="0.57958984"/>
+    <Sprite name="Kings and Pigs/Sprites/02-King Pig/Attack (38x28).png" x="62" y="1189" width="28" height="190" rotation="true" u1="0.030273438" v1="0.58056641" u2="0.043945312" v2="0.67333984"/>
+    <Sprite name="Kings and Pigs/Sprites/02-King Pig/Jump (38x28).png" x="60" y="1754" width="28" height="38" rotation="true" u1="0.029296875" v1="0.85644531" u2="0.04296875" v2="0.875"/>
+    <Sprite name="Kings and Pigs/Sprites/07-Pig With a Match/Lighting the Cannon (26x18).png" x="71" y="1411" width="18" height="78" rotation="true" u1="0.034667969" v1="0.68896484" u2="0.043457031" v2="0.72705078"/>
+    <Sprite name="Kings and Pigs/Sprites/07-Pig With a Match/Match On (26x18).png" x="68" y="1507" width="18" height="78" rotation="true" u1="0.033203125" v1="0.73583984" u2="0.041992188" v2="0.77392578"/>
+    <Sprite name="Kings and Pigs/Sprites/10-Cannon/Shoot (44x28).png" x="92" y="1798" width="28" height="176" rotation="true" u1="0.044921875" v1="0.87792969" u2="0.05859375" v2="0.96386719"/>
+    <Sprite name="Kings and Pigs/Sprites/12-Live and Coins/Small Heart Hit (18x14).png" x="1895" y="389" width="14" height="36" rotation="true" u1="0.92529297" v1="0.18994141" u2="0.93212891" v2="0.20751953"/>
+    <Sprite name="Kings and Pigs/Sprites/12-Live and Coins/Numbers (6x8).png" x="569" y="681" width="8" height="60" rotation="true" u1="0.27783203" v1="0.33251953" u2="0.28173828" v2="0.36181641"/>
+    <Sprite name="Kings and Pigs/Sprites/11-Door/Closiong (46x56).png" x="0" y="1836" width="56" height="138" rotation="true" u1="0" v1="0.89648438" u2="0.02734375" v2="0.96386719"/>
+    <Sprite name="Kings and Pigs/Sprites/05-Pig Thowing a Bomb/Idle (26x26).png" x="523" y="798" width="26" height="260" rotation="true" u1="0.25537109" v1="0.38964844" u2="0.26806641" v2="0.51660156"/>
+    <Sprite name="Kings and Pigs/Sprites/05-Pig Thowing a Bomb/Run (26x26).png" x="58" y="1836" width="26" height="156" rotation="true" u1="0.028320312" v1="0.89648438" u2="0.041015625" v2="0.97265625"/>
+    <Sprite name="Kings and Pigs/Sprites/05-Pig Thowing a Bomb/Picking Bomb (26x26).png" x="122" y="1798" width="26" height="104" rotation="true" u1="0.059570312" v1="0.87792969" u2="0.072265625" v2="0.92871094"/>
+    <Sprite name="Kings and Pigs/Sprites/05-Pig Thowing a Bomb/Throwing Boom (26x26).png" x="122" y="1904" width="26" height="130" rotation="true" u1="0.059570312" v1="0.9296875" u2="0.072265625" v2="0.99316406"/>
+    <Sprite name="Kings and Pigs/Sprites/06-Pig Hide in the Box/Looking Out (26x20).png" x="68" y="768" width="20" height="78" rotation="true" u1="0.033203125" v1="0.375" u2="0.04296875" v2="0.41308594"/>
+    <Sprite name="Kings and Pigs/Sprites/06-Pig Hide in the Box/Jump (26x20).png" x="846" y="19" width="20" height="52" rotation="true" u1="0.41308594" v1="0.0092773438" u2="0.42285156" v2="0.034667969"/>
+    <Sprite name="Kings and Pigs/Sprites/06-Pig Hide in the Box/Ground (26x20).png" x="1491" y="649" width="20" height="26" rotation="true" u1="0.72802734" v1="0.31689453" u2="0.73779297" v2="0.32958984"/>
+    <Sprite name="Kings and Pigs/Sprites/13-Dialogue Boxes/Loser In (24x8).png" x="551" y="798" width="16" height="102" rotation="true" u1="0.26904297" v1="0.38964844" u2="0.27685547" v2="0.43945312"/>
+    <Sprite name="Kings and Pigs/Sprites/13-Dialogue Boxes/No Out (24x8).png" x="92" y="1976" width="16" height="68" rotation="true" u1="0.044921875" v1="0.96484375" u2="0.052734375" v2="0.99804688"/>
+    <Sprite name="Kings and Pigs/Sprites/13-Dialogue Boxes/!!! In (24x8).png" x="551" y="902" width="16" height="102" rotation="true" u1="0.26904297" v1="0.44042969" u2="0.27685547" v2="0.49023438"/>
+    <Sprite name="Kings and Pigs/Sprites/13-Dialogue Boxes/!!! Out (24x8).png" x="523" y="1060" width="16" height="68" rotation="true" u1="0.25537109" v1="0.51757812" u2="0.26318359" v2="0.55078125"/>
+    <Sprite name="Kings and Pigs/Sprites/13-Dialogue Boxes/Interrogation In (24x8).png" x="551" y="1006" width="16" height="102" rotation="true" u1="0.26904297" v1="0.49121094" u2="0.27685547" v2="0.54101562"/>
+    <Sprite name="Kings and Pigs/Sprites/13-Dialogue Boxes/Hello Out (24x8).png" x="0" y="1976" width="16" height="68" rotation="true" u1="0" v1="0.96484375" u2="0.0078125" v2="0.99804688"/>
+    <Sprite name="Kings and Pigs/Sprites/13-Dialogue Boxes/Dead Out (24x8).png" x="18" y="1976" width="16" height="68" rotation="true" u1="0.0087890625" v1="0.96484375" u2="0.016601562" v2="0.99804688"/>
+    <Sprite name="Kings and Pigs/Sprites/13-Dialogue Boxes/Attack Out (24x8).png" x="36" y="1976" width="16" height="68" rotation="true" u1="0.017578125" v1="0.96484375" u2="0.025390625" v2="0.99804688"/>
+    <Sprite name="Kings and Pigs/Sprites/13-Dialogue Boxes/Loser Out (24x8).png" x="376" y="1952" width="16" height="68" rotation="true" u1="0.18359375" v1="0.953125" u2="0.19140625" v2="0.98632812"/>
+    <Sprite name="Kings and Pigs/Sprites/09-Bomb/Boooooom (52x56).png" x="436" y="1500" width="56" height="312" rotation="true" u1="0.21289062" v1="0.73242188" u2="0.24023438" v2="0.88476562"/>
+    <Sprite name="Kings and Pigs/Sprites/09-Bomb/Bomb On (52x56).png" x="494" y="1500" width="56" height="208" rotation="true" u1="0.24121094" v1="0.73242188" u2="0.26855469" v2="0.83398438"/>
+    <Sprite name="Kings and Pigs/Sprites/03-Pig/Hit (34x28).png" x="394" y="1952" width="28" height="68" rotation="true" u1="0.19238281" v1="0.953125" u2="0.20605469" v2="0.98632812"/>
+    <Sprite name="Kings and Pigs/Sprites/03-Pig/Attack (34x28).png" x="436" y="1872" width="28" height="170" rotation="true" u1="0.21289062" v1="0.9140625" u2="0.2265625" v2="0.99707031"/>
+    <Sprite name="Kings and Pigs/Sprites/03-Pig/Fall (34x28).png" x="60" y="1794" width="28" height="34" rotation="true" u1="0.029296875" v1="0.87597656" u2="0.04296875" v2="0.89257812"/>
+    <Sprite name="Kings and Pigs/Sprites/03-Pig/Ground (34x28).png" x="58" y="1994" width="28" height="34" rotation="true" u1="0.028320312" v1="0.97363281" u2="0.041992188" v2="0.99023438"/>
+    <Sprite name="Kings and Pigs/Sprites/03-Pig/Run (34x28).png" x="494" y="1710" width="28" height="204" rotation="true" u1="0.24121094" v1="0.83496094" u2="0.25488281" v2="0.93457031"/>
+    <Sprite name="Kings and Pigs/Sprites/03-Pig/Idle (34x28).png" x="152" y="938" width="28" height="374" rotation="true" u1="0.07421875" v1="0.45800781" u2="0.087890625" v2="0.640625"/>
+    <Sprite name="Kings and Pigs/Sprites/03-Pig/Jump (34x28).png" x="494" y="1916" width="28" height="34" rotation="true" u1="0.24121094" v1="0.93554688" u2="0.25488281" v2="0.95214844"/>
+    <Sprite name="Kings and Pigs/Sprites/03-Pig/Dead (34x28).png" x="524" y="1710" width="28" height="136" rotation="true" u1="0.25585938" v1="0.83496094" u2="0.26953125" v2="0.90136719"/>
+    <Sprite name="particle_candy/particle_candy_7.png" x="1887" y="434" width="24" height="27" rotation="true" u1="0.92138672" v1="0.21191406" u2="0.93310547" v2="0.22509766"/>
+    <Sprite name="particle_candy/particle_candy_4.png" x="152" y="1314" width="34" height="43" rotation="true" u1="0.07421875" v1="0.64160156" u2="0.090820312" v2="0.66259766"/>
+    <Sprite name="PixelArt/Enemies/Radish/Run (30x38).png" x="152" y="1401" width="38" height="360" rotation="true" u1="0.07421875" v1="0.68408203" u2="0.092773438" v2="0.85986328"/>
+    <Sprite name="PixelArt/Enemies/Radish/Idle 1 (30x38).png" x="152" y="1763" width="38" height="180" rotation="true" u1="0.07421875" v1="0.86083984" u2="0.092773438" v2="0.94873047"/>
+    <Sprite name="PixelArt/Enemies/Ghost/Gost Particles (48x16).png" x="555" y="1973" width="16" height="64" rotation="true" u1="0.27099609" v1="0.96337891" u2="0.27880859" v2="0.99462891"/>
+    <Sprite name="PixelArt/Enemies/Bunny/Fall.png" x="914" y="127" width="44" height="34" rotation="true" u1="0.44628906" v1="0.062011719" u2="0.46777344" v2="0.078613281"/>
+    <Sprite name="PixelArt/Enemies/Bunny/Jump.png" x="960" y="127" width="44" height="34" rotation="true" u1="0.46875" v1="0.062011719" u2="0.49023438" v2="0.078613281"/>
+    <Sprite name="PixelArt/Enemies/AngryPig/Walk (36x30).png" x="194" y="272" width="30" height="576" rotation="true" u1="0.094726562" v1="0.1328125" u2="0.109375" v2="0.4140625"/>
+    <Sprite name="PixelArt/Enemies/AngryPig/Run (36x30).png" x="194" y="850" width="30" height="432" rotation="true" u1="0.094726562" v1="0.41503906" u2="0.109375" v2="0.62597656"/>
+    <Sprite name="PixelArt/Enemies/AngryPig/Hit 2 (36x30).png" x="194" y="1284" width="30" height="180" rotation="true" u1="0.094726562" v1="0.62695312" u2="0.109375" v2="0.71484375"/>
+    <Sprite name="PixelArt/Enemies/AngryPig/Idle (36x30).png" x="194" y="1466" width="30" height="324" rotation="true" u1="0.094726562" v1="0.71582031" u2="0.109375" v2="0.87402344"/>
+    <Sprite name="PixelArt/Enemies/Trunk/Hit (64x32).png" x="226" y="272" width="32" height="320" rotation="true" u1="0.11035156" v1="0.1328125" u2="0.12597656" v2="0.2890625"/>
+    <Sprite name="PixelArt/Enemies/Trunk/Idle (64x32).png" x="226" y="594" width="32" height="1152" rotation="true" u1="0.11035156" v1="0.29003906" u2="0.12597656" v2="0.85253906"/>
+    <Sprite name="PixelArt/Enemies/Trunk/Bullet Pieces.png" x="551" y="1110" width="16" height="32" rotation="true" u1="0.26904297" v1="0.54199219" u2="0.27685547" v2="0.55761719"/>
+    <Sprite name="PixelArt/Enemies/Trunk/Run (64x32).png" x="260" y="272" width="32" height="896" rotation="true" u1="0.12695312" v1="0.1328125" u2="0.14257812" v2="0.5703125"/>
+    <Sprite name="PixelArt/Enemies/Trunk/Attack (64x32).png" x="260" y="1170" width="32" height="704" rotation="true" u1="0.12695312" v1="0.57128906" u2="0.14257812" v2="0.91503906"/>
+    <Sprite name="PixelArt/Enemies/Skull/Idle 1 (52x54).png" x="294" y="272" width="54" height="416" rotation="true" u1="0.14355469" v1="0.1328125" u2="0.16992188" v2="0.3359375"/>
+    <Sprite name="PixelArt/Enemies/Skull/Idle 2 (52x54).png" x="294" y="690" width="54" height="416" rotation="true" u1="0.14355469" v1="0.33691406" u2="0.16992188" v2="0.54003906"/>
+    <Sprite name="PixelArt/Enemies/Skull/Hit (52x54).png" x="294" y="1108" width="54" height="260" rotation="true" u1="0.14355469" v1="0.54101562" u2="0.16992188" v2="0.66796875"/>
+    <Sprite name="PixelArt/Enemies/Skull/Hit Wall 2 (52x54).png" x="294" y="1370" width="54" height="364" rotation="true" u1="0.14355469" v1="0.66894531" u2="0.16992188" v2="0.84667969"/>
+    <Sprite name="PixelArt/Enemies/Plant/Hit (44x42).png" x="294" y="1736" width="42" height="220" rotation="true" u1="0.14355469" v1="0.84765625" u2="0.1640625" v2="0.95507812"/>
+    <Sprite name="PixelArt/Enemies/Plant/Bullet Pieces.png" x="2018" y="179" width="16" height="32" rotation="true" u1="0.98535156" v1="0.087402344" u2="0.99316406" v2="0.10302734"/>
+    <Sprite name="PixelArt/Enemies/BlueBird/Flying (32x32).png" x="226" y="1748" width="32" height="288" rotation="true" u1="0.11035156" v1="0.85351562" u2="0.12597656" v2="0.99414062"/>
+    <Sprite name="PixelArt/Enemies/BlueBird/Hit (32x32).png" x="260" y="1876" width="32" height="160" rotation="true" u1="0.12695312" v1="0.91601562" u2="0.14257812" v2="0.99414062"/>
+    <Sprite name="PixelArt/Enemies/Turtle/Hit (44x26).png" x="194" y="1792" width="26" height="220" rotation="true" u1="0.094726562" v1="0.875" u2="0.10742188" v2="0.98242188"/>
+    <Sprite name="PixelArt/Enemies/Rocks/Rock3_Idle (22x18).png" x="338" y="1736" width="18" height="242" rotation="true" u1="0.16503906" v1="0.84765625" u2="0.17382812" v2="0.96582031"/>
+    <Sprite name="PixelArt/Enemies/Rocks/Rock3_Hit (22x18).png" x="554" y="1710" width="18" height="110" rotation="true" u1="0.27050781" v1="0.83496094" u2="0.27929688" v2="0.88867188"/>
+    <Sprite name="PixelArt/Enemies/Rocks/Rock2_Hit (32x28).png" x="194" y="2014" width="28" height="32" rotation="true" u1="0.094726562" v1="0.98339844" u2="0.10839844" v2="0.99902344"/>
+    <Sprite name="PixelArt/Enemies/Rocks/Rock1_Hit.png" x="2011" y="527" width="34" height="38" rotation="true" u1="0.98193359" v1="0.25732422" u2="0.99853516" v2="0.27587891"/>
+    <Sprite name="PixelArt/Enemies/Snail/Shell Wall Hit (38x24).png" x="466" y="1872" width="24" height="152" rotation="true" u1="0.22753906" v1="0.9140625" u2="0.23925781" v2="0.98828125"/>
+    <Sprite name="PixelArt/Enemies/Snail/Shell Top Hit (38x24).png" x="552" y="1500" width="24" height="190" rotation="true" u1="0.26953125" v1="0.73242188" u2="0.28125" v2="0.82519531"/>
+    <Sprite name="PixelArt/Enemies/Bee/Bullet Pieces.png" x="2026" y="874" width="16" height="32" rotation="true" u1="0.98925781" v1="0.42675781" u2="0.99707031" v2="0.44238281"/>
+    <Sprite name="PixelArt/Enemies/Slime/Particles (62x16).png" x="338" y="1980" width="16" height="64" rotation="true" u1="0.16503906" v1="0.96679688" u2="0.17285156" v2="0.99804688"/>
+</Atlas>
