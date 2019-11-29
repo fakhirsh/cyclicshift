@@ -296,25 +296,31 @@ namespace AtlasMaker{
             tinyxml2::XMLElement * pElement = xmlDoc.NewElement("Sprite");
             // Delete the 'prefix' root folder from each sprite name:
             std::string filename = imgPtr->name.erase(0, _inputDir.size());
-            pElement->SetAttribute("name", filename.c_str());
-            pElement->SetAttribute("x", imgPtr->x);
-            pElement->SetAttribute("y", imgPtr->y);
-            pElement->SetAttribute("width", imgPtr->width);
-            pElement->SetAttribute("height", imgPtr->height);
-            pElement->SetAttribute("rotation", imgPtr->rotation);
-            
-            /*
-             *float  u     = float(imgPtr->x) / float(_atlasWidth);
-             *float  v     = 1.0f - float(imgPtr->y) / float(_atlasHeight);
-             *float uW     = float(imgPtr->x + imgPtr->width) / float(_atlasWidth);
-             *float vH     = 1.0f - float(imgPtr->y + imgPtr->height) / float(_atlasHeight);
-             */
 
             float u1     = float(imgPtr->x) / float(_atlasWidth);
             float v1     = float(imgPtr->y) / float(_atlasHeight);
-            float u2     = float(imgPtr->x + imgPtr->width) / float(_atlasWidth);
-            float v2     = float(imgPtr->y + imgPtr->height) / float(_atlasHeight);
+            
+            // Is the image rotated? We need to compute UV coordinates
+            //  accordingly...
+            float rotWidth = imgPtr->width;
+            float rotHeight = imgPtr->height;
+            if(imgPtr->rotation){
+                // Swap width and height to compute UV coords
+                float t = rotWidth;
+                rotWidth = rotHeight;
+                rotHeight = t;
+            }
 
+            float u2     = float(imgPtr->x + rotWidth) / float(_atlasWidth);
+            float v2     = float(imgPtr->y + rotHeight) / float(_atlasHeight);
+
+            pElement->SetAttribute("name", filename.c_str());
+            pElement->SetAttribute("x", imgPtr->x);
+            pElement->SetAttribute("y", imgPtr->y);
+            pElement->SetAttribute("width", rotWidth);
+            pElement->SetAttribute("height", rotHeight);
+            pElement->SetAttribute("rotation", imgPtr->rotation);
+            
             pElement->SetAttribute("u1", u1);
             pElement->SetAttribute("v1", v1);
             pElement->SetAttribute("u2", u2);

@@ -8,10 +8,12 @@
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/gtx/transform2.hpp>
 #include <glm/gtx/string_cast.hpp>
+#include <glm/glm.hpp>
 
 #include <System/App.hpp>
 #include <Debugging/Log.hpp>
 #include <Utility/String.hpp>
+#include <Utility/Math.hpp>
 
 #include <EventManager/Event.hpp>
 
@@ -74,7 +76,8 @@ namespace FEngine{
         //   keep on wondering why :-P
         render->ClearColor(0.23046f, 0.472656f, 0.660156f, 1.0f);
 
-        if(!atlas.LoadFromFile("Textures/game.png", "Textures/game.xml")){
+        if(!atlas.LoadFromFile("Textures/zombie.png", "Textures/zombie.xml")){
+        //if(!atlas.LoadFromFile("Textures/game.png", "Textures/game.xml")){
             return;
         }
 
@@ -164,10 +167,14 @@ namespace FEngine{
         /*DrawImage(&textureProg, &playerTexture, playerX - playerTexture.GetWidth()/2, playerY - playerTexture.GetHeight()/2);*/
         //DrawImage(&textureProg, &enemyShipTexture, enemyX, enemyY);
         /*DrawImage(&textureProg, &enemyUFOTexture, 270, ufoY);*/
-       
+             /* RenderSprite(&textureProg, "player.png", playerX - playerTexture.GetWidth()/2, playerY - playerTexture.GetHeight()/2);*/
+        //RenderSprite(&textureProg, "enemyShip.png", enemyX, enemyY);
+        /*RenderSprite(&textureProg, "enemyUFO.png", 270, ufoY);*/
         RenderSprite(&textureProg, "player.png", playerX - playerTexture.GetWidth()/2, playerY - playerTexture.GetHeight()/2);
         RenderSprite(&textureProg, "enemyShip.png", enemyX, enemyY);
         RenderSprite(&textureProg, "enemyUFO.png", 270, ufoY);
+        RenderSprite(&textureProg, "Kings and Pigs/Sprites/02-King Pig/Fall (38x28).png", 70, ufoY);
+        RenderSprite(&textureProg, "loadinglbl.png", App::Get()->GetWindowWidth()/2.0f, App::Get()->GetWindowHeight()/2.0f);
 
         enemyX += enemyVX * dt;
         enemyY += enemyVY * dt;
@@ -285,7 +292,7 @@ namespace FEngine{
             Vertex3PF2UVF v;
             _renderBatch.push_back(v);
         }
-
+        
         SpriteMetaDataPtr smd = atlas.GetMetaData(spriteName);
         
         float W, H, u1, v1, u2, v2, angle, scaleX, scaleY, alpha, shearX, shearY;
@@ -300,41 +307,69 @@ namespace FEngine{
         W = smd->width;
         H = smd->height;
 
+        angle = 0.0f;
+        if(smd->rotation){
+            angle = 90.0f;
+        }
+
+        glm::mat4 translate = glm::translate<GLfloat>(glm::mat4(1.0f), glm::vec3(offsetX, offsetY, 0.0f));
+        glm::mat4 rotate    = glm::rotate   <GLfloat>(glm::mat4(1.0f),
+                                                      Math::DegToRad(angle),
+                                                      glm::vec3(0.0f, 0.0f, 1.0f));
+        
+        glm::mat4 scale     = glm::scale    <GLfloat>(glm::mat4(1.0f), glm::vec3(1.0f,
+                                                                                 1.0f,
+                                                                                 1.0f));
+        
+        glm::mat4 translateAnchor = glm::translate<GLfloat>(glm::mat4(1.0f), glm::vec3(-W/2, -H/2.0f, 0.0f));
+        //glm::mat4 shearX    = glm::mat4(1.0f);
+        //shearX[1][0] = _sceneNodeProperties2D->shearX;
+        
+        
+        glm::mat4 localMat = translate * rotate * scale * translateAnchor;
+        
+        
         int i = 0;
         const int VERTS_PER_SPRITE = 6;
-        
-        _renderBatch[i * VERTS_PER_SPRITE].x	=	0 + offsetX;
-        _renderBatch[i * VERTS_PER_SPRITE].y	=	0 + offsetY;
+       
+        glm::vec4 vec = localMat * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
+        _renderBatch[i * VERTS_PER_SPRITE].x	=	vec.x;
+        _renderBatch[i * VERTS_PER_SPRITE].y	=	vec.y;
         _renderBatch[i * VERTS_PER_SPRITE].z	=	0;
         _renderBatch[i * VERTS_PER_SPRITE].u	=	u1;
         _renderBatch[i * VERTS_PER_SPRITE].v	=	v2;
-       
-        _renderBatch[i * VERTS_PER_SPRITE + 1].x	=	W + offsetX;
-        _renderBatch[i * VERTS_PER_SPRITE + 1].y	=	0 + offsetY;
+
+        vec = localMat * glm::vec4(W, 0.0f, 0.0f, 1.0f);
+        _renderBatch[i * VERTS_PER_SPRITE + 1].x	=	vec.x;
+        _renderBatch[i * VERTS_PER_SPRITE + 1].y	=	vec.y;
         _renderBatch[i * VERTS_PER_SPRITE + 1].z	=	0;
         _renderBatch[i * VERTS_PER_SPRITE + 1].u	=	u2;
         _renderBatch[i * VERTS_PER_SPRITE + 1].v	=	v2;
        
-        _renderBatch[i * VERTS_PER_SPRITE + 2].x	=	W + offsetX;
-        _renderBatch[i * VERTS_PER_SPRITE + 2].y	=	H + offsetY;
+        vec = localMat * glm::vec4(W, H, 0.0f, 1.0f);
+        _renderBatch[i * VERTS_PER_SPRITE + 2].x	=	vec.x;
+        _renderBatch[i * VERTS_PER_SPRITE + 2].y	=	vec.y;
         _renderBatch[i * VERTS_PER_SPRITE + 2].z	=	0;
         _renderBatch[i * VERTS_PER_SPRITE + 2].u	=	u2;
         _renderBatch[i * VERTS_PER_SPRITE + 2].v	=	v1;
        
-        _renderBatch[i * VERTS_PER_SPRITE + 3].x	=	0 + offsetX;
-        _renderBatch[i * VERTS_PER_SPRITE + 3].y	=	0 + offsetY;
+        vec = localMat * glm::vec4(0.0f, 0.0f, 0.0f, 1.0f);
+        _renderBatch[i * VERTS_PER_SPRITE + 3].x	=	vec.x;
+        _renderBatch[i * VERTS_PER_SPRITE + 3].y	=	vec.y;
         _renderBatch[i * VERTS_PER_SPRITE + 3].z	=	0;
         _renderBatch[i * VERTS_PER_SPRITE + 3].u	=	u1;
         _renderBatch[i * VERTS_PER_SPRITE + 3].v	=	v2;
        
-        _renderBatch[i * VERTS_PER_SPRITE + 4].x	=	W + offsetX;
-        _renderBatch[i * VERTS_PER_SPRITE + 4].y	=	H + offsetY;
+        vec = localMat * glm::vec4(W, H, 0.0f, 1.0f);
+        _renderBatch[i * VERTS_PER_SPRITE + 4].x	=	vec.x;
+        _renderBatch[i * VERTS_PER_SPRITE + 4].y	=	vec.y;
         _renderBatch[i * VERTS_PER_SPRITE + 4].z	=	0;
         _renderBatch[i * VERTS_PER_SPRITE + 4].u	=	u2;
         _renderBatch[i * VERTS_PER_SPRITE + 4].v	=	v1;
        
-        _renderBatch[i * VERTS_PER_SPRITE + 5].x	=	0 + offsetX;
-        _renderBatch[i * VERTS_PER_SPRITE + 5].y	=	H + offsetY;
+        vec = localMat * glm::vec4(0.0f, H, 0.0f, 1.0f);
+        _renderBatch[i * VERTS_PER_SPRITE + 5].x	=	vec.x;
+        _renderBatch[i * VERTS_PER_SPRITE + 5].y	=	vec.y;
         _renderBatch[i * VERTS_PER_SPRITE + 5].z	=	0;
         _renderBatch[i * VERTS_PER_SPRITE + 5].u	=	u1;
         _renderBatch[i * VERTS_PER_SPRITE + 5].v	=	v1;
