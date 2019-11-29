@@ -17,8 +17,22 @@ namespace FEngine{
     }
     
     Atlas::~Atlas(){
+        _texture->UnBind();
+        //_texture->Unload();
     }
 
+    void Atlas::Bind(){
+        _texture->Bind();
+    }
+
+    void Atlas::UnBind(){
+        _texture->UnBind();
+    }
+
+    SpriteMetaDataPtr Atlas::GetMetaData(std::string spriteName){
+        return _metadataMap[spriteName];
+    }
+    
     bool Atlas::LoadFromFile(std::string image, std::string metadata){
         
         string _assetDirPrefix = App::Get()->GetAssetDirPrefix();
@@ -50,12 +64,14 @@ namespace FEngine{
         tinyxml2::XMLDocument configXML;
         tinyxml2::XMLError xmlErr;
 
-        // The following like worked fine in linux but was giving truble in emscripten
+        // The following like worked fine in linux but was giving truble 
+        //   in emscripten:
         //xmlErr = configXML.Parse((const char *)&buffer[0]);
         xmlErr = configXML.Parse(mdBuffer.c_str());
         if(xmlErr != tinyxml2::XML_SUCCESS)
         {
-            log->Print("Atlas::LoadMetaData() -- Error parsing XML from buffer (code): " + String::ToString(xmlErr));
+            log->Print(string("Atlas::LoadMetaData() -- Error parsing XML from") 
+                    + " buffer (code): " + String::ToString(xmlErr));
             return false;
         }
 
@@ -76,6 +92,10 @@ namespace FEngine{
             std::string width  = child->Attribute("width");
             std::string height = child->Attribute("height");
             std::string rotation= child->Attribute("rotation");
+            std::string u1     = child->Attribute("u1");
+            std::string v1     = child->Attribute("v1");
+            std::string u2     = child->Attribute("u2");
+            std::string v2     = child->Attribute("v2");
 
             SpriteMetaDataPtr smd = FENew(SpriteMetaData);
             //smd.name   = name;
@@ -83,10 +103,10 @@ namespace FEngine{
             smd->y      = atoi(y.c_str());
             smd->width  = atoi(width.c_str());
             smd->height = atoi(height.c_str());
-            smd->u      = float(smd->x) / float(_texture->GetWidth());
-            smd->v      = 1.0f - float(smd->y) / float(_texture->GetHeight());
-            smd->uW     = float(smd->x + smd->width) / float(_texture->GetWidth());
-            smd->vH     = 1.0f - float(smd->y + smd->height) / float(_texture->GetHeight());
+            smd->u1     = std::atof(u1.c_str());
+            smd->v1     = std::atof(v1.c_str());
+            smd->u2     = std::atof(u2.c_str());
+            smd->v2     = std::atof(v2.c_str());
             if(rotation == "false"){
                 smd->rotation = false;
             }else{
@@ -94,23 +114,10 @@ namespace FEngine{
             }
 
             _metadataMap[name] = smd;
-
-            log->Print(name);
-            
+ 
             child = child->NextSiblingElement( "Sprite" );
 
         }
-
-        /*for(int i = 0; i < spriteCount; i++){*/
-            //log->Print("Loading atlas sprites...");
-            
-        /*}*/
-
-/*child = root->FirstChildElement( "WindowSystem" );*/
-        //_className= child->Attribute("className");
-        //_windowTitle = child->Attribute("windowTitle");
-
-        //child = child->NextSiblingElement( "Graphics" );
 
         return true; 
     }

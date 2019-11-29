@@ -50,6 +50,7 @@ set ( HDR
 		Graphics2D/Atlas.hpp
 		Graphics2D/Image.hpp
 		Graphics2D/PNGImage.hpp
+		Graphics2D/Sprite.hpp
 		Graphics2D/Texture.hpp
         System/App.hpp
         System/Definitions.hpp
@@ -92,6 +93,7 @@ set ( SRC
 		Graphics2D/Atlas.cpp
 		Graphics2D/Image.cpp
 		Graphics2D/PNGImage.cpp		
+		Graphics2D/Sprite.cpp
         Graphics2D/Texture.cpp
         ResourceCache/IOManagerDefault.cpp
         Renderer/Renderer.cpp        

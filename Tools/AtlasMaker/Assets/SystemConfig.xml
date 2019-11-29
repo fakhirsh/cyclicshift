@@ -2,8 +2,8 @@
 
 <SystemConfig>
 	
-	<Atlas inputDir="ZombieAtlas/" atlasName="atlas01" format="png">
-	    <Dimensions width="2048" height="1024" />
+	<Atlas inputDir="cyclicshift/" atlasName="game" format="png">
+	    <Dimensions width="512" height="256" />
 	    <Padding    amount="2" />
 	    <Packing    algorithm="Guillotine" />
 	    <Debugging  enable="false">

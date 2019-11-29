@@ -47,4 +47,7 @@ namespace FEngine
     class SpriteMetaData;
     typedef std::shared_ptr<SpriteMetaData> SpriteMetaDataPtr;
 
+    class Sprite;
+    typedef std::shared_ptr<Sprite> SpritePtr;
+
 }

@@ -45,7 +45,7 @@ namespace FEngine{
     Atlas atlas;
 
     void DrawImage(Program * program, Texture * texture, float offsetX, float offsetY);
-
+    void RenderSprite(Program * program, string spriteName, float offsetX, float offsetY);
 
     float playerX = 100.0f;
     float playerY = 100.0f;
@@ -78,18 +78,18 @@ namespace FEngine{
             return;
         }
 
-        if(!playerTexture.LoadFromFile("Textures/player.png")){
-            App::Get()->GetLogger()->Print("Texture loading failed: player.png", "Game::Init");
-            return;
-        }
-        if(!enemyShipTexture.LoadFromFile("Textures/enemyShip.png")){
-            App::Get()->GetLogger()->Print("Texture loading failed: enemyShip.png", "Game::Init");
-            return;
-        }
-        if(!enemyUFOTexture.LoadFromFile("Textures/enemyUFO.png")){
-            App::Get()->GetLogger()->Print("Texture loading failed: enemyUFO.png", "Game::Init");
-            return;
-        }
+/*        if(!playerTexture.LoadFromFile("Textures/player.png")){*/
+            //App::Get()->GetLogger()->Print("Texture loading failed: player.png", "Game::Init");
+            //return;
+        //}
+        //if(!enemyShipTexture.LoadFromFile("Textures/enemyShip.png")){
+            //App::Get()->GetLogger()->Print("Texture loading failed: enemyShip.png", "Game::Init");
+            //return;
+        //}
+        //if(!enemyUFOTexture.LoadFromFile("Textures/enemyUFO.png")){
+            //App::Get()->GetLogger()->Print("Texture loading failed: enemyUFO.png", "Game::Init");
+            //return;
+        /*}*/
 
         if(!textureProg.Init()){
             App::Get()->GetLogger()->Print("ERROR: Couldn't initialize textureProgram", "Game::Init");
@@ -161,10 +161,14 @@ namespace FEngine{
         RendererPtr render = App::Get()->GetRenderer();
         render->Clear();
         
-        DrawImage(&textureProg, &playerTexture, playerX - playerTexture.GetWidth()/2, playerY - playerTexture.GetHeight()/2);
-        DrawImage(&textureProg, &enemyShipTexture, enemyX, enemyY);
-        DrawImage(&textureProg, &enemyUFOTexture, 270, ufoY);
-        
+        /*DrawImage(&textureProg, &playerTexture, playerX - playerTexture.GetWidth()/2, playerY - playerTexture.GetHeight()/2);*/
+        //DrawImage(&textureProg, &enemyShipTexture, enemyX, enemyY);
+        /*DrawImage(&textureProg, &enemyUFOTexture, 270, ufoY);*/
+       
+        RenderSprite(&textureProg, "player.png", playerX - playerTexture.GetWidth()/2, playerY - playerTexture.GetHeight()/2);
+        RenderSprite(&textureProg, "enemyShip.png", enemyX, enemyY);
+        RenderSprite(&textureProg, "enemyUFO.png", 270, ufoY);
+
         enemyX += enemyVX * dt;
         enemyY += enemyVY * dt;
         
@@ -196,8 +200,8 @@ namespace FEngine{
             _renderBatch.push_back(v);
         }
 
-        float W, H, u, v, uW, vH, angle, scaleX, scaleY, alpha, shearX, shearY;
-        u       = 0.0f;
+        float W, H, u1, v, uW, vH, angle, scaleX, scaleY, alpha, shearX, shearY;
+        u1      = 0.0f;
         v       = 0.0f;
         uW      = 1.0f;
         vH      = 1.0f;
@@ -211,7 +215,7 @@ namespace FEngine{
         _renderBatch[i * VERTS_PER_SPRITE].x	=	0 + offsetX;
         _renderBatch[i * VERTS_PER_SPRITE].y	=	0 + offsetY;
         _renderBatch[i * VERTS_PER_SPRITE].z	=	0;
-        _renderBatch[i * VERTS_PER_SPRITE].u	=	u;
+        _renderBatch[i * VERTS_PER_SPRITE].u	=	u1;
         _renderBatch[i * VERTS_PER_SPRITE].v	=	vH;
        
         _renderBatch[i * VERTS_PER_SPRITE + 1].x	=	W + offsetX;
@@ -229,7 +233,7 @@ namespace FEngine{
         _renderBatch[i * VERTS_PER_SPRITE + 3].x	=	0 + offsetX;
         _renderBatch[i * VERTS_PER_SPRITE + 3].y	=	0 + offsetY;
         _renderBatch[i * VERTS_PER_SPRITE + 3].z	=	0;
-        _renderBatch[i * VERTS_PER_SPRITE + 3].u	=	u;
+        _renderBatch[i * VERTS_PER_SPRITE + 3].u	=	u1;
         _renderBatch[i * VERTS_PER_SPRITE + 3].v	=	vH;
        
         _renderBatch[i * VERTS_PER_SPRITE + 4].x	=	W + offsetX;
@@ -241,7 +245,7 @@ namespace FEngine{
         _renderBatch[i * VERTS_PER_SPRITE + 5].x	=	0 + offsetX;
         _renderBatch[i * VERTS_PER_SPRITE + 5].y	=	H + offsetY;
         _renderBatch[i * VERTS_PER_SPRITE + 5].z	=	0;
-        _renderBatch[i * VERTS_PER_SPRITE + 5].u	=	u;
+        _renderBatch[i * VERTS_PER_SPRITE + 5].u	=	u1;
         _renderBatch[i * VERTS_PER_SPRITE + 5].v	=	v;
 
 
@@ -270,5 +274,97 @@ namespace FEngine{
         texture->UnBind();
         program->UnBind();
     }
+
+
+    void RenderSprite(Program * program, string spriteName, float offsetX, float offsetY){
+        
+        std::vector<Vertex3PF2UVF>	_renderBatch;
+
+        // 6 vertices per Sprite
+        for(int i = 0; i < 6; i++){
+            Vertex3PF2UVF v;
+            _renderBatch.push_back(v);
+        }
+
+        SpriteMetaDataPtr smd = atlas.GetMetaData(spriteName);
+        
+        float W, H, u1, v1, u2, v2, angle, scaleX, scaleY, alpha, shearX, shearY;
+        u1      = smd->u1;
+        v1      = smd->v1;
+        u2      = smd->u2;
+        v2      = smd->v2;
+
+        /*LogPtr lg = App::Get()->GetLogger();*/
+        /*lg->Print(spriteName + " -- u: "+String::ToString(u1)+"  v: "+String::ToString(v1)+"  u2: "+String::ToString(u2)+"  v2: "+String::ToString(v2));*/
+
+        W = smd->width;
+        H = smd->height;
+
+        int i = 0;
+        const int VERTS_PER_SPRITE = 6;
+        
+        _renderBatch[i * VERTS_PER_SPRITE].x	=	0 + offsetX;
+        _renderBatch[i * VERTS_PER_SPRITE].y	=	0 + offsetY;
+        _renderBatch[i * VERTS_PER_SPRITE].z	=	0;
+        _renderBatch[i * VERTS_PER_SPRITE].u	=	u1;
+        _renderBatch[i * VERTS_PER_SPRITE].v	=	v2;
+       
+        _renderBatch[i * VERTS_PER_SPRITE + 1].x	=	W + offsetX;
+        _renderBatch[i * VERTS_PER_SPRITE + 1].y	=	0 + offsetY;
+        _renderBatch[i * VERTS_PER_SPRITE + 1].z	=	0;
+        _renderBatch[i * VERTS_PER_SPRITE + 1].u	=	u2;
+        _renderBatch[i * VERTS_PER_SPRITE + 1].v	=	v2;
+       
+        _renderBatch[i * VERTS_PER_SPRITE + 2].x	=	W + offsetX;
+        _renderBatch[i * VERTS_PER_SPRITE + 2].y	=	H + offsetY;
+        _renderBatch[i * VERTS_PER_SPRITE + 2].z	=	0;
+        _renderBatch[i * VERTS_PER_SPRITE + 2].u	=	u2;
+        _renderBatch[i * VERTS_PER_SPRITE + 2].v	=	v1;
+       
+        _renderBatch[i * VERTS_PER_SPRITE + 3].x	=	0 + offsetX;
+        _renderBatch[i * VERTS_PER_SPRITE + 3].y	=	0 + offsetY;
+        _renderBatch[i * VERTS_PER_SPRITE + 3].z	=	0;
+        _renderBatch[i * VERTS_PER_SPRITE + 3].u	=	u1;
+        _renderBatch[i * VERTS_PER_SPRITE + 3].v	=	v2;
+       
+        _renderBatch[i * VERTS_PER_SPRITE + 4].x	=	W + offsetX;
+        _renderBatch[i * VERTS_PER_SPRITE + 4].y	=	H + offsetY;
+        _renderBatch[i * VERTS_PER_SPRITE + 4].z	=	0;
+        _renderBatch[i * VERTS_PER_SPRITE + 4].u	=	u2;
+        _renderBatch[i * VERTS_PER_SPRITE + 4].v	=	v1;
+       
+        _renderBatch[i * VERTS_PER_SPRITE + 5].x	=	0 + offsetX;
+        _renderBatch[i * VERTS_PER_SPRITE + 5].y	=	H + offsetY;
+        _renderBatch[i * VERTS_PER_SPRITE + 5].z	=	0;
+        _renderBatch[i * VERTS_PER_SPRITE + 5].u	=	u1;
+        _renderBatch[i * VERTS_PER_SPRITE + 5].v	=	v1;
+
+
+        atlas.Bind();        
+        
+        program->Bind();
+        program->SetMatrix(App::Get()->GetWindowWidth(), App::Get()->GetWindowHeight());
+
+        int posLoc      =   textureProg.GetPositionAttribLocation();
+        int uvLoc       =   textureProg.GetUVAttribLocation();
+
+        RendererPtr render = App::Get()->GetRenderer();
+		
+		render->EnableVertexAttribArray(posLoc);
+		render->EnableVertexAttribArray(uvLoc);
+       
+        render->VertexAttribPointer(posLoc, 3, GL_FLOAT, GL_FALSE, 5*sizeof(GLfloat), (const GLvoid *)&_renderBatch[0].x);
+        render->VertexAttribPointer(uvLoc, 2, GL_FLOAT, GL_FALSE, 5*sizeof(GLfloat),(const GLvoid *)&_renderBatch[0].u);
+
+		// Draw the triangle !
+		render->DrawArrays(GL_TRIANGLES, 0, _renderBatch.size());
+
+        render->DisableVertexAttribArray(uvLoc);
+        render->DisableVertexAttribArray(posLoc);
+
+        atlas.UnBind();
+        program->UnBind();
+    }
+
 
 };

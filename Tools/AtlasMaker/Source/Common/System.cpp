@@ -303,16 +303,22 @@ namespace AtlasMaker{
             pElement->SetAttribute("height", imgPtr->height);
             pElement->SetAttribute("rotation", imgPtr->rotation);
             
-            float  u     = float(imgPtr->x) / float(_atlasWidth);
-            float  v     = 1.0f - float(imgPtr->y) / float(_atlasHeight);
-            float uW     = float(imgPtr->x + imgPtr->width) / float(_atlasWidth);
-            float vH     = 1.0f - float(imgPtr->y + imgPtr->height) / float(_atlasHeight);
+            /*
+             *float  u     = float(imgPtr->x) / float(_atlasWidth);
+             *float  v     = 1.0f - float(imgPtr->y) / float(_atlasHeight);
+             *float uW     = float(imgPtr->x + imgPtr->width) / float(_atlasWidth);
+             *float vH     = 1.0f - float(imgPtr->y + imgPtr->height) / float(_atlasHeight);
+             */
 
+            float u1     = float(imgPtr->x) / float(_atlasWidth);
+            float v1     = float(imgPtr->y) / float(_atlasHeight);
+            float u2     = float(imgPtr->x + imgPtr->width) / float(_atlasWidth);
+            float v2     = float(imgPtr->y + imgPtr->height) / float(_atlasHeight);
 
-            pElement->SetAttribute("u", u);
-            pElement->SetAttribute("v", v);
-            pElement->SetAttribute("uW", uW);
-            pElement->SetAttribute("vH", vH);
+            pElement->SetAttribute("u1", u1);
+            pElement->SetAttribute("v1", v1);
+            pElement->SetAttribute("u2", u2);
+            pElement->SetAttribute("v2", v2);
             
             pRoot->InsertEndChild(pElement);
         }

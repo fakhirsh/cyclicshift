@@ -14,7 +14,7 @@ namespace FEngine
         //std::string name;   // Do we need to store the name? 
                               //  HINT: Key is the name in sprite atlas map
         int x, y, width, height;
-        float u, v, uW, vH;
+        float u1, v1, u2, v2;
         bool rotation;
     };
 
@@ -29,7 +29,12 @@ namespace FEngine
             virtual ~Atlas();
 
             bool LoadFromFile(std::string image, std::string metadata);
-            
+
+            SpriteMetaDataPtr GetMetaData(std::string spriteName);
+
+            void Bind();
+            void UnBind();
+
         private:
             // Function to load the metadata xml description from 
             //   a memory buffer.
