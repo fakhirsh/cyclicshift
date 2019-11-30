@@ -31,6 +31,8 @@ namespace FEngine
             int GetWindowWidth();
             int GetWindowHeight();
 
+            static unsigned int GetNextId();
+
             void SetIOManager(const IOManagerPtr & iomgr);
             IOManagerPtr GetIOManager();
             void SetRenderer(const RendererPtr & renderer);
@@ -41,6 +43,9 @@ namespace FEngine
             WindowManagerPtr GetWindowManager();
             void SetLogger(const LogPtr & logger);
             LogPtr GetLogger();
+
+            void AddActor(ActorPtr & aptr);
+            ActorPtr GetActor(int id);
 
             EventManagerPtr GetEventManager();
 
@@ -89,6 +94,10 @@ namespace FEngine
             LogPtr                _logger;
             static App  *         _app;
             EventManagerPtr       _eventManager;
+
+            // Generates next ID for various actors/components in the game
+            static unsigned int _nextId;
+            ActorMap            _actorMap;
 
             Game * _testGame;
     };

@@ -26,11 +26,16 @@ CONFIGURE_FILE(../../../Assets/Development/Effects/GL30/SimpleVertex2D.fs ../../
 CONFIGURE_FILE(../../../Assets/Development/Effects/GL30/TexturedVertex.vs ../../Game/Linux/Data/Effects/GL30/TexturedVertex.vs COPYONLY)
 CONFIGURE_FILE(../../../Assets/Development/Effects/GL30/TexturedVertex.fs ../../Game/Linux/Data/Effects/GL30/TexturedVertex.fs COPYONLY)
 
-CONFIGURE_FILE(../../../Assets/Development/Textures/player.png ../../Game/Linux/Data/Textures/player.png COPYONLY)
-CONFIGURE_FILE(../../../Assets/Development/Textures/enemyShip.png ../../Game/Linux/Data/Textures/enemyShip.png COPYONLY)
-CONFIGURE_FILE(../../../Assets/Development/Textures/enemyUFO.png ../../Game/Linux/Data/Textures/enemyUFO.png COPYONLY)
+#CONFIGURE_FILE(../../../Assets/Development/Textures/player.png ../../Game/Linux/Data/Textures/player.png COPYONLY)
+#CONFIGURE_FILE(../../../Assets/Development/Textures/enemyShip.png ../../Game/Linux/Data/Textures/enemyShip.png COPYONLY)
+#CONFIGURE_FILE(../../../Assets/Development/Textures/enemyUFO.png ../../Game/Linux/Data/Textures/enemyUFO.png COPYONLY)
+CONFIGURE_FILE(../../../Assets/Development/Textures/zombie.png ../../Game/Linux/Data/Textures/zombie.png COPYONLY)
+CONFIGURE_FILE(../../../Assets/Development/Textures/zombie.xml ../../Game/Linux/Data/Textures/zombie.xml COPYONLY)
 
-CONFIGURE_FILE(../../../Assets/Development/Sounds/gameplayMusic.ogg ../../Game/Linux/Data/Sounds/gameplayMusic.ogg COPYONLY)
+CONFIGURE_FILE(../../../Assets/Development/Actors/player.xml ../../Game/Linux/Data/Actors/player.xml COPYONLY)
+CONFIGURE_FILE(../../../Assets/Development/Actors/enemy.xml ../../Game/Linux/Data/Actors/enemy.xml COPYONLY)
+
+#CONFIGURE_FILE(../../../Assets/Development/Sounds/gameplayMusic.ogg ../../Game/Linux/Data/Sounds/gameplayMusic.ogg COPYONLY)
 
 add_custom_command(
         TARGET foo POST_BUILD

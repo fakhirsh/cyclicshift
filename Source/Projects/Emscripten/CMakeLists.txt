@@ -35,13 +35,16 @@ CONFIGURE_FILE(../../../Assets/Development/Effects/GLES20/SimpleVertex2D.fs Data
 CONFIGURE_FILE(../../../Assets/Development/Effects/GLES20/TexturedVertex.vs Data/Effects/GLES20/TexturedVertex.vs COPYONLY)
 CONFIGURE_FILE(../../../Assets/Development/Effects/GLES20/TexturedVertex.fs Data/Effects/GLES20/TexturedVertex.fs COPYONLY)
 
-CONFIGURE_FILE(../../../Assets/Development/Textures/player.png Data/Textures/player.png COPYONLY)
-CONFIGURE_FILE(../../../Assets/Development/Textures/enemyShip.png Data/Textures/enemyShip.png COPYONLY)
-CONFIGURE_FILE(../../../Assets/Development/Textures/enemyUFO.png Data/Textures/enemyUFO.png COPYONLY)
+#CONFIGURE_FILE(../../../Assets/Development/Textures/player.png Data/Textures/player.png COPYONLY)
+#CONFIGURE_FILE(../../../Assets/Development/Textures/enemyShip.png Data/Textures/enemyShip.png COPYONLY)
+#CONFIGURE_FILE(../../../Assets/Development/Textures/enemyUFO.png Data/Textures/enemyUFO.png COPYONLY)
 CONFIGURE_FILE(../../../Assets/Development/Textures/zombie.png Data/Textures/zombie.png COPYONLY)
 CONFIGURE_FILE(../../../Assets/Development/Textures/zombie.xml Data/Textures/zombie.xml COPYONLY)
 
-CONFIGURE_FILE(../../../Assets/Development/Sounds/gameplayMusic.ogg Data/Sounds/gameplayMusic.ogg COPYONLY)
+CONFIGURE_FILE(../../../Assets/Development/Actors/player.xml Data/Actors/player.xml COPYONLY)
+CONFIGURE_FILE(../../../Assets/Development/Actors/enemy.xml Data/Actors/enemy.xml COPYONLY)
+
+#CONFIGURE_FILE(../../../Assets/Development/Sounds/gameplayMusic.ogg Data/Sounds/gameplayMusic.ogg COPYONLY)
 
 # Add library subdirectories
 add_subdirectory(../../FEngine ${CMAKE_BINARY_DIR}/FEngine)

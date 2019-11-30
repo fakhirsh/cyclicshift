@@ -1,4 +1,3 @@
-
 #include "KBComponent.hpp"
 
 namespace FEngine{
@@ -12,6 +11,7 @@ namespace FEngine{
     }
 
     bool KBComponent::Init(){
+        this->SetType("keyboard");
         return false; 
     }
     
@@ -21,6 +21,3 @@ namespace FEngine{
 
 
 }
-
- 
-

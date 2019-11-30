@@ -1,4 +1,3 @@
-
 #include "Component.hpp"
 
 namespace FEngine{
@@ -13,7 +12,7 @@ namespace FEngine{
     
     }
 
-    const std::string & Component::GetType(){
+    const std::string & Component::GetType() const{
         return _type;
     }
 
@@ -21,8 +20,9 @@ namespace FEngine{
         _type = type;
     }
 
+    void Component::SetOwner(ActorPtr & owner){
+        _owner = owner;
+    }
 
 }
-
- 
 

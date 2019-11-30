@@ -1,4 +1,3 @@
-
 #pragma once
 
 #include <string>
@@ -14,15 +13,16 @@ namespace FEngine{
             Component();
             ~Component();
             
-            const std::string & GetType();
+            const std::string & GetType() const;
             void SetType(const std::string & type);
-            
+            void SetOwner(ActorPtr & owner);
+
             virtual bool Init() = 0;
             virtual void Update(float dt) = 0;
 
         private:
             //unsigned int _id;
-            ActorPtr _parentActor;
+            ActorPtr _owner;
             std::string _type;
     };
 

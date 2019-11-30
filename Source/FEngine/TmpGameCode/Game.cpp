@@ -14,6 +14,7 @@
 #include <Debugging/Log.hpp>
 #include <Utility/String.hpp>
 #include <Utility/Math.hpp>
+#include <ActorManager/ActorFactory.hpp>
 
 #include <EventManager/Event.hpp>
 
@@ -77,6 +78,10 @@ namespace FEngine{
         //   Otherwise you'll get a BLACK screen and you'll
         //   keep on wondering why :-P
         render->ClearColor(0.23046f, 0.472656f, 0.660156f, 1.0f);
+        
+        bool result = false;
+        result = ActorFactory::Get()->LoadFromFile("Actors/player.xml");
+        result = ActorFactory::Get()->LoadFromFile("Actors/enemy.xml");
 
         if(!atlas.LoadFromFile("Textures/zombie.png", "Textures/zombie.xml")){
         //if(!atlas.LoadFromFile("Textures/game.png", "Textures/game.xml")){

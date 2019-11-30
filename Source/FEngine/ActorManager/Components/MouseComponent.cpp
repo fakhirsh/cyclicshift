@@ -1,4 +1,3 @@
-
 #include "MouseComponent.hpp"
 
 namespace FEngine{
@@ -12,6 +11,7 @@ namespace FEngine{
     }
 
     bool MouseComponent::Init(){
+        this->SetType("mouse");
         return false; 
     }
     
@@ -20,6 +20,4 @@ namespace FEngine{
     }
 
 }
-
- 
 

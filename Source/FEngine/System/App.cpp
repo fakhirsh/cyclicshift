@@ -8,6 +8,7 @@
 #include <Utility/String.hpp>
 #include <EventManager/EventManager.hpp>
 #include <EventManager/Event.hpp>
+#include <ActorManager/Actor.hpp>
 
 #include "../TmpGameCode/Game.hpp"
 
@@ -16,6 +17,7 @@ using namespace std;
 namespace FEngine{
 
     App * App::_app = NULL;
+    unsigned int App::_nextId = 0x1000;
 
     App::App(){
         _fps               = -1;
@@ -95,6 +97,18 @@ namespace FEngine{
         return true;
     }
 
+    unsigned int App::GetNextId(){
+        _nextId++;
+        return _nextId;
+    }
+    
+    void App::AddActor(ActorPtr & aptr){
+        _actorMap[aptr->GetId()] = aptr;
+    }
+
+    ActorPtr App::GetActor(int id){
+        return _actorMap[id];
+    }
 
     std::string App::GetClassName(){
         return _className;
@@ -262,6 +276,13 @@ namespace FEngine{
     }
     
     void App::Update(float dt){
+        
+        for(auto it = _actorMap.begin(); it != _actorMap.end(); ++it){
+            ActorPtr ap = it->second;
+            _logger->Print(ap->GetName() + "  --  " + String::ToString(ap->GetId()));
+            ap->Update(dt);
+        }
+
         _testGame->Update(dt); 
     }
     

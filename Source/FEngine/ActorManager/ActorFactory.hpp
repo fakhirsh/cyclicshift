@@ -1,4 +1,3 @@
-
 #pragma once
 
 #include <string>
@@ -10,11 +9,15 @@ namespace FEngine{
     
     class ActorFactory{
         public:
-
             virtual ~ActorFactory();
             
             static ActorFactory * Get();
-            ActorPtr CreateActor(const tinyxml2::XMLElement & actorXml);
+
+            /**
+             * @param actorXml Path to the XML file defining the actor
+             */
+            bool LoadFromFile(const std::string & path);
+            ActorPtr CreateActor(const tinyxml2::XMLElement * element);
 
         private:
             ActorFactory();

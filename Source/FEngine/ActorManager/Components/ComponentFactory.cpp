@@ -1,4 +1,3 @@
-
 #include "ComponentFactory.hpp"
 #include "KBComponent.hpp"
 
@@ -29,6 +28,3 @@ namespace FEngine{
     }
 
 }
-
- 
-
